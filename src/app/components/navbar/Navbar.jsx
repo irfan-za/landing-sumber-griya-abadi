@@ -1,9 +1,8 @@
 'use client'
 import Link from "next/link";
 import NavLink from "./NavLink";
-import Image from "next/image";
 import DarkModeTogleButton from "./DarkModeTogleButton";
-import { HomeIcon, LightBulbIcon, UserGroupIcon } from "@heroicons/react/24/outline";
+import { HomeIcon, HomeModernIcon, ShoppingBagIcon } from "@heroicons/react/24/outline";
 import {usePathname} from "next/navigation"
 
 const Navbar = () => {
@@ -23,7 +22,7 @@ const Navbar = () => {
       path: "/products",
       isActive: `${path==='/products' ? 'text-primary-500' : 'text-slate-700 dark:text-slate-200'}`,
       icon: (
-        <UserGroupIcon className={`${path==='/products' ? 'text-primary-500' : 'text-slate-700 dark:text-slate-200'} block sm:hidden h-6 w-6`} />
+        <ShoppingBagIcon className={`${path==='/products' ? 'text-primary-500' : 'text-slate-700 dark:text-slate-200'} block sm:hidden h-6 w-6`} />
       )
     },
     {
@@ -31,7 +30,7 @@ const Navbar = () => {
       path: "/services",
       isActive: `${path==='/services' ? 'text-primary-500' : 'text-slate-700 dark:text-slate-200'}`,
       icon: (
-        <LightBulbIcon className={`${path==='/services' ? 'text-primary-500' : 'text-slate-700 dark:text-slate-200'} block sm:hidden h-6 w-6`} />
+        <HomeModernIcon className={`${path==='/services' ? 'text-primary-500' : 'text-slate-700 dark:text-slate-200'} block sm:hidden h-6 w-6`} />
       )
     },
   ];
