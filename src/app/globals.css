@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*{
+  margin: 0;
+  padding: 0;
+}
+
+/* Ganti scrollbar vertikal */
+::-webkit-scrollbar {
+  height: 10px; /* Tinggi scrollbar horizontal */
+}
+
+/* Ganti warna thumb scrollbar (bagian yang dapat di-drag) */
+::-webkit-scrollbar-thumb {
+  @apply bg-slate-400 hover:bg-slate-500 rounded-full;
+}
+
+/* Ganti warna thumb scrollbar saat dihover */
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgb(100 116 139);
+}
