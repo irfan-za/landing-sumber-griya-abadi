@@ -4,7 +4,7 @@ const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
   title: 'Sumber Griya Abadi',
-  description: 'Sumber Griya Abadi merupakan perusahaan jasa pemasangan plafon dan distribusi bahan material bangunan. Kami berdiri sejak 2008 di Solo, Jawa Tengah. Hingga saat ini, kami selalu konsisten melayani pemasangan plafon secara professional dan berkualitas.  ',
+  description: 'Jasa pemasangan plafon Gypsum dan PVC, jual berbagai bahan material bangunan. Melayani pemasangan plafon secara professional dan berkualitas. Atap Galvalume, Baja Ringan, Bondek, Besi Las, Plafon PVC, lengkap hanya di Sumber Griya Abadi.',
   keywords: 'toko plafon, pemborong plafon, jasa konstruksi, jasa pasang plafon, toko bangunan, plafon pvc, plafon gypsum, baja ringan, atap galvalume, pasang plafon pvc, tukang plafon, atap rumah, pemasangan plafom pvc, toko plafon solo, toko bangunan solo',
   openGraph: {
     images: 'https://res.cloudinary.com/ddjmxrrij/image/upload/v1700575460/logo_rcth5s.png',
