@@ -7,7 +7,7 @@ import { useRouter } from 'next/navigation'
 import ButtonContact from '../ButtonContact'
 
 
-function DetailCard({id}) {
+export default function DetailCard({id}) {
   const router= useRouter()
   const path=usePathname()
   let fetchUrl=path.split('/')[1].slice(0, -1);
@@ -31,7 +31,7 @@ function DetailCard({id}) {
                 <Image fill={true} objectFit='cover' src={filteredData[0].imageUrl} alt={filteredData[0].title} className='rounded-t-2xl sm:rounded-t-3xl'  />
                 <XMarkIcon 
                 onClick={()=>router.back()}
-                className='w-10 sm:w-12 h-10 sm:h-12 rounded-lg sm:rounded-xl hover:bg-primary-400 bg-primary-500 text-white inline-block relative' />
+                className='w-10 sm:w-12 h-10 sm:h-12 rounded-lg sm:rounded-xl hover:cursor-pointer hover:bg-primary-400 bg-primary-500 text-white inline-block relative' />
               </div>
                   <section className='px-2 sm:px-6 text-base sm:text-lg'>
                     <h1 className='mt-8 mb-4 sm:mt-16 sm:mb-8 font-bold text-xl sm:text-3xl'>{filteredData[0].title}</h1>
@@ -46,4 +46,3 @@ function DetailCard({id}) {
   )
 }
 
-export default DetailCard

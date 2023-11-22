@@ -1,13 +1,13 @@
 "use client";
 import React, { useState, useRef, useEffect } from "react";
 import Card from "./Card";
-import ProjectTag from "./CardTag";
+import CardTag from "./CardTag";
 import { motion, useInView } from "framer-motion";
 import Link from "next/link";
 
 
 const CardSection = () => {
-  const [tag, setTag] = useState("Produk");
+  const [tag, setTag] = useState("product");
   const [data, setData] = useState(null);
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
@@ -17,18 +17,10 @@ const CardSection = () => {
   };
   useEffect(() => {
     const f=async() => {
-      if(tag=="Produk"){
-        const res= await fetch('/api/product')
-        const data= await res.json()
-        // limit 6 data
-        setData(data.slice(0, 6))
-      }
-      else if(tag=="Jasa"){
-        const res= await fetch('/api/service')
-        const data= await res.json()
-        // limit 6 data
-        setData(data.slice(0, 6))
-      }
+      const res= await fetch(`/api/${tag}`)
+      const data= await res.json()
+      // limit 6 data
+      setData(data.slice(0, 6))
     }
     f()
   }, [tag])
@@ -66,15 +58,17 @@ const CardSection = () => {
         <h2 className="block sm:hidden text-center text-2xl font-bold bg-clip-text bg-gradient-to-r from-primary-500 via-blue-400 to-secondary-400 text-transparent">Kenali Lebih Lanjut</h2>
       </div>
       <div className="text-slate-700 dark:text-white flex flex-row justify-center items-center gap-2 py-6">
-        <ProjectTag
-          onClick={handleTagChange}
+        <CardTag
+          handleTagChange={handleTagChange}
           name="Produk"
-          isSelected={tag === "Produk"}
+          path="product"
+          isSelected={tag === "product"}
         />
-        <ProjectTag
-          onClick={handleTagChange}
+        <CardTag
+          handleTagChange={handleTagChange}
           name="Jasa"
-          isSelected={tag === "Jasa"}
+          path="service"
+          isSelected={tag === "service"}
         />
       </div>
       <ul ref={ref} className="grid grid-cols-2 sm:grid-cols-3 gap-8 sm:gap-12">
@@ -89,8 +83,8 @@ const CardSection = () => {
             <Card
               id={data.id}
               title={data.title}
-              description={data.description}
               imgUrl={data.imageUrl}
+              fetchUrl={tag}
             />
           </motion.li>
         ))}
