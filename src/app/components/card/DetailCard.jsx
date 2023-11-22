@@ -11,8 +11,6 @@ function DetailCard({id}) {
   const router= useRouter()
   const path=usePathname()
   let fetchUrl=path.split('/')[1].slice(0, -1);
-  // fetchUrl=fetchUrl.substring(0, lastString);
-  console.log(fetchUrl);
   const [data, setData] = useState(null)
   useEffect(() => {
     const f=async() => {
