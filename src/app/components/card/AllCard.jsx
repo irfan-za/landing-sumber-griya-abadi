@@ -29,7 +29,7 @@ function AllCard({pageTitle, fetchUrl}) {
             placeholder="Cari data..." />
             <label htmlFor=""><MagnifyingGlassIcon className="w-4 h-4 relative "/></label>
           </div>
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-8 sm:gap-12 container">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-8 container">
             {
               filteredData && filteredData.map(data=>{
                 return <Card key={data.id} imgUrl={data.imageUrl} title={data.title} id={data.id} fetchUrl={fetchUrl} />

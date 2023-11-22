@@ -22,5 +22,7 @@ module.exports = {
       secondary: colors.sky,
     },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/line-clamp'),
+  ],
 };
