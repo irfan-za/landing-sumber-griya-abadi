@@ -41,7 +41,11 @@ const Footer = () => {
             Sumber Griya Abadi
           </h5>
           <p className="text-slate-700 dark:text-slate-200 mb-4 pb-2 max-w-md border-b-2 border-primary-500">
-            Belanja plafon lengkap dan terpercaya hanya di Sumber Griya Abadi
+            Belanja plafon lengkap dan terpercaya hanya di Sumber Griya Abadi.
+            <br /><br />
+            📍Jl Mangu-Sambi km.3, Sobokerto, Ngemplak, Boyolali, Jawa Tengah.
+            <br />
+            <strong>085 602 904 294 (WhatsApp)</strong>
           </p>
           <span className="text-xl font-bold text-slate-800 dark:text-white">Media Sosial :</span>
           <div className="flex flex-row gap-2">
