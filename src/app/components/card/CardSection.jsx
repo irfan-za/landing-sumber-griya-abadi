@@ -19,8 +19,8 @@ const CardSection = () => {
     const f=async() => {
       const res= await fetch(`/api/${tag}`)
       const data= await res.json()
-      // limit 6 data
-      setData(data.slice(0, 6))
+      // limit 4 data
+      setData(data.slice(0, 4))
     }
     f()
   }, [tag])
