@@ -71,7 +71,7 @@ const CardSection = () => {
           isSelected={tag === "service"}
         />
       </div>
-      <ul ref={ref} className="grid grid-cols-2 sm:grid-cols-3 gap-8 sm:gap-12">
+      <ul ref={ref} className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-8">
         {data && data.map((data, index) => (
           <motion.li
             key={index}
