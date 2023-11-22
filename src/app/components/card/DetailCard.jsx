@@ -35,33 +35,12 @@ function DetailCard({id}) {
                 onClick={()=>router.back()}
                 className='w-10 sm:w-12 h-10 sm:h-12 rounded-lg sm:rounded-xl hover:bg-primary-400 bg-primary-500 text-white inline-block relative' />
               </div>
-              {
-                typeof(filteredData[0].description)==='object' &&(
-                  <section className='px-2 sm:px-6 text-base sm:text-lg dark:text-slate-200 text-slate-700'>
-                    <h1 className='mt-8 mb-4 sm:mt-16 sm:mb-8 font-bold text-xl sm:text-3xl dark:text-white text-slate-800'>Bidang {filteredData[0].title}</h1>
-                    <p className='mb-4 sm:mb-8'>{filteredData[0].title} merupakan {filteredData[0].description[0]}</p>
-                    <strong>Spesifikasi :</strong>
-                    <ul>
-                      {
-                        filteredData[0].description.map((data, i)=>(
-                          <li key={i}>{data}</li>
-                        ))
-                      }
-                    </ul>
-                    <ButtonContact title={filteredData[0].title}/>
-                  </section>
-                )
-              }
-              {
-                typeof(filteredData[0].description)==='string' &&(
                   <section className='px-2 sm:px-6 text-base sm:text-lg'>
                     <h1 className='mt-8 mb-4 sm:mt-16 sm:mb-8 font-bold text-xl sm:text-3xl'>{filteredData[0].title}</h1>
                     <strong>Deskripsi :</strong>
                     <p className='mb-4 sm:mb-8'>{filteredData[0].description}</p>
                     <ButtonContact title={filteredData[0].title}/>
                   </section>
-                )
-              }
             </div>
             )
         }
