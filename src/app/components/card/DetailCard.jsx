@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation'
 import { XMarkIcon } from '@heroicons/react/24/outline'
 import { useRouter } from 'next/navigation'
 import ButtonContact from '../ButtonContact'
+import Carousel from '../Carousel'
 
 
 export default function DetailCard({id}) {
@@ -28,10 +29,16 @@ export default function DetailCard({id}) {
           filteredData && (
             <div className='h-full'>
               <div className="text-end relative h-60 sm:h-96">
-                <Image fill={true} objectFit='cover' src={filteredData[0].imageUrl} alt={filteredData[0].title} className='rounded-t-2xl sm:rounded-t-3xl'  />
                 <XMarkIcon 
                 onClick={()=>router.back()}
                 className='w-10 sm:w-12 h-10 sm:h-12 rounded-lg sm:rounded-xl hover:cursor-pointer hover:bg-primary-400 bg-primary-500 text-white inline-block relative' />
+                <div className="flex space-x-4 overflow-x-scroll rounded-xl snap-x py-4">
+                  {
+                    filteredData && filteredData[0]?.imageUrl.map((img,i)=>
+                      <Carousel key={i} image={img} alt={filteredData[0].title} />
+                  )
+                  }
+                </div>
               </div>
                   <section className='px-2 sm:px-6 text-base sm:text-lg'>
                     <h1 className='mt-8 mb-4 sm:mt-16 sm:mb-8 font-bold text-xl sm:text-3xl'>{filteredData[0].title}</h1>
