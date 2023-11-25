@@ -24,7 +24,9 @@ export default function DetailCard({id}) {
   const filteredData = data && data.filter((data) =>data.id===parseInt(id));
   
   return (
-    <div className='mt-8 sm:mt-12 pb-10 sm:pb-20 min-h-screen bg-slate-300 dark:bg-slate-800 w-full flex flex-col rounded-t-2xl sm:rounded-t-3xl'>
+    // min-h-[calc(100vh-2rem)] sm:min-h-[calc(100vh-3rem)]
+    <div className='mt-8 sm:mt-12 pb-10 sm:pb-20 min-h-screen
+     bg-slate-300 dark:bg-slate-800 w-full flex flex-col rounded-t-2xl sm:rounded-t-3xl'>
         {
           filteredData && (
             <div className='h-full'>
@@ -43,10 +45,10 @@ export default function DetailCard({id}) {
                   <section className='px-2 sm:px-6 text-base sm:text-lg'>
                     <h1 className='mt-8 mb-4 sm:mt-16 sm:mb-8 font-bold text-xl sm:text-3xl'>{filteredData[0].title}</h1>
                     <strong>Deskripsi :</strong>
-                    <p className='mb-4 sm:mb-8'>{filteredData[0].description}</p>
+                    <div className='mb-4 sm:mb-8' dangerouslySetInnerHTML={{ __html: filteredData[0].description}}></div>
                     <ButtonContact title={filteredData[0].title}/>
                   </section>
-            </div>
+              </div>
             )
         }
     </div>

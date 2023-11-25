@@ -9,7 +9,7 @@ const AboutSection = () => {
           className="rounded-lg drop-shadow-xl"
           objectFit="cover"
           fill={true}
-          src="https://res.cloudinary.com/ddjmxrrij/image/upload/v1700560370/sga_uttegw.png" 
+          src="https://res.cloudinary.com/ddjmxrrij/image/upload/v1700560370/sga/sga_uttegw.png" 
           alt=" Logo Sumber Griya Abadi" />
         </div>
         <div className="mt-4 md:mt-0 text-left flex flex-col h-full">
