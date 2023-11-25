@@ -9,7 +9,8 @@
 
 /* Ganti scrollbar vertikal */
 ::-webkit-scrollbar {
-  height: 10px; /* Tinggi scrollbar horizontal */
+  /* Tinggi scrollbar horizontal */
+  @apply h-1 sm:h-2
 }
 
 /* Ganti warna thumb scrollbar (bagian yang dapat di-drag) */
