@@ -7,7 +7,7 @@ import ProjectsSection from "./components/card/CardSection";
 import Footer from "./components/Footer";
 import AchievementsSection from "./components/AchievementsSection";
 import DarkModeTogleButton from "./components/navbar/DarkModeTogleButton";
-import KataAlumni from "./components/KataAlumni";
+import Review from "./components/Review";
 
 
 export default function Home() {
@@ -23,7 +23,7 @@ export default function Home() {
           <AchievementsSection />
           <AboutSection />
           <ProjectsSection />
-          <KataAlumni/>
+          <Review/>
         </div>
         <div className="w-full overflow-hidden">
           <Footer />

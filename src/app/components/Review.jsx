@@ -1,7 +1,7 @@
 
 import QuoteCard from "./card/QuoteCard"
 import { useEffect, useState } from 'react';
-export default function KataAlumni() {
+export default function Review() {
   const [data, setData] = useState(null)
 
   useEffect(() => {
