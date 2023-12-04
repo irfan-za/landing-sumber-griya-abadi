@@ -10,9 +10,6 @@ export const metadata = {
   openGraph: {
     images: 'https://res.cloudinary.com/ddjmxrrij/image/upload/v1700575460/sga/logo_rcth5s.png',
   },
-  verification: {
-    google: 'M7smp6GOF5tNu2OC4jm7WhbeuzyeL2GQM-_tcjOe_xo',
-  },
 }
 
 export default function RootLayout({ children }) {
