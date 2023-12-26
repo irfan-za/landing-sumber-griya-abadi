@@ -72,7 +72,7 @@ const HeroSection = () => {
             className="rounded-lg drop-shadow-xl"
             objectFit="cover"
             fill={true}
-           src={"https://res.cloudinary.com/ddjmxrrij/image/upload/v1700565205/20231119_120639_pzlvoh.jpg"} alt="Toko Sumber Griya Abadi"/>
+           src={"https://res.cloudinary.com/ddjmxrrij/image/upload/v1700565205/sga/20231119_120639_pzlvoh.jpg"} alt="Toko Sumber Griya Abadi"/>
           </div>
         </motion.div>
       </div>
