@@ -11,7 +11,7 @@ function Video({ promoDate}) {
       <iframe
         className='aspect-video rounded-lg sm:my-5'
         width='100%'
-        src='https://www.youtube.com/embed/kYNTrRVHNmk?si=uf77r3a-cKUNyx3o'
+        src='https://www.youtube.com/embed/Qcm2AJ1qi1c?si=Uhf20r8NhYCIexpN'
         title='YouTube video player'
         frameborder='0'
         allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'

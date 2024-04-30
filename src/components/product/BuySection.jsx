@@ -21,7 +21,7 @@ function BuySection({id}) {
         </Link>
         <span className='flex mx-auto w-fit my-1'><hr />atau<hr /></span>
         <Link href={`https://api.whatsapp.com/send?phone=6285602904294&text=Halo%20pak%20saya%20mau%20tanya%20produk%20Judul`} target='_blank'>
-          <button className='border-2 border-yellow-500 text-gray-800 font-semibold px-4 py-2  rounded-full space-x-2'>
+          <button className='border-2 border-yellow-500 hover:bg-yellow-100 text-gray-800 font-semibold px-4 py-2  rounded-full space-x-2'>
             <ChatBubbleOvalLeftEllipsisIcon strokeWidth={2} className='inline-block h-6 w-6 mr-2'/>
             Tanya Admin
           </button>
