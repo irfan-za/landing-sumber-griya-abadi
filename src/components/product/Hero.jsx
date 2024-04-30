@@ -7,8 +7,8 @@ const Hero = () => {
     <section className="flex flex-col lg:flex-row justify-evenly items-center px-3">
       <div>
         <h1 className="text-2xl sm:text-3xl font-bold">Bor Unik Elektrik Mudah Dipasang</h1>
-        <p className="sm:first-letter:text-lg my-2 max-w-lg">Siapa sih yang engga tertarik dengan bor mewah ini? Bor ini cuma bisa didapatkan di toko cepat</p>
-        <p className="sm:first-letter:text-lg my-2 max-w-lg">Dapat 2 Baterai</p>
+        <p className="my-2 max-w-lg">Siapa sih yang engga tertarik dengan bor mewah ini? Bor ini cuma bisa didapatkan di toko cepat</p>
+        <p className="my-2 max-w-lg">Dapat 2 Baterai</p>
         <span className="flex items-center my-2">
           <StarIcon width={24} height={24} color="orange" fill="orange" />
           <StarIcon width={24} height={24} color="orange" fill="orange" />

@@ -62,24 +62,27 @@ function Timer({promoDate}) {
   return (
     <>
     {isPromo && (
-      <div className="inline-flex space-x-2 mx-auto">
-        <div className="flex flex-col items-center justify-center bg-blue-500 rounded-lg h-fit p-2 sm:space-y-1">
-          <span className="text-2xl sm:text-4xl font-bold text-white">{days}</span>
-          <span className="text-sm font-medium text-white">Hari</span>
+      <>
+        <p className='font-medium text-sm sm:text-base mt-4'>Batas waktu promo</p>
+        <div className="inline-flex space-x-2 mx-auto">
+          <div className="flex flex-col items-center justify-center bg-blue-500 rounded-lg h-fit p-2 sm:space-y-1">
+            <span className="text-2xl sm:text-4xl font-bold text-white">{days}</span>
+            <span className="text-sm font-medium text-white">Hari</span>
+          </div>
+          <div className="flex flex-col items-center justify-center bg-blue-500 rounded-lg h-fit p-2 sm:space-y-1">
+            <span className="text-2xl sm:text-4xl font-bold text-white">{hours}</span>
+            <span className="text-sm font-medium text-white">Jam</span>
+          </div>
+          <div className="flex flex-col items-center justify-center bg-blue-500 rounded-lg h-fit p-2 sm:space-y-1">
+            <span className="text-2xl sm:text-4xl font-bold text-white">{minutes}</span>
+            <span className="text-sm font-medium text-white">Menit</span>
+          </div>
+          <div className="flex flex-col items-center justify-center bg-blue-500 rounded-lg h-fit p-2 sm:space-y-1">
+            <span className="text-2xl sm:text-4xl font-bold text-white">{seconds}</span>
+            <span className="text-sm font-medium text-white">Detik</span>
+          </div>
         </div>
-        <div className="flex flex-col items-center justify-center bg-blue-500 rounded-lg h-fit p-2 sm:space-y-1">
-          <span className="text-2xl sm:text-4xl font-bold text-white">{hours}</span>
-          <span className="text-sm font-medium text-white">Jam</span>
-        </div>
-        <div className="flex flex-col items-center justify-center bg-blue-500 rounded-lg h-fit p-2 sm:space-y-1">
-          <span className="text-2xl sm:text-4xl font-bold text-white">{minutes}</span>
-          <span className="text-sm font-medium text-white">Menit</span>
-        </div>
-        <div className="flex flex-col items-center justify-center bg-blue-500 rounded-lg h-fit p-2 sm:space-y-1">
-          <span className="text-2xl sm:text-4xl font-bold text-white">{seconds}</span>
-          <span className="text-sm font-medium text-white">Detik</span>
-        </div>
-      </div>
+      </>
       )}
     </>
   )
