@@ -4,34 +4,7 @@ import Link from "next/link";
 import React from "react";
 import GoogleMaps from "./GoogleMaps";
 
-const Footer = () => {
-  const socialMedia=[
-    {
-      link: 'https://www.instagram.com/sumbergriyaabadi',
-      alt: 'Instagram Sumber Griya Abadi',
-      image: '/ig.svg'
-    },
-    {
-      link: 'https://web.facebook.com/sumbergriyaabadi?_rdc=1&_rdr',
-      alt: 'Facebook Sumber Griya Abadi',
-      image: '/fb.svg'
-    },
-    {
-      link: 'https://www.tiktok.com/@sumbergriyaabadi',
-      alt: 'Tiktok Sumber Griya Abadi',
-      image: '/tiktok.svg'
-    },
-    {
-      link: 'https://www.youtube.com/@sumbergriyaabadi',
-      alt: 'Youtube Sumber Griya Abadi',
-      image: '/yt.svg'
-    },
-    {
-      link: 'https://api.whatsapp.com/send?phone=6285602904294&text=halo%20pak%2C%20saya%20mau%20konsultasi%20Plafon.',
-      alt: 'Whatsapp Sumber Griya Abadi',
-      image: '/wa.svg'
-    },
-  ]
+const Footer = ({socialMedia}) => {
   return (
     <>
       <section className="grid md:grid-cols-2 pb-12 sm:pb-24 pt-6 sm:pt-12 gap-4 relative  border border-t-[#33353F] border-l-transparent border-r-transparent mt-24 py-4 px-4 sm:px-12 container sm:max-w-[90%] mx-auto ">

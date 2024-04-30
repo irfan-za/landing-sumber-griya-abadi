@@ -1,8 +1,8 @@
 'use client'
-import Feature from '@/app/components/product/Feature'
-import Hero from '@/app/components/product/Hero'
-import Nav from '@/app/components/product/Nav'
-import Video from '@/app/components/product/Video'
+import Feature from '@/components/product/Feature'
+import Hero from '@/components/product/Hero'
+import Nav from '@/components/product/Nav'
+import Video from '@/components/product/Video'
 import { ThemeProvider } from 'next-themes'
 import React from 'react'
 

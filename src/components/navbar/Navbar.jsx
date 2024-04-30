@@ -38,7 +38,7 @@ const Navbar = () => {
   return (
     <nav
     className="fixed dark:border-[#33353F] dark:drop-shadow-none sm:drop-shadow-lg bg-white dark:bg-slate-700 bg-opacity-100 
-    bottom-0 sm:top-0 z-50 w-5/6 max-w-[90%] h-fit sm:px-8  sm:py-4 py-2 rounded-t-lg sm:rounded-b-lg">
+    bottom-0 sm:top-0 z-50 w-5/6 max-w-[90%] h-fit sm:px-8  sm:py-4 py-2 rounded-t-lg sm:rounded-b-lg sm:rounded-t-none">
       <div className="flex items-center sm:justify-between">
         <Link
           href={"/"}

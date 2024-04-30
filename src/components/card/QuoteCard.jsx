@@ -1,6 +1,3 @@
-import Image from "next/image"
-import Link from "next/link"
-
 function QuoteCard({name, job, message}) {
   return (
         <div className="sm:w-[400px] min-w-[320px] mx-auto rounded-lg bg-white dark:bg-slate-700 shadow-lg px-5 py-5 snap-center">

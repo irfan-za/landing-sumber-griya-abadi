@@ -8,6 +8,7 @@ import Footer from "@/components/Footer";
 import AchievementsSection from "@/components/AchievementsSection";
 import DarkModeTogleButton from "@/components/navbar/DarkModeTogleButton";
 import Review from "@/components/Review";
+import { achievementsList, socialMedia } from "@/constans";
 
 
 export default function Home() {
@@ -20,13 +21,13 @@ export default function Home() {
         </div>
         <div className="py-4 px-4 sm:px-12 container sm:max-w-[90%] mx-auto w-full ">
           <HeroSection />
-          <AchievementsSection />
+          <AchievementsSection achievementsList={achievementsList} />
           <AboutSection />
           <ProjectsSection />
           <Review/>
         </div>
         <div className="w-full overflow-hidden">
-          <Footer />
+          <Footer socialMedia={socialMedia} />
         </div>
       </main>
 
