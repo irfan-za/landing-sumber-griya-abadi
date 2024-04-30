@@ -2,6 +2,7 @@
 import Feature from '@/app/components/product/Feature'
 import Hero from '@/app/components/product/Hero'
 import Nav from '@/app/components/product/Nav'
+import Video from '@/app/components/product/Video'
 import { ThemeProvider } from 'next-themes'
 import React from 'react'
 
@@ -12,6 +13,7 @@ function page() {
         <Nav/>
         <Hero/>
         <Feature/>
+        <Video/>
       </div>
     </ThemeProvider>
   )

@@ -1,8 +1,8 @@
 'use client'
 import { ThemeProvider } from "next-themes"
-import AllCard from "../components/card/AllCard"
-import Navbar from "../components/navbar/Navbar"
-import Footer from "../components/Footer"
+import AllCard from "@/components/card/AllCard"
+import Navbar from "@/components/navbar/Navbar"
+import Footer from "@/components/Footer"
 
 export default function Products() {
   
