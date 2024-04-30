@@ -15,11 +15,11 @@ const Hero = () => {
           <StarIcon width={24} height={24} color="orange" fill="orange" />
           <StarIcon width={24} height={24} color="orange" fill="orange" />
           <StarIcon width={24} height={24} color="orange" fill="orange" />
-          <span className="ml-3 font-semibold"> Rating</span>
+          <span className="ml-3 font-semibold text-sm"> Rating unggulan</span>
         </span>
         <ButtonPromo/>
       </div>
-      <div className="relative w-64 sm:w-96 h-64 sm:h-96 mt-8 sm:mt-0">
+      <div className="relative w-64 sm:w-96 h-64 sm:h-96 mt-8 sm:mt-0 sm:ml-3">
         <Image src={'https://res.cloudinary.com/ddjmxrrij/image/upload/v1700883531/sga/products/bvn6bqlaf2cwjz5p14vw.jpg'} alt={'bor unik'} fill={true} objectFit="cover" className=" rounded-md" />
       </div>
      

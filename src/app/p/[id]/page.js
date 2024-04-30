@@ -1,22 +1,19 @@
-'use client'
 import Feature from '@/components/product/Feature'
 import Hero from '@/components/product/Hero'
 import Nav from '@/components/product/Nav'
 import Video from '@/components/product/Video'
-import { ThemeProvider } from 'next-themes'
+import { cookies } from 'next/headers'
 import React from 'react'
 
-function page() {
+
+export default async function page() {
+  const promoDate= cookies().get('date_timer')
   return (
-    <ThemeProvider enableSystem={true} attribute="class">
-      <div className='pb-8 lg:max-w-[80%] bg-slate-100 dark:bg-slate-900 rounded-t-lg mx-auto'>
+      <div className='pb-8 lg:max-w-[80%] bg-slate-100 rounded-t-lg mx-auto'>
         <Nav/>
         <Hero/>
         <Feature/>
-        <Video/>
+        <Video promoDate={promoDate} />
       </div>
-    </ThemeProvider>
   )
 }
-
-export default page

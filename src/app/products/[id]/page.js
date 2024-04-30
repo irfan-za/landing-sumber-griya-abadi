@@ -1,6 +1,6 @@
 'use client'
 import { ThemeProvider } from "next-themes"
-import DetailCard from '@/app/components/card/DetailCard'
+import DetailCard from '@/components/card/DetailCard'
 import React from 'react'
 
 export default function DetailPage({ params }) {

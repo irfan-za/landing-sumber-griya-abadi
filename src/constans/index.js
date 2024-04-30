@@ -1,7 +1,3 @@
-import { HomeIcon, HomeModernIcon, ShoppingBagIcon } from "@heroicons/react/24/outline";
-import { usePathname } from "next/navigation";
-
-
 const achievementsList = [
   {
     metric: "Followers",
@@ -21,6 +17,25 @@ const achievementsList = [
   {
     metric: "Proyek",
     value: "96",
+  },
+];
+
+const timer = [
+  {
+    metric: "Hari",
+    value: "0",
+  },
+  {
+    metric: "Jam",
+    value: "2",
+  },
+  {
+    metric: "Menit",
+    value: "10",
+  },
+  {
+    metric: "Detik",
+    value: "7",
   },
 ];
 
@@ -57,4 +72,5 @@ const socialMedia=[
 export {
   achievementsList,
   socialMedia,
+  timer
 }
