@@ -18,7 +18,7 @@ const Footer = ({socialMedia}) => {
             <br /><br />
             📍Jl Mangu-Sambi km.3, Sobokerto, Ngemplak, Boyolali, Jawa Tengah.
             <br />
-            <strong>085 602 904 294 (WhatsApp)</strong>
+            <strong>+{process.env.NEXT_PUBLIC_PHONE} (WhatsApp)</strong>
           </p>
           <span className="text-xl font-bold text-slate-800 dark:text-white">Media Sosial :</span>
           <div className="flex flex-row gap-2">

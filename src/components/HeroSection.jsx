@@ -43,11 +43,11 @@ const HeroSection = () => {
           </p>
           <div>
             <Link
-              href="https://wa.me/6285602904294"
+              href={`https://wa.me/${process.env.NEXT_PUBLIC_PHONE}`}
               target="_blank"
               className=" 
               transition duration-1000 delay-1000 ease-in 
-              px-6 inline-block py-3 w-full sm:w-fit rounded-full mr-4 bg-gradient-to-br from-primary-500 via-primary-400 to-secondary-400 hover:to-primary-500 text-white"
+              px-6 inline-block py-3 w-full sm:w-fit rounded-full mr-4 bg-gradient-to-br from-primary-500 via-primary-400 to-secondary-400 hover:to-primary-500 text-white font-medium"
             >
               Kontak Admin
             </Link>
@@ -55,7 +55,7 @@ const HeroSection = () => {
               href="/products"
               className="px-1 inline-block py-1 w-full sm:w-fit rounded-full bg-gradient-to-br from-primary-500 via-primary-400 to-secondary-400 hover:to-primary-500 text-slate-900 dark:text-white mt-3"
             >
-              <span className="block bg-slate-100 hover:bg-white dark:bg-slate-900 dark:hover:bg-slate-800 rounded-full px-5 py-2">
+              <span className="block bg-slate-100 hover:bg-white dark:bg-slate-900 dark:hover:bg-slate-800 rounded-full px-5 py-2 font-medium">
                 Lihat Produk
               </span>
             </Link>

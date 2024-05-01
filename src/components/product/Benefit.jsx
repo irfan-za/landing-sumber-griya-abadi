@@ -6,13 +6,13 @@ import ButtonPromo from './ButtonPromo'
 
 function Benefit({promoDate}) {
   return (
-    <div className='px-6 py-10 mt-10 sm:px-20 text-center'>
+    <div className='px-6 mt-10 lg:mt-20 sm:px-20 text-center'>
         <p className='font-bold text-yellow-500 text-3xl lg:text-5xl'>Diskon 50%</p>
         <Timer promoDate={promoDate} />
         <div>
           <ButtonPromo/>
         </div>        
-      <div className='mt-10 grid grid-cols-12 gap-4 sm:gap-8'>
+      <div className='sm:mt-10 grid grid-cols-12 gap-4 sm:gap-8'>
           <div className='col-span-6 sm:col-span-6'>
             <div className="aspect-square rounded-t-xl relative group bg-slate-50 " >
               <Image src={'https://res.cloudinary.com/ddjmxrrij/image/upload/v1700883531/sga/products/bvn6bqlaf2cwjz5p14vw.jpg'} alt={'bor unik'} fill={true} objectFit="cover" className="rounded-t-lg" />
