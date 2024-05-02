@@ -5,7 +5,7 @@ import React from 'react'
 
 function BuySection({id}) {
   return (
-    <div className='px-6 py-10 mt-10 text-center space-y-2'>
+    <div className='px-6 py-10 mt-10 text-center space-y-2' id='buy'>
       <h3 className='font-bold text-yellow-500 text-2xl lg:text-3xl'>Beli 1 Dapat 2 Baterai</h3>
       <p className='font-semibold text-2xl lg:text-3xl'>Diskon 50%</p>
       <h1 className='text-lg'>Bor Elektrik serbaguna 10inch</h1>

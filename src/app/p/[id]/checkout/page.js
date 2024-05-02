@@ -4,6 +4,7 @@ import { ArrowRightCircleIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
+const { z } = require("zod");
 
 function CheckoutPage({params}) {
   const [provinces, setProvinces]=useState(null)
@@ -52,40 +53,110 @@ function CheckoutPage({params}) {
     }
   }
 
+  const [formData, setFormData] = useState({
+    product_id: "",
+    product_name: "",
+    product_price: 0,
+    product_weight: 0,
+    shipment: 0,
+    total: 0,
+    payment_method: "",
+    province: "",
+    city: "",
+    subdistrict: "",
+    postal: "",
+    address: "",
+    name: "",
+    phone: "",
+  });
+  const [errors, setErrors] = useState({});
+
+  const handleChange = (e) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      [e.target.name]: e.target.value,
+    }));
+  };
+  const bodySchema = z.object({
+    product_id: z.string(),
+    product_name: z.string(),
+    product_price: z.number(),
+    product_weight: z.number(),
+    shipment: z.number(),
+    total: z.number(),
+    payment_method: z.string(),
+    province: z.string(),
+    city: z.string(),
+    subdistrict: z.string(),
+    postal: z.string().optional(),
+    address: z.string(),
+    name: z.string(),
+    phone: z.string(),
+  });
+
+  // const validateBody = (body) => {
+  //   try {
+  //     bodySchema.parse(body);
+  //     return true;
+  //   } catch (error) {
+  //     console.error("Validation error:", error);
+  //     return false;
+  //   }
+  // };
+
   const submitForm=async(e)=>{
-    e.preventDefault()
-    const formData = new FormData(e.target);
-    const body = {
-      product_id: product.id,
-      product_name: product.name,
-      product_price: product.price,
-      product_weight: product.weight,
-      shipment: product.shipment,
-      total: product.price + product.shipment,
-      payment_method: formData.get('paymentMethod'),
-      province: provinces.find(prov => prov.province_id === parseInt(formData.get('province'))).province_name,
-      city: cities.find(city => city.city_id === parseInt(formData.get('city'))).city_name_with_type,
-      subdistrict: subdistricts.find(sub => sub.subdistrict_id === parseInt(formData.get('subdistrict'))).subdistrict_name,
-      postal: formData.get('postal') || '',
-      address: formData.get('address'),
-      name: formData.get('name'),
-      phone: formData.get('phone')
-    };
+      e.preventDefault();
+      try{
+        const validatedData = formSchema.parse(formData);
+        console.log(validatedData);
+      }
+      catch(error){ 
+        console.error("Validation error:", error);
+        setErrors(error.errors);
+      }
 
-    // await fetch('https://api.orderonline.id/checkout', {
-    //   method: 'POST',
-    //   headers: {
-    //   'Content-Type': 'application/json'
-    //   },
-    //   body: JSON.stringify(body)
-    // })
-    // .then(response => response.json())
-    // .then(data => {
-    //   // Handle response data
-    // });
+      // const formData = new FormData(e.target);
+      // const body = {
+      //   product_id: product.id,
+      //   product_name: product.name,
+      //   product_price: product.price,
+      //   product_weight: product.weight,
+      //   shipment: product.shipment,
+      //   total: product.price + product.shipment,
+      //   payment_method: formData.get("paymentMethod"),
+      //   province: provinces.find(
+      //     (prov) => prov.province_id === parseInt(formData.get("province"))
+      //   ).province_name,
+      //   city: cities.find(
+      //     (city) => city.city_id === parseInt(formData.get("city"))
+      //   ).city_name_with_type,
+      //   subdistrict: subdistricts.find(
+      //     (sub) => sub.subdistrict_id === parseInt(formData.get("subdistrict"))
+      //   ).subdistrict_name,
+      //   postal: formData.get("postal") || "",
+      //   address: formData.get("address"),
+      //   name: formData.get("name"),
+      //   phone: formData.get("phone"),
+      // };
 
-    console.log(body);
-    router.push(`/p/${params.id}/checkout/thanks/${body.payment_method}?order_id=12345`)
+      // if (validateBody(body)) {
+      //   // await fetch('https://api.orderonline.id/checkout', {
+      //   //   method: 'POST',
+      //   //   headers: {
+      //   //   'Content-Type': 'application/json'
+      //   //   },
+      //   //   body: JSON.stringify(body)
+      //   // })
+      //   // .then(response => response.json())
+      //   // .then(data => {
+      //   //   // Handle response data
+      //   // });
+
+      //   console.log(body);
+      //   // router.push(`/p/${params.id}/checkout/thanks/${body.payment_method}?order_id=12345`);
+      // } else {
+      //   // Handle validation error
+      // }
   }
 
 
@@ -122,23 +193,23 @@ function CheckoutPage({params}) {
           <div className='grid grid-cols-12 gap-4 mx-auto w-[90%] sm:max-w-md lg:max-w-xl'>
             <div className='col-span-12'>
               <label className='block font-semibold text-lg'>Pilih Promo :</label>
-                <div className='bg-white flex space-x-2 border p-2'>
-                  <input type='radio' id='promo1' name='promo' value='1' onChange={(e)=>setProductData(e.target.value)} />
-                  <label htmlFor='promo1'>Diskon 50%</label>
+                <div className='bg-white flex space-x-2 border pl-2'>
+                  <input type='radio' id='promo1' name='promo' value='1' checked onChange={(e)=>{setProductData(e.target.value); handleChange()}}/>
+                  <label htmlFor='promo1' className='w-full p-2'>Diskon 50%</label>
                 </div>
-                <div className='bg-white flex space-x-2 border p-2'>
-                  <input type='radio' id='promo2' name='promo' value='2' onChange={(e)=>setProductData(e.target.value)} />
-                  <label htmlFor='promo2'>Beli 2 Gratis 1</label>
+                <div className='bg-white flex space-x-2 border pl-2'>
+                  <input type='radio' id='promo2' name='promo' value='2' onChange={(e)=>{setProductData(e.target.value); handleChange()}}/>
+                  <label htmlFor='promo2' className='w-full p-2'>Beli 2 Gratis 1</label>
                 </div>
             </div>
             <div className='col-span-12'>
               <label className='block font-semibold text-lg my-3'>Data Penerima :</label>
               <label htmlFor='name' className='block'>Nama Lengkap</label>
-              <input type='text' id='name' name='name' className='w-full p-2 border-2 border-slate-300 rounded-md' />
+              <input type='text' id='name' name='name' className='w-full p-2 border-2 border-slate-300 rounded-md' onChange={handleChange}/>
             </div>
             <div className='col-span-12'>
               <label htmlFor='phone' className='block'>Nomor Whatsapp</label>
-              <input type='text' id='phone' name='phone' placeholder='081...' className='w-full p-2 border-2 border-slate-300 rounded-md' />
+              <input type='text' id='phone' name='phone' placeholder='081...' className='w-full p-2 border-2 border-slate-300 rounded-md' onChange={handleChange}/>
             </div>
             <div className='col-span-12'>
               <label htmlFor='province' className='block'>Provinsi</label>
@@ -175,7 +246,7 @@ function CheckoutPage({params}) {
             </div>
             <div className='col-span-12'>
               <label htmlFor='postal' className='block'>Kode Pos</label>
-              <input type='number' id='postal' name='postal' className='w-full p-2 border-2 border-slate-300 rounded-md' />
+              <input type='number' id='postal' name='postal' className='w-full p-2 border-2 border-slate-300 rounded-md' onChange={handleChange}/>
             </div>
             <div className='col-span-12'>
               <label htmlFor='address' className='block'>Alamat Lengkap</label>
@@ -187,15 +258,15 @@ function CheckoutPage({params}) {
             }
             <div className='col-span-12'>
               <label className='block font-semibold text-lg'>Metode Pembayaran :</label>
-                <div className='bg-white flex space-x-2 border p-2'>
-                  <input type='radio' id='bank' name='paymentMethod' value='bank-transfer' />
-                  <label htmlFor='bank'>
+                <div className='bg-white flex space-x-2 border pl-2'>
+                  <input type='radio' id='bank' name='paymentMethod' value='bank-transfer' onChange={handleChange}/>
+                  <label htmlFor='bank' className='w-full p-2'>
                     <Image src={'/payment/bank.svg'} alt='Pembayaran melalui bank transfer' className='inline' width={48} height={12} /> Bank Transfer
                   </label>
                 </div>
-                <div className='bg-white flex space-x-2 border p-2'>
-                  <input type='radio' id='cod' name='paymentMethod' value='cod' />
-                  <label htmlFor='cod'>
+                <div className='bg-white flex space-x-2 border pl-2'>
+                  <input type='radio' id='cod' name='paymentMethod' value='cod' onChange={handleChange}/>
+                  <label htmlFor='cod' className='w-full p-2'>
                     <Image src={'/payment/cod.svg'} alt='Pembayaran melalui COD' className='inline' width={48}  height={12} /> COD (Bayar Ditempat)
                   </label>
                 </div>
