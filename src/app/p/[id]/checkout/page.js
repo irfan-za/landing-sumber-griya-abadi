@@ -1,26 +1,19 @@
 'use client'
+import ShipmentOption from '@/components/checkout/ShipmentOption'
 import { ArrowRightCircleIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 
-function CheckoutPage() {
+function CheckoutPage({params}) {
   const [provinces, setProvinces]=useState(null)
   const [cities, setCities]=useState(null)
   const [subdistricts, setSubdistricts]=useState(null)
-
+  const [shipmentOptions, setShipmentOptions] = useState(null)
+  const [product, setProduct] = useState(null)
+  const [currentSubdistrictId, setCurrentSubdistrictId]=useState(null)
   const router= useRouter()
 
-  useEffect(() => {
-    const f=async() => {
-      await fetch('https://api.orderonline.id/shipping/province')
-      .then(response => response.json())
-      .then(data => {
-        setProvinces(data.data)
-      })
-    }
-    f()
-  }, [])
   const fetchCity=async(province_id)=>{
     await fetch(`https://api.orderonline.id/shipping/city?province_id=${province_id}`)
     .then(response => response.json())
@@ -35,6 +28,81 @@ function CheckoutPage() {
       setSubdistricts(data.data)
     })
   }
+  const fetchShipmentOptions=async()=>{
+    const formData = new FormData();
+    formData.append('origin', '{"id":1251,"type":"subdistrict","name":"Ngemplak","province_id":10,"city_id":91,"city_name":"Kab. Boyolali","subdistrict_id":1251,"subdistrict_name":"Ngemplak"}'); 
+    formData.append('destination', `{"id":${currentSubdistrictId},"type":"subdistrict"}`);
+    formData.append('couriers', '["ninja","jne", "jnt", "sicepat"]');
+    formData.append('product', `{"weight":${product.weight}}`); 
+
+    await fetch(`https://api.orderonline.id/shipping/cost`,{
+      method: 'POST',
+      body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+      setShipmentOptions(data.data)
+    })
+  }
+  const setProductData=async(id)=>{
+    if(id==='1'){
+      setProduct({id: params.id, name: 'Bor Listrik Serbaguna Discount 50%', price: 100000, weight: 1000})
+    }else if(id==='2'){
+      setProduct({id: params.id, name: 'Bor Listrik Serbaguna Beli 2 gratis 1', price: 200000, weight: 3000})
+    }
+  }
+
+  const submitForm=async(e)=>{
+    e.preventDefault()
+    const formData = new FormData(e.target);
+    const body = {
+      product_id: product.id,
+      product_name: product.name,
+      product_price: product.price,
+      product_weight: product.weight,
+      shipment: product.shipment,
+      total: product.price + product.shipment,
+      payment_method: formData.get('paymentMethod'),
+      province: provinces.find(prov => prov.province_id === parseInt(formData.get('province'))).province_name,
+      city: cities.find(city => city.city_id === parseInt(formData.get('city'))).city_name_with_type,
+      subdistrict: subdistricts.find(sub => sub.subdistrict_id === parseInt(formData.get('subdistrict'))).subdistrict_name,
+      postal: formData.get('postal') || '',
+      address: formData.get('address'),
+      name: formData.get('name'),
+      phone: formData.get('phone')
+    };
+
+    // await fetch('https://api.orderonline.id/checkout', {
+    //   method: 'POST',
+    //   headers: {
+    //   'Content-Type': 'application/json'
+    //   },
+    //   body: JSON.stringify(body)
+    // })
+    // .then(response => response.json())
+    // .then(data => {
+    //   // Handle response data
+    // });
+
+    console.log(body);
+    router.push(`/p/${params.id}/checkout/thanks/${body.payment_method}?order_id=12345`)
+  }
+
+
+  useEffect(() => {
+    const f=async() => {
+      await fetch('https://api.orderonline.id/shipping/province')
+      .then(response => response.json())
+      .then(data => {
+        setProvinces(data.data)
+      })
+    }
+    f()
+  }, [])
+  useEffect(()=>{
+    fetchShipmentOptions()
+  },[product, currentSubdistrictId])
+
   return (
     <div className='lg:max-w-[80%] bg-slate-100 rounded-t-lg mx-auto container pb-10'>
       <div className='flex justify-end p-3'>
@@ -50,16 +118,16 @@ function CheckoutPage() {
         <p className='text-center text-lg font-medium my-10'>Silahkan isi data dibawah ini untuk data pengiriman paket.</p>
       </div>
       <div>
-        <form method="post">
+        <form method="post" onSubmit={submitForm}>
           <div className='grid grid-cols-12 gap-4 mx-auto w-[90%] sm:max-w-md lg:max-w-xl'>
             <div className='col-span-12'>
               <label className='block font-semibold text-lg'>Pilih Promo :</label>
                 <div className='bg-white flex space-x-2 border p-2'>
-                  <input type='radio' id='promo1' name='promo' value='diskon50' />
+                  <input type='radio' id='promo1' name='promo' value='1' onChange={(e)=>setProductData(e.target.value)} />
                   <label htmlFor='promo1'>Diskon 50%</label>
                 </div>
                 <div className='bg-white flex space-x-2 border p-2'>
-                  <input type='radio' id='promo2' name='promo' value='beli2gratis1' />
+                  <input type='radio' id='promo2' name='promo' value='2' onChange={(e)=>setProductData(e.target.value)} />
                   <label htmlFor='promo2'>Beli 2 Gratis 1</label>
                 </div>
             </div>
@@ -70,7 +138,7 @@ function CheckoutPage() {
             </div>
             <div className='col-span-12'>
               <label htmlFor='phone' className='block'>Nomor Whatsapp</label>
-              <input type='text' id='phone' name='phone' className='w-full p-2 border-2 border-slate-300 rounded-md' />
+              <input type='text' id='phone' name='phone' placeholder='081...' className='w-full p-2 border-2 border-slate-300 rounded-md' />
             </div>
             <div className='col-span-12'>
               <label htmlFor='province' className='block'>Provinsi</label>
@@ -99,7 +167,8 @@ function CheckoutPage() {
               <select
               id='subdistrict'
               name='subdistrict'
-              className='w-full p-2 border-2 border-slate-300 rounded-md'>
+              className='w-full p-2 border-2 border-slate-300 rounded-md'
+              onChange={(e)=>setCurrentSubdistrictId(e.target.value)}>
                 <option value=''>Pilih Kecamatan</option>
                 {subdistricts && subdistricts.map((sub, i)=><option key={i} value={sub.subdistrict_id}>{sub.subdistrict_name}</option>)}
               </select>
@@ -110,13 +179,16 @@ function CheckoutPage() {
             </div>
             <div className='col-span-12'>
               <label htmlFor='address' className='block'>Alamat Lengkap</label>
-              <textarea id='address' name='address' className='w-full p-2 border-2 border-slate-300 rounded-md'></textarea>
+              <textarea id='address' name='address' placeholder='contoh: RT 1/RW 3 Banaran' className='w-full p-2 border-2 border-slate-300 rounded-md'></textarea>
             </div>
 
+            {
+              shipmentOptions && <ShipmentOption data={shipmentOptions} product={product} setProduct={setProduct} />
+            }
             <div className='col-span-12'>
               <label className='block font-semibold text-lg'>Metode Pembayaran :</label>
                 <div className='bg-white flex space-x-2 border p-2'>
-                  <input type='radio' id='bank' name='paymentMethod' value='bank' />
+                  <input type='radio' id='bank' name='paymentMethod' value='bank-transfer' />
                   <label htmlFor='bank'>
                     <Image src={'/payment/bank.svg'} alt='Pembayaran melalui bank transfer' className='inline' width={48} height={12} /> Bank Transfer
                   </label>

@@ -67,10 +67,18 @@ const socialMedia=[
     image: '/wa.svg'
   },
 ]
+const bankAccounts=[
+  {
+    bank: 'bni',
+    no: '1234 5678 900',
+    name: 'Sumber Griya Abadi'
+  }
+]
 
 
 export {
   achievementsList,
   socialMedia,
-  timer
+  timer,
+  bankAccounts
 }
