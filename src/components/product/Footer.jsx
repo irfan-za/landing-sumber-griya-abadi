@@ -4,7 +4,7 @@ import React from 'react'
 
 function Footer() {
   return (
-    <div className='bg-blue-500 text-white px-6 py-10 mt-10 text-center'>
+    <div className='bg-primary-500 text-white px-6 py-10 mt-10 text-center'>
       <p className='font-semibold text-white text-xl sm:text-2xl'>Pesan Sekarang Bayar Nanti</p>
       <p className='font-semibold text-yellow-500 text-xl sm:text-2xl'>Bayar Di Tempat (COD)</p>
       <div className='flex flex-col items-center mt-5 overflow-hidden space-y-2'>

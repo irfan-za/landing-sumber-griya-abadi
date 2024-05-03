@@ -16,14 +16,14 @@ function CheckoutPage({params}) {
   const router= useRouter()
 
   const fetchCity=async(province_id)=>{
-    await fetch(`https://api.orderonline.id/shipping/city?province_id=${province_id}`)
+    await fetch(`${process.env.NEXT_PUBLIC_SHIPPING_API_URL}/city?province_id=${province_id}`)
     .then(response => response.json())
     .then(data => {
       setCities(data.data)
     })
   }
   const fetchSubdistrict=async(city_id)=>{
-    await fetch(`https://api.orderonline.id/shipping/subdistrict?city_id=${city_id}`)
+    await fetch(`${process.env.NEXT_PUBLIC_SHIPPING_API_URL}/subdistrict?city_id=${city_id}`)
     .then(response => response.json())
     .then(data => {
       setSubdistricts(data.data)
@@ -36,7 +36,7 @@ function CheckoutPage({params}) {
     formData.append('couriers', '["ninja","jne", "jnt", "sicepat"]');
     formData.append('product', `{"weight":${product.weight}}`); 
 
-    await fetch(`https://api.orderonline.id/shipping/cost`,{
+    await fetch(`${process.env.NEXT_PUBLIC_SHIPPING_API_URL}/cost`,{
       method: 'POST',
       body: formData
     })
@@ -94,16 +94,6 @@ function CheckoutPage({params}) {
     phone: z.string(),
   });
 
-  // const validateBody = (body) => {
-  //   try {
-  //     bodySchema.parse(body);
-  //     return true;
-  //   } catch (error) {
-  //     console.error("Validation error:", error);
-  //     return false;
-  //   }
-  // };
-
   const submitForm=async(e)=>{
       e.preventDefault();
       try{
@@ -115,54 +105,12 @@ function CheckoutPage({params}) {
         setErrors(error.errors);
       }
 
-      // const formData = new FormData(e.target);
-      // const body = {
-      //   product_id: product.id,
-      //   product_name: product.name,
-      //   product_price: product.price,
-      //   product_weight: product.weight,
-      //   shipment: product.shipment,
-      //   total: product.price + product.shipment,
-      //   payment_method: formData.get("paymentMethod"),
-      //   province: provinces.find(
-      //     (prov) => prov.province_id === parseInt(formData.get("province"))
-      //   ).province_name,
-      //   city: cities.find(
-      //     (city) => city.city_id === parseInt(formData.get("city"))
-      //   ).city_name_with_type,
-      //   subdistrict: subdistricts.find(
-      //     (sub) => sub.subdistrict_id === parseInt(formData.get("subdistrict"))
-      //   ).subdistrict_name,
-      //   postal: formData.get("postal") || "",
-      //   address: formData.get("address"),
-      //   name: formData.get("name"),
-      //   phone: formData.get("phone"),
-      // };
-
-      // if (validateBody(body)) {
-      //   // await fetch('https://api.orderonline.id/checkout', {
-      //   //   method: 'POST',
-      //   //   headers: {
-      //   //   'Content-Type': 'application/json'
-      //   //   },
-      //   //   body: JSON.stringify(body)
-      //   // })
-      //   // .then(response => response.json())
-      //   // .then(data => {
-      //   //   // Handle response data
-      //   // });
-
-      //   console.log(body);
-      //   // router.push(`/p/${params.id}/checkout/thanks/${body.payment_method}?order_id=12345`);
-      // } else {
-      //   // Handle validation error
-      // }
   }
 
 
   useEffect(() => {
     const f=async() => {
-      await fetch('https://api.orderonline.id/shipping/province')
+      await fetch(`${process.env.NEXT_PUBLIC_SHIPPING_API_URL}/province`)
       .then(response => response.json())
       .then(data => {
         setProvinces(data.data)

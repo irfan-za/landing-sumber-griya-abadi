@@ -6,10 +6,10 @@ import { XMarkIcon } from '@heroicons/react/24/outline'
 import { useRouter } from 'next/navigation'
 import ButtonContact from '../ButtonContact'
 import Carousel from '../Carousel'
+import Link from 'next/link'
 
 
 export default function DetailCard({id}) {
-  const router= useRouter()
   const path=usePathname()
   let fetchUrl=path.split('/')[1].slice(0, -1);
   const [data, setData] = useState(null)
@@ -31,9 +31,10 @@ export default function DetailCard({id}) {
           filteredData && (
             <div className='h-full'>
               <div className="text-end relative h-60 sm:h-96">
-                <XMarkIcon 
-                onClick={()=>router.back()}
-                className='w-10 sm:w-12 h-10 sm:h-12 rounded-lg sm:rounded-xl hover:cursor-pointer hover:bg-primary-400 bg-primary-500 text-white inline-block relative' />
+                <Link href={`/${fetchUrl}s`}>
+                  <XMarkIcon 
+                  className='w-10 sm:w-12 h-10 sm:h-12 rounded-lg sm:rounded-xl hover:cursor-pointer hover:bg-primary-200 inline-block relative' />
+                </Link>
                 <div className="flex space-x-4 overflow-x-scroll rounded-xl snap-x py-4">
                   {
                     filteredData && filteredData[0]?.imageUrl.map((img,i)=>

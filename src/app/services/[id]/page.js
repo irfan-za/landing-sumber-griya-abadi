@@ -2,6 +2,23 @@
 import DetailCard from '@/components/card/DetailCard'
 import { ThemeProvider } from 'next-themes'
 
+export async function generateMetadata({ params }, parent) {
+  const id = params.id
+  const res= await fetch(`/api/services`)
+  const data= await res.json()
+  const service = data && data.filter((data) =>data.id===parseInt(id));
+  console.log(service);
+ 
+  return {
+    title: service[0].title + ' | Sumber Griya Abadi',
+    description: service[0].description,
+    keywords: 'pemborong plafon, jasa konstruksi, jasa pasang plafon, plafon pvc, plafon gypsum, baja ringan, atap galvalume, pasang plafon pvc, tukang plafon, atap rumah, toko plafon solo',
+    openGraph: {
+      images: [service[0].imageUrl],
+    },
+  }
+}
+
 export default function DetailPage({ params }) {
   return (
     <ThemeProvider enableSystem={true} attribute="class">

@@ -10,7 +10,7 @@ function ShipmentOption({data, product, setProduct}) {
         });
 
         return (
-          <div className="flex p-3 bg-blue-50 hover:bg-blue-100 rounded-md" key={i}>
+          <div className="flex p-3 bg-primary-50 hover:bg-primary-100 rounded-md" key={i}>
           <input
             type="radio"
             id={lowestCost.service}

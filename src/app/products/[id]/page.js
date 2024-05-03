@@ -1,16 +1,28 @@
-'use client'
-import { ThemeProvider } from "next-themes"
-import DetailCard from '@/components/card/DetailCard'
+import Benefit from '@/components/product/Benefit'
+import BuySection from '@/components/product/BuySection'
+import Feature from '@/components/product/Feature'
+import Footer from '@/components/product/Footer'
+import Hero from '@/components/product/Hero'
+import Nav from '@/components/product/Nav'
+import Testimony from '@/components/product/Testimony'
+import Video from '@/components/product/Video'
+import { getAll } from '@/utils/supabaseCRUD'
+import { cookies } from 'next/headers'
 import React from 'react'
 
-export default function DetailPage({ params }) {
+export default async function page({params}) {
+  const promoDate= cookies().get('date_timer')
   return (
-    <ThemeProvider enableSystem={true} attribute="class">
-    <main className=" bg-slate-200 dark:bg-slate-900">
-      <div className="flex min-h-screen px-4 sm:px-12 container sm:max-w-[90%] mx-auto w-full items-center flex-col">
-      <DetailCard id={params.id} />
-    </div>
-    </main>
-    </ThemeProvider>
+      <div className='lg:max-w-[80%] bg-slate-100 rounded-t-lg mx-auto'>
+        {JSON.stringify(getAll('products'))}
+        <Nav/>
+        <Hero/>
+        <Feature/>
+        <Benefit promoDate={promoDate}/>
+        <Testimony/>
+        <Video promoDate={promoDate} />
+        <BuySection id={params.id} />
+        <Footer/>
+      </div>
   )
 }

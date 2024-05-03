@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@heroicons/react": "^2.0.18",
+    "@supabase/supabase-js": "^2.43.0",
     "@tailwindcss/line-clamp": "^0.4.4",
     "autoprefixer": "10.4.15",
     "cookies-next": "^4.1.1",

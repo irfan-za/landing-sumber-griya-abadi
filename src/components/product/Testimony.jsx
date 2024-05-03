@@ -3,7 +3,7 @@ import React from 'react'
 
 function Testimony() {
   return (
-    <div className='bg-blue-500 text-white px-6 py-10 mt-10 text-center'>
+    <div className='bg-primary-500 text-white px-6 py-10 mt-10 text-center'>
       <h3 className='font-bold text-2xl lg:text-3xl'>Testimoni Pembeli</h3>
       <p>Dapat Mengirim ke Seluruh Wilayah di Indonesia</p>
       <div className='border-b-2 border-yellow-400 w-48 mt-4 mx-auto'></div>

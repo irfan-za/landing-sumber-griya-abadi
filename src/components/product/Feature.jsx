@@ -4,7 +4,7 @@ import React from 'react'
 
 function Feature() {
   return (
-    <div className='bg-blue-500 px-6 py-10 mt-10'>
+    <div className='bg-primary-500 px-6 py-10 mt-10'>
       <div className='w-fit mx-auto flex flex-col items-center mb-5'>
         <span className='text-yellow-400 font-semibold text-xl block'>Memperkenalkan</span>
         <h1 className='text-white text-2xl sm:text-3xl font-bold'>Bor Elektrik Premium </h1>
