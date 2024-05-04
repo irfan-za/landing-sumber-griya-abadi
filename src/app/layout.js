@@ -8,7 +8,7 @@ export const metadata = {
   description: 'Jasa pemasangan plafon Gypsum, PVC dan Baja Ringan, jual berbagai bahan material bangunan lengkap hanya di Sumber Griya Abadi.',
   keywords: 'toko plafon, pemborong plafon, jasa konstruksi, jasa pasang plafon, toko bangunan, plafon pvc, plafon gypsum, baja ringan, atap galvalume, pasang plafon pvc, tukang plafon, atap rumah, pemasangan plafom pvc, toko plafon solo, toko bangunan solo',
   openGraph: {
-    images: `${SGA_LOGO_META_TAG}`,
+    images: `${process.env.SGA_LOGO_META_TAG}`,
   },
 }
 

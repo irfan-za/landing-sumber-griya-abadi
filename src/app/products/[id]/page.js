@@ -17,7 +17,7 @@ export default async function page({params}) {
         {JSON.stringify(getAll('products'))}
         <Nav/>
         <Hero/>
-        <Feature/>
+        <Feature/> 
         <Benefit promoDate={promoDate}/>
         <Testimony/>
         <Video promoDate={promoDate} />

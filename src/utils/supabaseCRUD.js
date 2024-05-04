@@ -1,4 +1,4 @@
-import { supabase } from '../config/supabase';
+import { supabase } from '@/config/supabase';
 
 // Create a new item
 async function createItem(table, data) {

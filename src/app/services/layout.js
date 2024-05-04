@@ -8,7 +8,7 @@ export const metadata = {
   description: 'Melayani berbagai jasa pemasangan plafon Gypsum, PVC dan Baja Ringan.',
   keywords: 'pemborong plafon, jasa konstruksi, jasa pasang plafon, plafon pvc, plafon gypsum, baja ringan, atap galvalume, pasang plafon pvc, tukang plafon, atap rumah, toko plafon solo',
   openGraph: {
-    images: `${SGA_LOGO_META_TAG}`,
+    images: `${process.env.SGA_LOGO_META_TAG}`,
   },
 }
 
