@@ -1,17 +1,17 @@
-import { currencyFormat } from '@/utils'
+import { currencyFormat, discount } from '@/utils'
 import { ChatBubbleOvalLeftEllipsisIcon, PhoneIcon, ShoppingCartIcon } from '@heroicons/react/24/outline'
 import Link from 'next/link'
 import React from 'react'
 
-function BuySection({id}) {
+function BuySection({id, title, tagline, normalPrice, discountPrice}) {
   return (
     <div className='px-6 py-10 mt-10 text-center space-y-2' id='buy'>
-      <h3 className='font-bold text-yellow-500 text-2xl lg:text-3xl'>Beli 1 Dapat 2 Baterai</h3>
-      <p className='font-semibold text-2xl lg:text-3xl'>Diskon 50%</p>
-      <h1 className='text-lg'>Bor Elektrik serbaguna 10inch</h1>
-      <p className='sm:text-xl font-bold text-red-500 line-through'>{currencyFormat(500000)}</p>
-      <p className='text-2xl font-bold sm:text-3xl'>{currencyFormat(249000)}</p>
-      <span className='text-sm text-red-500'>Hemat {currencyFormat(200000)}</span>
+      <h3 className='font-bold text-yellow-500 text-2xl lg:text-3xl'>{tagline}</h3>
+      <p className='font-semibold text-2xl lg:text-3xl'>Diskon {discount(normalPrice, discountPrice)}%</p>
+      <h1 className='text-lg'>{title}</h1>
+      <p className='sm:text-xl font-bold text-red-500 line-through'>{currencyFormat(normalPrice)}</p>
+      <p className='text-2xl font-bold sm:text-3xl'>{currencyFormat(discountPrice)}</p>
+      <span className='text-sm text-red-500'>Hemat {currencyFormat(normalPrice-discountPrice)}</span>
       <div className='pt-10'>
         <Link href={`/p/${id}/checkout`}>
           <button className='bg-yellow-500 hover:bg-yellow-400 text-gray-800 font-semibold px-4 py-2 hover:ring-4 ring-yellow-300 text-xl sm:text-2xl rounded-full space-x-2'>

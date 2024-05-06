@@ -3,7 +3,7 @@ import { setCookie } from "cookies-next"
 import { useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
 
-function Timer({promoDate}) {
+function Timer({discountDate, discountDuration}) {
   const router= useRouter()
   const [isPromo, setIsPromo] = useState(true);
   const [days, setDays] = useState(0);
@@ -13,14 +13,14 @@ function Timer({promoDate}) {
 
   useEffect(() => {
     const date= new Date();
-    let target = new Date(date.getTime() + (3 * 60 * 60 * 1000));
-    if(promoDate === undefined){
+    let target = new Date(date.getTime() + (discountDuration * 60 * 60 * 1000));
+    if(discountDate === undefined){
       setDate()
     }else{
-      if(date.getDate() !== new Date(promoDate.value).getDate()){
+      if(date.getDate() !== new Date(discountDate.value).getDate()){
         setDate()
       }else{
-        target = new Date(promoDate.value)
+        target = new Date(discountDate.value)
       }
     }
 
@@ -52,7 +52,7 @@ function Timer({promoDate}) {
   // store date to cookie
   const setDate=()=>{
     const date= new Date();
-    const target= new Date(date.getTime() + (3 * 60 * 60 * 1000));
+    const target= new Date(date.getTime() + (discountDuration * 60 * 60 * 1000));
     setCookie('date_timer', target)
     router.refresh()
   }

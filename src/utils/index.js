@@ -1,12 +1,15 @@
 const currencyFormat = (number) => {
-  const formatter = new Intl.NumberFormat('id-ID', {
-    style: 'currency',
-    currency: 'IDR',
-    minimumFractionDigits: 0
+  const formatter = new Intl.NumberFormat("id-ID", {
+    style: "currency",
+    currency: "IDR",
+    minimumFractionDigits: 0,
   });
   return formatter.format(number);
 };
 
-export{
-  currencyFormat
-}
+const discount = (normalPrice, discountPrice) => {
+  const discount = ((normalPrice - discountPrice) / normalPrice) * 100;
+  return Math.round(discount);
+};
+
+export { currencyFormat, discount };
