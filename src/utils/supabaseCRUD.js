@@ -2,9 +2,12 @@ import { supabase } from "@/config/supabase";
 
 // Create a new item
 async function createItem(table, data) {
-  const { data: newItem, error } = await supabase.from(table).insert(data);
+  const { data: newItem, error } = await supabase
+    .from(table)
+    .insert(data)
+    .select();
   if (error) {
-    console.error("Error creating item:", error);
+    alert(`Error creating item: ${error.message}`);
     return null;
   }
   return newItem;
@@ -18,7 +21,7 @@ async function getItem(table, id) {
     .eq("id", id)
     .single();
   if (error) {
-    console.error("Error selecting item:", error);
+    alert(`Error selecting item: ${error.message}`);
     return null;
   }
   return selectedItem;
@@ -28,7 +31,7 @@ async function getItem(table, id) {
 async function getAll(table) {
   const { data: allItems, error } = await supabase.from(table).select("*");
   if (error) {
-    console.error("Error selecting all items:", error);
+    alert(`Error selecting all items: ${error.message}`);
     return null;
   }
   return allItems;
@@ -42,7 +45,7 @@ async function editItem(table, id, data) {
     .eq("id", id)
     .single();
   if (error) {
-    console.error("Error editing item:", error);
+    alert(`Error editing item: ${error.message}`);
     return null;
   }
   return updatedItem;
@@ -56,7 +59,7 @@ async function deleteItem(table, id) {
     .eq("id", id)
     .single();
   if (error) {
-    console.error("Error deleting item:", error);
+    alert(`Error deleting item: ${error.message}`);
     return null;
   }
   return deletedItem;
@@ -69,7 +72,7 @@ async function getItemsWithFilter(table, column, value) {
     .select("*")
     .eq(column, value);
   if (error) {
-    console.error("Error selecting items with filter:", error);
+    alert(`Error selecting items with filter: ${error.message}`);
     return null;
   }
   return selectedItems;

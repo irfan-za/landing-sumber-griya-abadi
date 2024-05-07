@@ -12,7 +12,7 @@ function Testimony({title, images}) {
       <div className='grid grid-cols-12 mt-5 gap-2 sm:mt-10 gap-y-5 sm:gap-y-0'>
         {
           images && images.map((image, index) => (
-            <div key={index} className='col-span-12 border border-red-800 sm:col-span-6 relative h-[500px]'>
+            <div key={index} className='col-span-12 sm:col-span-6 relative h-[500px]'>
               <Image src={image} alt={title} fill={true} objectFit="contain" className="rounded-t-lg" />
             </div>
           ))

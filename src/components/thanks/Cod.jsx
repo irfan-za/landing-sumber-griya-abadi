@@ -8,20 +8,22 @@ function Cod({orderId}) {
     <div className='text-center'>
       <p>Pesanan Anda akan segera kami kirim.</p>
       <p>Silahkan tunggu kedatangan kurir dalam 2-5 hari kedepan dan siapkan pembayaran untuk dibayarkan langsung ke kurir  :</p>
-      <table className='mx-auto mt-5'>
-        <tr>
-          <td>Harga produk</td>
-          <td>:</td>
-          <td>{currencyFormat(price)}</td>
-        </tr>
-        <tr>
-          <td>Ongkos Kirim</td>
-          <td>:</td>
-          <td>{currencyFormat(price)}</td>
-        </tr>
-        <tr>
-          <td colSpan={3} className='text-center pt-3 font-semibold'>Total Pembayaran :</td>
-        </tr>
+      <table className='mx-auto mt-5 w-64'>
+        <tbody>
+          <tr>
+            <td>Harga produk</td>
+            <td>:</td>
+            <td>{currencyFormat(price)}</td>
+          </tr>
+          <tr>
+            <td>Ongkos Kirim</td>
+            <td>:</td>
+            <td>{currencyFormat(price)}</td>
+          </tr>
+          <tr>
+            <td colSpan={3} className='text-center pt-3 font-semibold'>Total Pembayaran :</td>
+          </tr>
+        </tbody>
       </table>
       <p className="font-bold text-green-500 text-2xl sm:text-3xl my-5">{currencyFormat(price)}</p>
       <p className="text-sm sm:text-base mb-2">Jangan lupa untuk mengkonfirmasi pesanan Anda ke admin kami.</p>

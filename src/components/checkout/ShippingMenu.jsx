@@ -1,8 +1,8 @@
 import { currencyFormat } from "@/utils";
 
-function ShipmentOption({data, product, setProduct}) {
+function ShippingMenu({data, body, setBody, errMessage}) {
   return (
-    <div className="w-64">
+    <div className="w-72">
       <label className='block font-semibold text-lg'>Pilih Kurir Pengiriman :</label>
       {data.map((courier, i) => {
         const lowestCost = courier.costs.reduce((prev, current) => {
@@ -14,9 +14,9 @@ function ShipmentOption({data, product, setProduct}) {
           <input
             type="radio"
             id={lowestCost.service}
-            name="shipment"
+            name="shipping_cost"
             value={lowestCost.cost[0].value}
-            onChange={() => setProduct({ ...product, shipment: lowestCost.cost[0].value })}
+            onChange={() => setBody({ ...body, shipping_cost: lowestCost.cost[0].value, total_price: body.product_price + lowestCost.cost[0].value})}
           />
           <label htmlFor={lowestCost.service} className="pl-2 flex-1">
             <p className="font-medium">
@@ -29,10 +29,17 @@ function ShipmentOption({data, product, setProduct}) {
         </div>
         );
       })}
-
-      <span className="font-semibold text-lg block mt-5">Total Tagihan : {currencyFormat(product.price + product.shipment)}</span>
+      {
+        errMessage ? <span className="text-red-500">{errMessage}</span> :
+        <div>
+          <span className="font-medium text-sm block mt-5 mb-2 text-gray-700">Berat Produk : {body.product_weight/1000} kg</span>
+          <span className="font-medium text-sm block text-gray-700">Harga Produk : {currencyFormat(body.product_price)}</span>
+          <span className="font-medium text-sm block text-gray-700">Ongkos Kirim : {currencyFormat(body.shipping_cost)}</span>
+          <span className="font-semibold text-lg block mt-2">Total Tagihan : {currencyFormat(body.product_price + body.shipping_cost)}</span>
+        </div>
+      }
     </div>
   )
 }
 
-export default ShipmentOption
+export default ShippingMenu

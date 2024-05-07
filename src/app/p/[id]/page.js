@@ -11,7 +11,7 @@ import { cookies } from "next/headers";
 
 export default async function page({ params }) {
   const discountDate = cookies().get("date_timer");
-  const data = await getItem("products", params.id);
+  const product = await getItem("products", params.id);
   const benefits = await getItemsWithFilter(
     "benefits",
     "product_id",
@@ -21,37 +21,37 @@ export default async function page({ params }) {
     <div className="lg:max-w-[80%] bg-slate-100 rounded-t-lg mx-auto">
       <Nav />
       <Hero
-        title={data.title}
-        descriptions={data.descriptions}
-        image={data.image}
+        title={product.title}
+        descriptions={product.descriptions}
+        image={product.image}
       />
       <Feature
-        title={data.title}
-        image={data.feature_image}
-        descriptions={data.feature_descriptions}
+        title={product.title}
+        image={product.feature_image}
+        descriptions={product.feature_descriptions}
       />
       <Benefit
         benefits={benefits}
-        normalPrice={data.normal_price}
-        discountPrice={data.discount_price}
+        normalPrice={product.normal_price}
+        discountPrice={product.discount_price}
         discountDate={discountDate}
-        discountDuration={data.discount_duration}
+        discountDuration={product.discount_duration}
       />
-      <Testimony title={data.title} images={data.testimony_images} />
+      <Testimony title={product.title} images={product.testimony_images} />
       <Video
-        title={data.title}
-        youtubeVideoId={data.youtube_video_id}
-        normalPrice={data.normal_price}
-        discountPrice={data.discount_price}
+        title={product.title}
+        youtubeVideoId={product.youtube_video_id}
+        normalPrice={product.normal_price}
+        discountPrice={product.discount_price}
         discountDate={discountDate}
-        discountDuration={data.discount_duration}
+        discountDuration={product.discount_duration}
       />
       <BuySection
-        id={data.id}
-        title={data.title}
-        tagline={data.promo_tagline}
-        normalPrice={data.normal_price}
-        discountPrice={data.discount_price}
+        id={product.id}
+        title={product.title}
+        tagline={product.promo_tagline}
+        normalPrice={product.normal_price}
+        discountPrice={product.discount_price}
       />
       <Footer />
     </div>
