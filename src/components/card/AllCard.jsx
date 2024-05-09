@@ -2,15 +2,22 @@
 import React, { useEffect, useState } from 'react'
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline"
 import Card from "./Card"
+import { getAll } from '@/utils/supabaseCRUD'
+import Link from 'next/link'
+import Image from 'next/image'
 
 function AllCard({pageTitle, fetchUrl}) {
   const [data, setData] = useState(null)
+  const [products, setProducts] = useState(null)
   const [search, setSearch] = useState('')
   useEffect(() => {
     const f=async() => {
       const res= await fetch(`/api/${fetchUrl}`)
       const data= await res.json()
+      const products = await getAll('products');
+
       setData(data)
+      setProducts(products)
     }
     f()
   }, [])
@@ -33,6 +40,20 @@ function AllCard({pageTitle, fetchUrl}) {
             {
               filteredData && filteredData.map(data=>{
                 return <Card key={data.id} imgUrl={data.imageUrl} title={data.title} id={data.id} fetchUrl={fetchUrl} />
+              })
+            }
+            {
+              products && products.map(product=>{
+                return(
+                <Link key={product.id} href={`/p/${product.id}`}>
+                  <div className="aspect-square rounded-t-xl relative group bg-slate-50  dark:bg-slate-800" >
+                    <Image src={product.image} alt={product.title} fill={true} objectFit="cover" className="rounded-t-lg" />
+                  </div>
+                  <div className="dark:text-slate-100 text-slate-700 rounded-b-xl bg-slate-50 drop-shadow-md sm:drop-shadow-lg dark:bg-slate-800 h-12 sm:h-20 py-1 sm:py-2 px-2 sm:px-4">
+                    <h5 className=" text-sm sm:text-base md:text-lg font-medium sm:font-semibold line-clamp-2">{product.title}</h5>
+                  </div>
+                </Link>
+                )
               })
             }
           </div>

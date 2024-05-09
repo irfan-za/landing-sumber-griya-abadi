@@ -34,8 +34,8 @@ function ShippingMenu({data, body, setBody, errMessage}) {
         <div>
           <span className="font-medium text-sm block mt-5 mb-2 text-gray-700">Berat Produk : {body.product_weight/1000} kg</span>
           <span className="font-medium text-sm block text-gray-700">Harga Produk : {currencyFormat(body.product_price)}</span>
-          <span className="font-medium text-sm block text-gray-700">Ongkos Kirim : {currencyFormat(body.shipping_cost)}</span>
-          <span className="font-semibold text-lg block mt-2">Total Tagihan : {currencyFormat(body.product_price + body.shipping_cost)}</span>
+          <span className="font-medium text-sm block text-gray-700">Ongkos Kirim : {body.shipping_cost ? currencyFormat(body.shipping_cost) : '-'}</span>
+          <span className="font-semibold text-lg block mt-2">Total Tagihan : {body.shipping_cost ? currencyFormat(body.product_price + body.shipping_cost) : '-'}</span>
         </div>
       }
     </div>

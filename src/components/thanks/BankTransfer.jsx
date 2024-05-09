@@ -5,11 +5,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 
-function BankTransfer({orderId}) {
+function BankTransfer({checkoutId, totalPrice, title}) {
   const [isCopiedPrice, setIsCopiedPrice] = useState(false)
   const [isCopiedNo, setIsCopiedNo] = useState(false)
-  const price= 1000000;
-  const uniquePrice = price + 333;
+  const uniquePrice = totalPrice + 111;
   const copyText = (text) => {
     if(text === uniquePrice) {
       navigator.clipboard.writeText(text)
@@ -52,7 +51,7 @@ function BankTransfer({orderId}) {
         }
       </div>
       <p className="text-sm sm:text-base mt-5 mb-2">Setelah transfer, mohon konfirmasi pembayaran ke admin kami</p>
-      <Link href={`https://api.whatsapp.com/send?phone=${process.env.NEXT_PUBLIC_PHONE}&text=Kak%20saya%20sudah%20mentransfer%20${currencyFormat(uniquePrice)}%20untuk%20pesanan%20bor%20ke%20bank%20BNI.%0AOrder%20id%20%3A${orderId}.%20Silahkan%20diproses%20ya`} target='_blank'>
+      <Link href={`https://api.whatsapp.com/send?phone=${process.env.NEXT_PUBLIC_PHONE}&text=Kak%20saya%20sudah%20mentransfer%20${currencyFormat(uniquePrice)}%20untuk%20pesanan%20${title}%20ke%20bank%20BNI.%0AOrder%20id%20%3A${checkoutId}.%20Silahkan%20diproses%20ya`} target='_blank'>
         <button className='ring-4 ring-green-300 bg-green-100 hover:bg-green-500 hover:text-white transition-colors duration-300 text-gray-800 font-semibold px-4 py-2 rounded-full space-x-2 text-sm'>
           <ChatBubbleOvalLeftEllipsisIcon strokeWidth={2} width={16} height={16} className='inline-block h-4 w-4 sm:h-6 sm:w-6 mr-2'/>
           Konfirmasi Pembayaran

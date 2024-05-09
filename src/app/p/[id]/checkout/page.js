@@ -58,7 +58,10 @@ function CheckoutPage({ params }) {
         setSubdistricts(data.data);
       });
   };
-  const fetchShippingOptions = async () => {
+  const fetchShippingOptions = async (
+    weight = product.weight,
+    subdistrict_id = currentSubdistrictId
+  ) => {
     const formData = new FormData();
     formData.append(
       "origin",
@@ -66,11 +69,11 @@ function CheckoutPage({ params }) {
     );
     formData.append(
       "destination",
-      `{"id":${currentSubdistrictId},"type":"subdistrict"}`
+      `{"id":${subdistrict_id},"type":"subdistrict"}`
     );
     formData.append("couriers", '["ninja","jne", "jnt", "sicepat"]');
-    formData.append("product", `{"weight":${body.product_weight}}`);
-    if (currentSubdistrictId && body.product_weight > 0) {
+    formData.append("product", `{"weight":${weight}}`);
+    if (subdistrict_id && weight > 0) {
       await fetch(`${process.env.NEXT_PUBLIC_SHIPPING_API_URL}/cost`, {
         method: "POST",
         body: formData,
@@ -81,21 +84,21 @@ function CheckoutPage({ params }) {
         });
     }
   };
-  const setProductVariant = async (val) => {
-    if (val === "Beli 1") {
-      setBody({
-        product_variant: "Beli 1",
-        product_price: product.discount_price,
-        product_weight: product.weight,
-      });
-    } else if (val === "Beli 2 Gratis 1") {
-      setBody({
-        product_variant: "Beli 2 Gratis 1",
-        product_price: product.discount_price * 2,
-        product_weight: product.weight * 3,
-      });
-    }
-  };
+  // const setProductVariant = async (val) => {
+  //   if (val === "Beli 1") {
+  //     setBody({
+  //       product_variant: "Beli 1",
+  //       product_price: product.discount_price,
+  //       product_weight: product.weight,
+  //     });
+  //   } else if (val === "Beli 2 Gratis 1") {
+  //     setBody({
+  //       product_variant: "Beli 2 Gratis 1",
+  //       product_price: product.discount_price * 2,
+  //       product_weight: product.weight * 3,
+  //     });
+  //   }
+  // };
 
   const handleChange = (e) => {
     setBody((prevData) => ({
@@ -136,7 +139,7 @@ function CheckoutPage({ params }) {
     postal: z.string().optional(),
     detail_address: z
       .string({ message: "Wajib diisi" })
-      .min(1, { message: "Masukkan nama Alamat yang valid" }),
+      .min(1, { message: "Masukkan Alamat lengkap yang valid" }),
     name: z
       .string({ message: "Wajib diisi" })
       .min(3, { message: "Silahkan masukkan nama penerima" }),
@@ -161,28 +164,36 @@ function CheckoutPage({ params }) {
             ...address,
           },
         ]);
-        setBody({
+        const checkoutData = await createItem("checkouts", {
           ...body,
           user_id: currentUser.id,
         });
-      } else {
-        const currentUser = data[0];
-        setBody({
-          ...body,
-          user_id: currentUser.id,
-        });
-      }
-      // problem reading user_id data, karena dia pake usestate dan baru aja statenya diubah. lihat baris 166 172
-      setTimeout(async () => {
-        const checkoutData = await createItem("checkouts", body);
         if (checkoutData) {
+          setBody({
+            ...body,
+            user_id: currentUser.id,
+          });
           router.push(
-            `/p/${params.id}/checkout/thanks/${body.payment_method}?checkout_id=${checkoutData.id}`
+            `/p/${params.id}/checkout/thanks/${body.payment_method}?checkout_id=${checkoutData[0].id}`
           );
         }
-      }, 1000);
+      } else {
+        const currentUser = data[0];
+        const checkoutData = await createItem("checkouts", {
+          ...body,
+          user_id: currentUser.id,
+        });
+        if (checkoutData) {
+          setBody({
+            ...body,
+            user_id: currentUser.id,
+          });
+          router.push(
+            `/p/${params.id}/checkout/thanks/${body.payment_method}?checkout_id=${checkoutData[0].id}`
+          );
+        }
+      }
     } catch (error) {
-      console.log(error);
       setErrors(error.formErrors.fieldErrors);
     }
   };
@@ -207,9 +218,6 @@ function CheckoutPage({ params }) {
     };
     f();
   }, []);
-  useEffect(() => {
-    fetchShippingOptions();
-  }, [body, currentSubdistrictId]);
 
   return (
     <div className="lg:max-w-[80%] bg-slate-100 rounded-t-lg mx-auto container pb-10">
@@ -243,7 +251,7 @@ function CheckoutPage({ params }) {
       <div>
         <form method="post" onSubmit={submitForm}>
           <div className="grid grid-cols-12 gap-4 mx-auto w-[90%] sm:max-w-md lg:max-w-xl">
-            <div className="col-span-12">
+            {/* <div className="col-span-12">
               <label className="block font-semibold text-lg">
                 Pilih Promo :
               </label>
@@ -253,9 +261,9 @@ function CheckoutPage({ params }) {
                   id="beli1"
                   name="product_variant"
                   value="Beli 1"
-                  checked
-                  onChange={(e) => {
+                  onClick={(e) => {
                     setProductVariant(e.target.value);
+                    fetchShippingOptions(product.weight);
                   }}
                 />
                 <label htmlFor="beli1" className="w-full p-2">
@@ -268,8 +276,9 @@ function CheckoutPage({ params }) {
                   id="beli2gratis1"
                   name="product_variant"
                   value="Beli 2 Gratis 1"
-                  onChange={(e) => {
+                  onClick={(e) => {
                     setProductVariant(e.target.value);
+                    fetchShippingOptions(product?.weight * 3);
                   }}
                 />
                 <label htmlFor="beli2gratis1" className="w-full p-2">
@@ -280,7 +289,7 @@ function CheckoutPage({ params }) {
               {errors && errors.product_variant && (
                 <p className="text-red-500">{errors.product_variant[0]}</p>
               )}
-            </div>
+            </div> */}
             <div className="col-span-12">
               <label className="block font-semibold text-lg my-3">
                 Data Penerima :
@@ -395,6 +404,7 @@ function CheckoutPage({ params }) {
                 className="w-full p-2 border-2 border-slate-300 rounded-md"
                 onChange={(e) => {
                   setCurrentSubdistrictId(e.target.value);
+                  fetchShippingOptions(body.product_weight, e.target.value);
                   handleChange(e);
                   changeAddress(
                     "subdistrict",
