@@ -6,7 +6,7 @@ function Feature({ title, image, descriptions}) {
     <div className='bg-primary-500 px-6 py-10 mt-10'>
       <div className='w-fit mx-auto flex flex-col items-center mb-5'>
         <span className='text-yellow-400 font-semibold text-xl block'>Memperkenalkan</span>
-        <h1 className='text-white text-2xl sm:text-3xl font-bold'>{title}</h1>
+        <h1 className='text-white text-2xl sm:text-3xl font-bold text-center'>{title}</h1>
         <div className='border-b-2 border-yellow-400 w-48 mt-4'></div>
         <div className='border-b-2 border-yellow-400 w-48 mt-1'></div>
       </div>

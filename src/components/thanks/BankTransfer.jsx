@@ -1,3 +1,4 @@
+'use client'
 import { bankAccounts } from "@/constans";
 import { currencyFormat } from "@/utils";
 import { ChatBubbleOvalLeftEllipsisIcon, CheckIcon, PencilIcon } from "@heroicons/react/24/outline";

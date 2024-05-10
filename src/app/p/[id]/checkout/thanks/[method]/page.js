@@ -1,33 +1,23 @@
-"use client";
 import BankTransfer from "@/components/thanks/BankTransfer";
 import Cod from "@/components/thanks/Cod";
 import { supabase } from "@/config/supabase";
-import { useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { notFound } from "next/navigation";
 
-function ThanksPage({ params }) {
+async function ThanksPage({ params, searchParams }) {
   const method = params.method;
-  const searchParams = useSearchParams();
-  const checkoutId = searchParams.get("checkout_id");
-  const [data, setData] = useState(null);
-  useEffect(() => {
-    const f = async () => {
-      let { data: checkouts, error } = await supabase
-        .from("checkouts")
-        .select(
-          `
-      *,
+  const checkoutId = searchParams.checkout_id;
+  const { data, error } = await supabase
+    .from("checkouts")
+    .select(
+      ` 
+        *,
       products (
         title
-      )
-    `
-        )
-        .eq("id", checkoutId)
-        .single();
-      setData(checkouts);
-    };
-    f();
-  }, []);
+      )`
+    )
+    .eq("id", checkoutId)
+    .single();
+  if (error) notFound();
 
   return (
     <div className="max-w-[90%] lg:max-w-[80%] bg-slate-100 rounded-lg mx-auto container pb-10 px-5">
