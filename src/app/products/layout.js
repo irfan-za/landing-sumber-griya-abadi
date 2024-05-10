@@ -4,7 +4,8 @@ import { Inter } from "next/font/google";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Jual Berbagai Plafon PVC, Gypsum & Bahan bangunan | Sumber Griya Aba",
+  title:
+    "Jual Berbagai Plafon PVC, Gypsum & Bahan bangunan | Sumber Griya Abadi",
   description:
     "Jual berbagai bahan material bangunan, atap rumah, baja ringan, plafon Gypsum dan PVC lengkap hanya di Sumber Griya Abadi.",
   keywords:
