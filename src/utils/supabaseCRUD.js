@@ -1,81 +1,54 @@
 import { supabase } from "@/config/supabase";
 
 // Create a new item
-async function createItem(table, data) {
-  const { data: newItem, error } = await supabase
-    .from(table)
-    .insert(data)
-    .select();
-  if (error) {
-    alert(`Error creating item: ${error.message}`);
-    return null;
-  }
-  return newItem;
+async function createItem(table, item) {
+  const { data, error } = await supabase.from(table).insert(item).select();
+  return { data, error };
 }
 
 // Select an item by ID
 async function getItem(table, id) {
-  const { data: selectedItem, error } = await supabase
+  const { data, error } = await supabase
     .from(table)
     .select("*")
     .eq("id", id)
     .single();
-  if (error) {
-    alert(`Error selecting item: ${error.message}`);
-    return null;
-  }
-  return selectedItem;
+  return { data, error };
 }
 
 // Select all items
 async function getAll(table) {
-  const { data: allItems, error } = await supabase.from(table).select("*");
-  if (error) {
-    alert(`Error selecting all items: ${error.message}`);
-    return null;
-  }
-  return allItems;
+  const { data, error } = await supabase.from(table).select("*");
+  return { data, error };
 }
 
 // Edit an existing item
-async function editItem(table, id, data) {
-  const { data: updatedItem, error } = await supabase
+async function editItem(table, id, item) {
+  const { data, error } = await supabase
     .from(table)
-    .update(data)
+    .update(item)
     .eq("id", id)
     .single();
-  if (error) {
-    alert(`Error editing item: ${error.message}`);
-    return null;
-  }
-  return updatedItem;
+  return { data, error };
 }
 
 // Delete an item by ID
 async function deleteItem(table, id) {
-  const { data: deletedItem, error } = await supabase
+  const { data, error } = await supabase
     .from(table)
     .delete()
     .eq("id", id)
     .single();
-  if (error) {
-    alert(`Error deleting item: ${error.message}`);
-    return null;
-  }
-  return deletedItem;
+  return { data, error };
 }
 
 // Select items by column value with filter
 async function getItemsWithFilter(table, column, value) {
-  const { data: selectedItems, error } = await supabase
+  const { data, error } = await supabase
     .from(table)
     .select("*")
     .eq(column, value);
-  if (error) {
-    alert(`Error selecting items with filter: ${error.message}`);
-    return null;
-  }
-  return selectedItems;
+  return { data, error };
 }
 
 export {

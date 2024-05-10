@@ -5,6 +5,7 @@ import Card from "./Card"
 import { getAll } from '@/utils/supabaseCRUD'
 import Link from 'next/link'
 import Image from 'next/image'
+import { notFound } from 'next/navigation'
 
 function AllCard({pageTitle, fetchUrl}) {
   const [data, setData] = useState(null)
@@ -14,7 +15,8 @@ function AllCard({pageTitle, fetchUrl}) {
     const f=async() => {
       const res= await fetch(`/api/${fetchUrl}`)
       const data= await res.json()
-      const products = await getAll('products');
+      const {data: products, error} = await getAll('products');
+      if (error) notFound();
 
       setData(data)
       setProducts(products)

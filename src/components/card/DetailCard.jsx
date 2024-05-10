@@ -1,7 +1,6 @@
 
 import React, { useEffect, useState } from 'react'
-import Image from 'next/image'
-import { usePathname } from 'next/navigation'
+import { notFound, usePathname } from 'next/navigation'
 import { XMarkIcon } from '@heroicons/react/24/outline'
 import { useRouter } from 'next/navigation'
 import ButtonContact from '../ButtonContact'
@@ -22,13 +21,14 @@ export default function DetailCard({id}) {
     f()
   }, [])
   const filteredData = data && data.filter((data) =>data.id===parseInt(id));
+  if (filteredData && filteredData.length<1) notFound();
   
   return (
     // min-h-[calc(100vh-2rem)] sm:min-h-[calc(100vh-3rem)]
     <div className='mt-8 sm:mt-12 pb-10 sm:pb-20 min-h-screen
      bg-slate-300 dark:bg-slate-800 w-full flex flex-col rounded-t-2xl sm:rounded-t-3xl'>
         {
-          filteredData && (
+          filteredData && filteredData.length>0 && (
             <div className='h-full'>
               <div className="text-end relative h-60 sm:h-96">
                 <Link href={`/${fetchUrl}s`}>

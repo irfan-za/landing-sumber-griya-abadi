@@ -1,11 +1,11 @@
 "use client";
+import ErrorAlert from "@/components/ErrorAlert";
 import ProductSkeleton from "@/components/checkout/ProductSkeleton";
 import ShippingMenu from "@/components/checkout/ShippingMenu";
-import { currencyFormat } from "@/utils";
 import { createItem, getItem, getItemsWithFilter } from "@/utils/supabaseCRUD";
 import { ArrowRightCircleIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import { notFound, useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 const { z } = require("zod");
 
@@ -154,9 +154,14 @@ function CheckoutPage({ params }) {
     try {
       bodySchema.parse(body);
 
-      const data = await getItemsWithFilter("users", "phone", body.phone);
+      const { data, error } = await getItemsWithFilter(
+        "users",
+        "phone",
+        body.phone
+      );
+      if (error) notFound();
       if (data && data.length === 0) {
-        const currentUser = await createItem("users", [
+        const { data: currentUser } = await createItem("users", [
           {
             name: body.name,
             phone: body.phone,
@@ -164,7 +169,7 @@ function CheckoutPage({ params }) {
             ...address,
           },
         ]);
-        const checkoutData = await createItem("checkouts", {
+        const { data: checkoutData } = await createItem("checkouts", {
           ...body,
           user_id: currentUser.id,
         });
@@ -179,7 +184,7 @@ function CheckoutPage({ params }) {
         }
       } else {
         const currentUser = data[0];
-        const checkoutData = await createItem("checkouts", {
+        const { data: checkoutData } = await createItem("checkouts", {
           ...body,
           user_id: currentUser.id,
         });
@@ -205,16 +210,15 @@ function CheckoutPage({ params }) {
         .then((data) => {
           setProvinces(data.data);
         });
-      const data = await getItem("products", params.id);
-      if (data) {
-        setProduct(data);
-        setBody({
-          ...body,
-          product_id: data.id,
-          product_price: data.discount_price,
-          product_weight: data.weight,
-        });
-      }
+      const { data, error } = await getItem("products", params.id);
+      if (error) notFound();
+      setProduct(data);
+      setBody({
+        ...body,
+        product_id: data.id,
+        product_price: data.discount_price,
+        product_weight: data.weight,
+      });
     };
     f();
   }, []);
