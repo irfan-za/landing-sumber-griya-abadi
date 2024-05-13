@@ -38,7 +38,7 @@ export default function DetailCard({id}) {
                 <div className="flex space-x-4 overflow-x-scroll rounded-xl snap-x py-4">
                   {
                     filteredData && filteredData[0]?.imageUrl.map((img,i)=>
-                      <Carousel key={i} image={img} alt={filteredData[0].title} />
+                      <Carousel key={i} image={img} alt={filteredData[0].title} isSquare={true} />
                   )
                   }
                 </div>

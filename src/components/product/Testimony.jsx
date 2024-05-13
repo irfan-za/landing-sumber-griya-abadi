@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import React from 'react'
+import Carousel from '../Carousel'
 
 function Testimony({title, images}) {
   return (
@@ -9,14 +10,13 @@ function Testimony({title, images}) {
       <div className='border-b-2 border-yellow-400 w-48 mt-4 mx-auto'></div>
       <div className='border-b-2 border-yellow-400 w-48 mt-1 mx-auto'></div>
 
-      <div className='grid grid-cols-12 mt-5 gap-2 sm:mt-10 gap-y-5 sm:gap-y-0'>
+      <div className="flex space-x-6 overflow-x-scroll rounded-xl snap-x py-4 mx-auto">
         {
           images && images.map((image, index) => (
-            <div key={index} className='col-span-12 sm:col-span-6 relative h-[500px]'>
-              <Image src={image} alt={title} fill={true} objectFit="contain" className="rounded-t-lg" />
-            </div>
+           <Carousel key={index} image={image} alt={title} isSquare={false} />
           ))
         }
+
       </div>
     </div>
   )
