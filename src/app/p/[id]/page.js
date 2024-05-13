@@ -10,18 +10,6 @@ import { getItem, getItemsWithFilter } from "@/utils/supabaseCRUD";
 import { cookies } from "next/headers";
 import { notFound } from "next/navigation";
 
-export async function generateMetadata({ params }) {
-  const { data: product, error } = await getItem("products", params.id);
-  if (error) notFound();
-  return {
-    title: product.title,
-    description: product.descriptions[0],
-    openGraph: {
-      images: [product.image],
-    },
-  };
-}
-
 export default async function page({ params }) {
   const discountDate = cookies().get("date_timer");
   const { data: product, error } = await getItem("products", params.id);
