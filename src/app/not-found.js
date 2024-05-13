@@ -1,9 +1,9 @@
-import Link from 'next/link';
-import React from 'react'
+import Link from "next/link";
+import React from "react";
 
 function NotFoundPage() {
   return (
-    <div className="grid h-screen place-content-center bg-white px-4 border border-red-800">
+    <div className="grid h-screen place-content-center bg-white px-4">
       <div className="text-center">
         <h1 className="text-9xl font-black text-gray-200">404</h1>
 
@@ -24,4 +24,4 @@ function NotFoundPage() {
   );
 }
 
-export default NotFoundPage
+export default NotFoundPage;
