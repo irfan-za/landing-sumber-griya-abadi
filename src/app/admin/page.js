@@ -1,13 +1,14 @@
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 import AdminTable from "@/components/admin/AdminTable";
+import Sidebar from "@/components/admin/Sidebar";
 import { getAll } from "@/lib/utils/supabaseCRUD";
 
 async function page() {
   const { data } = await getAll("offline_products");
   return (
-    <MaxWidthWrapper>
+    <div className="px-3">
       <AdminTable data={data ?? []} />
-    </MaxWidthWrapper>
+    </div>
   );
 }
 

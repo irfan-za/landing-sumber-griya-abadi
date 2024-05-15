@@ -1,3 +1,5 @@
+import { ChartBarIcon, Squares2X2Icon } from "@heroicons/react/24/outline";
+
 const achievementsList = [
   {
     metric: "Followers",
@@ -74,4 +76,18 @@ const bankAccounts = [
   },
 ];
 
-export { achievementsList, socialMedia, timer, bankAccounts };
+const sidebarLinks = [
+  {
+    title: "Dashboard",
+    href: "/admin",
+    activeNav: null,
+    icon: <Squares2X2Icon width={20} height={20} />,
+  },
+  {
+    title: "Analitik",
+    href: "/admin/analytics",
+    activeNav: "analytics",
+    icon: <ChartBarIcon width={20} height={20} />,
+  },
+];
+export { achievementsList, socialMedia, timer, bankAccounts, sidebarLinks };

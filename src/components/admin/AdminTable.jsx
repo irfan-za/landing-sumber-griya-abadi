@@ -4,6 +4,7 @@ import { Button } from "../ui/button";
 import DataTable from "../ui/data-table"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "../ui/dropdown-menu";
 import { Input } from "../ui/input";
+import Link from "next/link";
 
 export const columns = [
   {
@@ -51,7 +52,9 @@ function AdminTable({data}) {
           placeholder="Cari produk..."
           className="max-w-sm"
         />
-        <Button><PlusIcon width={16} height={16} strokeWidth={2} className="mr-2" /> Tambah Produk</Button>
+        <Link href="/admin/add">
+          <Button><PlusIcon width={16} height={16} strokeWidth={2} className="mr-2" /> Tambah Produk</Button>
+        </Link>
       </div>
       <DataTable columns={columns} data={data} />
     </section>
