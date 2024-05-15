@@ -10,7 +10,7 @@ function ShippingMenu({data, body, setBody, errMessage}) {
         });
 
         return (
-          <div className="flex p-3 bg-primary-50 hover:bg-primary-100 rounded-md" key={i}>
+          <div className="flex p-3 bg-primary-hover hover:bg-blue-100 rounded-md" key={i}>
           <input
             type="radio"
             id={lowestCost.service}

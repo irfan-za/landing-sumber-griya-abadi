@@ -13,7 +13,7 @@ const AnimatedNumbers = dynamic(
 const AchievementsSection = ({achievementsList}) => {
   return (
     <div className="py-8 px-4 xl:gap-16 sm:py-16 xl:px-16">
-      <div className="bg-primary-500 dark:bg-primary-700 sm:border-primary-600 dark:sm:border-[#33353F] sm:border rounded-md sm:py-8 sm:px-16 grid grid-cols-4 sm:grid-cols-4">
+      <div className="bg-primary dark:bg-blue-700 sm:border-blue-600 dark:sm:border-[#33353F] sm:border rounded-md sm:py-8 sm:px-16 grid grid-cols-4 sm:grid-cols-4">
         {achievementsList.map((achievement, index) => {
           return (
             <div

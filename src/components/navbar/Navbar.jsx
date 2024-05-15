@@ -12,25 +12,25 @@ const Navbar = () => {
     {
       title: "Beranda",
       path: "/",
-      isActive: `${path==='/' ? 'text-primary-500' : 'text-slate-700 dark:text-slate-200'}`,
+      isActive: `${path==='/' ? 'text-primary' : 'text-slate-700 dark:text-slate-200'}`,
       icon: (
-        <HomeIcon className={`${path==='/' ? 'text-primary-500' : 'text-slate-700 dark:text-slate-200'}  sm:hidden h-6 w-6`} />
+        <HomeIcon className={`${path==='/' ? 'text-primary' : 'text-slate-700 dark:text-slate-200'}  sm:hidden h-6 w-6`} />
       )
     },
     {
       title: "Produk",
       path: "/products",
-      isActive: `${path==='/products' ? 'text-primary-500' : 'text-slate-700 dark:text-slate-200'}`,
+      isActive: `${path==='/products' ? 'text-primary' : 'text-slate-700 dark:text-slate-200'}`,
       icon: (
-        <ShoppingBagIcon className={`${path==='/products' ? 'text-primary-500' : 'text-slate-700 dark:text-slate-200'} block sm:hidden h-6 w-6`} />
+        <ShoppingBagIcon className={`${path==='/products' ? 'text-primary' : 'text-slate-700 dark:text-slate-200'} block sm:hidden h-6 w-6`} />
       )
     },
     {
       title: "Jasa",
       path: "/services",
-      isActive: `${path==='/services' ? 'text-primary-500' : 'text-slate-700 dark:text-slate-200'}`,
+      isActive: `${path==='/services' ? 'text-primary' : 'text-slate-700 dark:text-slate-200'}`,
       icon: (
-        <HomeModernIcon className={`${path==='/services' ? 'text-primary-500' : 'text-slate-700 dark:text-slate-200'} block sm:hidden h-6 w-6`} />
+        <HomeModernIcon className={`${path==='/services' ? 'text-primary' : 'text-slate-700 dark:text-slate-200'} block sm:hidden h-6 w-6`} />
       )
     },
   ];
@@ -42,7 +42,7 @@ const Navbar = () => {
       <div className="flex items-center sm:justify-between">
         <Link
           href={"/"}
-          className="hidden sm:inline text-xl sm:text-3xl text-primary-500 font-bold"
+          className="hidden sm:inline text-xl sm:text-3xl text-primary font-bold"
         >SGA</Link>
         <div className="sm:w-auto w-full" id="navbar">
           <ul className="sm:space-x-8 flex justify-evenly items-center h-full">

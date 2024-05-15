@@ -8,12 +8,12 @@ const Footer = ({socialMedia}) => {
   return (
     <>
       <section className="grid md:grid-cols-2 pb-12 sm:pb-24 pt-6 sm:pt-12 gap-4 relative  border border-t-[#33353F] border-l-transparent border-r-transparent mt-24 py-4 px-4 sm:px-12 container sm:max-w-[90%] mx-auto ">
-        <div className="bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary-900 to-transparent rounded-full h-80 w-80 z-0 blur-lg absolute top-1/4 -left-4 transform -translate-x-1/2 -translate-1/2"></div>
+        <div className="bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-900 to-transparent rounded-full h-80 w-80 z-0 blur-lg absolute top-1/4 -left-4 transform -translate-x-1/2 -translate-1/2"></div>
         <div className="z-10">
           <h5 className="text-xl font-bold text-slate-800 dark:text-white my-2">
             Sumber Griya Abadi
           </h5>
-          <p className="text-slate-700 dark:text-slate-200 mb-4 pb-2 max-w-md border-b-2 border-primary-500">
+          <p className="text-slate-700 dark:text-slate-200 mb-4 pb-2 max-w-md border-b-2 border-primary">
             Belanja plafon lengkap dan terpercaya hanya di Sumber Griya Abadi.
             <br /><br />
             📍Jl Mangu-Sambi km.3, Sobokerto, Ngemplak, Boyolali, Jawa Tengah.

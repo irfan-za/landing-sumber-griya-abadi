@@ -33,7 +33,7 @@ export default function DetailCard({id}) {
               <div className="text-end relative h-60 sm:h-96">
                 <Link href={`/${fetchUrl}s`}>
                   <XMarkIcon 
-                  className='w-10 sm:w-12 h-10 sm:h-12 rounded-lg sm:rounded-xl hover:cursor-pointer hover:bg-primary-200 inline-block relative' />
+                  className='w-10 sm:w-12 h-10 sm:h-12 rounded-lg sm:rounded-xl hover:cursor-pointer hover:bg-primary-hover inline-block relative' />
                 </Link>
                 <div className="flex space-x-4 overflow-x-scroll rounded-xl snap-x py-4">
                   {

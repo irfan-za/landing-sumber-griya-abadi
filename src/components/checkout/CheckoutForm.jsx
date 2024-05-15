@@ -217,7 +217,7 @@ function CheckoutForm({ product, provinces }) {
     <div className="lg:max-w-[80%] bg-slate-100 rounded-t-lg mx-auto container pb-10">
       <div className="flex justify-end p-3">
         <button onClick={() => router.back()}>
-          <XMarkIcon className="w-8 h-8 rounded-sm sm:rounded-xl hover:cursor-pointer hover:bg-primary-foreground" />
+          <XMarkIcon className="w-8 h-8 rounded-sm sm:rounded-xl hover:cursor-pointer hover:bg-primary-hover" />
         </button>
       </div>
       {product ? (
