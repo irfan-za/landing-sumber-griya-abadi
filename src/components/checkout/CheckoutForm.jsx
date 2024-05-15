@@ -1,6 +1,7 @@
 "use client";
 import ProductSkeleton from "@/components/checkout/ProductSkeleton";
 import ShippingMenu from "@/components/checkout/ShippingMenu";
+import { currencyFormat } from "@/lib/utils";
 import {
   createItem,
   getItemsWithFilter,
@@ -8,7 +9,7 @@ import {
 import { ArrowRightCircleIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import { notFound, useRouter } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 const { z } = require("zod");
 
 function CheckoutForm({ product, provinces }) {
@@ -22,10 +23,10 @@ function CheckoutForm({ product, provinces }) {
     subdistrict: "",
   });
   const [body, setBody] = useState({
-    product_id: "",
+    product_id: product.id?? "",
     product_variant: "Beli 1",
-    product_price: 0,
-    product_weight: 0,
+    product_price: product.discount_price?? 0,
+    product_weight: product.weight?? 0,
     shipping_cost: 0,
     total_price: 0,
     payment_method: "",
@@ -84,21 +85,23 @@ function CheckoutForm({ product, provinces }) {
         });
     }
   };
-  // const setProductVariant = async (val) => {
-  //   if (val === "Beli 1") {
-  //     setBody({
-  //       product_variant: "Beli 1",
-  //       product_price: product.discount_price,
-  //       product_weight: product.weight,
-  //     });
-  //   } else if (val === "Beli 2 Gratis 1") {
-  //     setBody({
-  //       product_variant: "Beli 2 Gratis 1",
-  //       product_price: product.discount_price * 2,
-  //       product_weight: product.weight * 3,
-  //     });
-  //   }
-  // };
+  const setProductVariant = async (val) => {
+    if (val === "Beli 1") {
+      setBody({
+        ...body,
+        product_variant: "Beli 1",
+        product_price: product.discount_price,
+        product_weight: product.weight,
+      });
+    } else if (val === "Beli 2 Gratis 1") {
+      setBody({
+        ...body,
+        product_variant: "Beli 2 Gratis 1",
+        product_price: product.discount_price * 2,
+        product_weight: product.weight * 3,
+      });
+    }
+  };
 
   const handleChange = (e) => {
     setBody((prevData) => ({
@@ -169,49 +172,37 @@ function CheckoutForm({ product, provinces }) {
             ...address,
           },
         ]);
-        const { data: checkoutData } = await createItem("checkouts", {
+        const { data: checkoutData, error } = await createItem("checkouts", {
+          ...body,
+          user_id: currentUser[0].id,
+        });
+        if(error) alert(error.message)
+        setBody({
           ...body,
           user_id: currentUser.id,
         });
-        if (checkoutData) {
-          setBody({
-            ...body,
-            user_id: currentUser.id,
-          });
-          router.push(
-            `/p/${product.id}/checkout/thanks/${body.payment_method}?checkout_id=${checkoutData[0].id}`
-          );
-        }
+        router.push(
+          `/p/${product.id}/checkout/thanks/${body.payment_method}?checkout_id=${checkoutData[0].id}`
+        );
       } else {
         const currentUser = data[0];
-        const { data: checkoutData } = await createItem("checkouts", {
+        const { data: checkoutData, error } = await createItem("checkouts", {
           ...body,
           user_id: currentUser.id,
         });
-        if (checkoutData) {
-          setBody({
-            ...body,
-            user_id: currentUser.id,
-          });
-          router.push(
-            `/p/${product.id}/checkout/thanks/${body.payment_method}?checkout_id=${checkoutData[0].id}`
-          );
-        }
+        if (error) alert(error.message)
+        setBody({
+          ...body,
+          user_id: currentUser.id,
+        });
+        router.push(
+          `/p/${product.id}/checkout/thanks/${body.payment_method}?checkout_id=${checkoutData[0].id}`
+        );
       }
     } catch (error) {
-      console.log(error);
       setErrors(error.formErrors.fieldErrors);
     }
   };
-
-  useEffect(() => {
-    setBody({
-      ...body,
-      product_id: product.id,
-      product_price: product.discount_price,
-      product_weight: product.weight,
-    });
-  }, [product, body]);
 
   return (
     <div className="lg:max-w-[80%] bg-slate-100 rounded-t-lg mx-auto container pb-10">
@@ -244,7 +235,7 @@ function CheckoutForm({ product, provinces }) {
       <div>
         <form method="post" onSubmit={submitForm}>
           <div className="grid grid-cols-12 gap-4 mx-auto w-[90%] sm:max-w-md lg:max-w-xl">
-            {/* <div className="col-span-12">
+            <div className="col-span-12">
               <label className="block font-semibold text-lg">
                 Pilih Promo :
               </label>
@@ -282,7 +273,7 @@ function CheckoutForm({ product, provinces }) {
               {errors && errors.product_variant && (
                 <p className="text-red-500">{errors.product_variant[0]}</p>
               )}
-            </div> */}
+            </div>
             <div className="col-span-12">
               <label className="block font-semibold text-lg my-3">
                 Data Penerima :
