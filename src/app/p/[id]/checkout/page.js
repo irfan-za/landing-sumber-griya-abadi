@@ -2,7 +2,11 @@
 import ErrorAlert from "@/components/ErrorAlert";
 import ProductSkeleton from "@/components/checkout/ProductSkeleton";
 import ShippingMenu from "@/components/checkout/ShippingMenu";
-import { createItem, getItem, getItemsWithFilter } from "@/utils/supabaseCRUD";
+import {
+  createItem,
+  getItem,
+  getItemsWithFilter,
+} from "@/lib/utils/supabaseCRUD";
 import { ArrowRightCircleIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import { notFound, useRouter } from "next/navigation";

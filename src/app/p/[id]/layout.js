@@ -3,7 +3,7 @@ import "@/app/globals.css";
 import { Inter } from "next/font/google";
 import FacebookPixel from "@/components/product/FacebookPixel";
 import Script from "next/script";
-import { getItem } from "@/utils/supabaseCRUD";
+import { getItem } from "@/lib/utils/supabaseCRUD";
 import { notFound } from "next/navigation";
 const inter = Inter({ subsets: ["latin"] });
 
@@ -37,7 +37,7 @@ export default function ProductsLayout({ children }) {
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
       
-        gtag('config', 'G-Z1EP20ZRED');
+        gtag('config', ${process.env.GOOGLE_ANALYTICS_ID});
         `}
       </Script>
     </html>

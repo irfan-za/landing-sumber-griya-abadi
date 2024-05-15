@@ -1,12 +1,14 @@
 "use client";
 
 import { supabase } from "@/config/supabase";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { z } from "zod";
 
 function RegisterPage() {
   const [formData, setFormData] = useState(null);
   const [errors, setErrors] = useState(null);
+  const router = useRouter();
 
   const handleInputChange = (e) => {
     setFormData({
@@ -34,7 +36,7 @@ function RegisterPage() {
         email: formData.email,
         password: formData.password,
       });
-      setErrors(error ? error.message : null);
+      error ? alert(error.message) : router.replace("/admin");
     }
   };
 

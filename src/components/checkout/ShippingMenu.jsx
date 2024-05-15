@@ -1,4 +1,4 @@
-import { currencyFormat } from "@/utils";
+import { currencyFormat } from "@/lib/utils";
 
 function ShippingMenu({data, body, setBody, errMessage}) {
   return (

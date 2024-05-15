@@ -1,3 +1,6 @@
+import clsx from "clsx";
+import { twMerge } from "tailwind-merge";
+
 const currencyFormat = (number) => {
   const formatter = new Intl.NumberFormat("id-ID", {
     style: "currency",
@@ -12,4 +15,8 @@ const discount = (normalPrice, discountPrice) => {
   return Math.round(discount);
 };
 
-export { currencyFormat, discount };
+const cn = (...inputs) => {
+  return twMerge(clsx(inputs));
+};
+
+export { currencyFormat, discount, cn };

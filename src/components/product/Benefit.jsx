@@ -3,7 +3,7 @@ import Image from 'next/image'
 import React from 'react'
 import Timer from './Timer'
 import ButtonPromo from './ButtonPromo'
-import { discount } from '@/utils'
+import { discount } from '@/lib/utils'
 
 function Benefit({ normalPrice, discountPrice, discountDate, discountDuration, benefits }) {
   return (

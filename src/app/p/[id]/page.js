@@ -6,7 +6,7 @@ import Hero from "@/components/product/Hero";
 import Nav from "@/components/product/Nav";
 import Testimony from "@/components/product/Testimony";
 import Video from "@/components/product/Video";
-import { getItem, getItemsWithFilter } from "@/utils/supabaseCRUD";
+import { getItem, getItemsWithFilter } from "@/lib/utils/supabaseCRUD";
 import { cookies } from "next/headers";
 import { notFound } from "next/navigation";
 

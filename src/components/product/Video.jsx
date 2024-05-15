@@ -1,6 +1,6 @@
 import React from 'react'
 import Timer from './Timer'
-import { discount } from '@/utils'
+import { discount } from '@/lib/utils'
 
 function Video({ title, youtubeVideoId, normalPrice, discountPrice, discountDate, discountDuration}) {
   return (

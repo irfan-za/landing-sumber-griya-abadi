@@ -1,4 +1,4 @@
-import { currencyFormat } from '@/utils';
+import { currencyFormat } from '@/lib/utils';
 import { ChatBubbleOvalLeftEllipsisIcon } from '@heroicons/react/24/outline'
 import Link from 'next/link'
 

@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react'
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline"
 import Card from "./Card"
-import { getAll } from '@/utils/supabaseCRUD'
+import { getAll } from '@/lib/utils/supabaseCRUD'
 import Link from 'next/link'
 import Image from 'next/image'
 import { notFound } from 'next/navigation'
