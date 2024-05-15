@@ -15,7 +15,7 @@ function NotFoundPage() {
 
         <Link
           href="/products"
-          className="mt-6 inline-block rounded bg-primary-600 px-5 py-3 text-sm font-medium text-white hover:bg-primary-700 focus:outline-none focus:ring"
+          className="mt-6 inline-block rounded bg-primary px-5 py-3 text-sm font-medium text-white hover:bg-primary-hover focus:outline-none focus:ring"
         >
           Kembali
         </Link>

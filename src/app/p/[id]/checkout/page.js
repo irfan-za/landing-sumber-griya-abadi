@@ -230,10 +230,9 @@ function CheckoutPage({ params }) {
   return (
     <div className="lg:max-w-[80%] bg-slate-100 rounded-t-lg mx-auto container pb-10">
       <div className="flex justify-end p-3">
-        <XMarkIcon
-          onClick={() => router.back()}
-          className="w-8 h-8 rounded-sm sm:rounded-xl hover:cursor-pointer hover:bg-primary-100"
-        />
+        <button onClick={() => router.back()}>
+          <XMarkIcon className="w-8 h-8 rounded-sm sm:rounded-xl hover:cursor-pointer hover:bg-primary-foreground" />
+        </button>
       </div>
       {product ? (
         <div>
@@ -532,7 +531,7 @@ function CheckoutPage({ params }) {
             <div className="col-span-12">
               <button
                 type="submit"
-                className="w-full bg-primary-500 text-white p-2 rounded-md flex items-center justify-center"
+                className="w-full bg-primary text-white p-2 rounded-md flex items-center justify-center"
               >
                 Beli Sekarang{" "}
                 <ArrowRightCircleIcon width={24} height={24} className="ml-2" />
