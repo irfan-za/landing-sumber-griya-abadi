@@ -5,6 +5,7 @@ import DataTable from "../ui/data-table"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "../ui/dropdown-menu";
 import { Input } from "../ui/input";
 import Link from "next/link";
+import AlertDelete from "./product/AlertDelete";
 
 export const columns = [
   {
@@ -34,9 +35,9 @@ export const columns = [
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end">
-        <Link href={`/admin/${row.original.id}`}><DropdownMenuItem><EyeIcon width={16} height={16} className="mr-2" /> Detail</DropdownMenuItem></Link>
-        <Link href={`/admin/edit/${row.original.id}`}><DropdownMenuItem><PencilSquareIcon width={16} height={16} className="mr-2" /> Edit</DropdownMenuItem></Link>
-        <Link href={`/`}><DropdownMenuItem><TrashIcon width={16} height={16} className="mr-2" /> Hapus</DropdownMenuItem></Link>
+          <Link href={`/admin/${row.original.id}`}><DropdownMenuItem><EyeIcon width={16} height={16} className="mr-2" /> Detail</DropdownMenuItem></Link>
+          <Link href={`/admin/edit/${row.original.id}`}><DropdownMenuItem><PencilSquareIcon width={16} height={16} className="mr-2" /> Edit</DropdownMenuItem></Link>
+          <DropdownMenuItem><AlertDelete id={row.original.id} /></DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
     ),

@@ -30,7 +30,7 @@ export default function ProductLayout({ children }) {
       </body>
       <Script
         strategy="lazyOnLoad"
-        src={`https://www.googletagmanager.com/gtag/js?id=${process.env.GOOGLE_ANALYTICS_ID}`}
+        src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID}`}
       ></Script>
       <Script id="ga-script" strategy="lazyOnLoad">
         {`
@@ -38,7 +38,7 @@ export default function ProductLayout({ children }) {
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
       
-        gtag('config', ${process.env.GOOGLE_ANALYTICS_ID});
+        gtag('config', ${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID});
         `}
       </Script>
     </html>
