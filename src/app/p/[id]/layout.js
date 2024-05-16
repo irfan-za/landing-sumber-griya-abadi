@@ -7,14 +7,16 @@ import { getItem } from "@/lib/utils/supabaseCRUD";
 import { notFound } from "next/navigation";
 const inter = Inter({ subsets: ["latin"] });
 
-export async function generateMetadata({ params }) {
+export async function generateMetadata({ params, searchParams }) {
   const { data: product, error } = await getItem("products", params.id);
+  console.log(params, searchParams);
   if (error) notFound();
   return {
-    title: product.title,
-    description: product.descriptions[0],
+    title: `Jual ${product.title} | Sumber Griya Abadi`,
+    description: `Beli ${product.title} Terbaru Harga Murah di Sumber Griya Abadi. Bisa COD, Aman, dan Rating Terbaik.`,
     openGraph: {
       images: [product.image],
+      url: `${process.env.NEXT_PUBLIC_WEBSITE_URL}/p/${params.id}`,
     },
   };
 }

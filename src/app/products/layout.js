@@ -5,14 +5,14 @@ import Script from "next/script";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title:
-    "Jual Berbagai Plafon PVC, Gypsum & Bahan bangunan | Sumber Griya Abadi",
+  title: "Jual Plafon PVC, Gypsum & Bahan bangunan | Sumber Griya Abadi",
   description:
-    "Jual berbagai bahan material bangunan, atap rumah, baja ringan, plafon Gypsum dan PVC lengkap hanya di Sumber Griya Abadi.",
+    "Belanja berbagai bahan material bangunan, baja ringan, plafon Gypsum dan PVC lengkap & terpercaya hanya di Sumber Griya Abadi.",
   keywords:
     "toko plafon, toko bangunan, plafon pvc, plafon gypsum, baja ringan, atap galvalume, pasang plafon pvc, tukang plafon, atap rumah, toko plafon solo, toko bangunan solo",
   openGraph: {
     images: `${process.env.SGA_LOGO_META_TAG}`,
+    url: `${process.env.NEXT_PUBLIC_WEBSITE_URL}/products`,
   },
 };
 

@@ -12,6 +12,7 @@ export const metadata = {
     "toko plafon, pemborong plafon, jasa konstruksi, jasa pasang plafon, toko bangunan, plafon pvc, plafon gypsum, baja ringan, atap galvalume, pasang plafon pvc, tukang plafon, atap rumah, pemasangan plafom pvc, toko plafon solo, toko bangunan solo",
   openGraph: {
     images: `${process.env.SGA_LOGO_META_TAG}`,
+    url: `${process.env.NEXT_PUBLIC_WEBSITE_URL}`,
   },
 };
 
