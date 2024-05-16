@@ -2,9 +2,9 @@ import ButtonWA from "@/components/ButtonWA";
 import "@/app/globals.css";
 import { Inter } from "next/font/google";
 import FacebookPixel from "@/components/product/FacebookPixel";
+import Script from "next/script";
 import { getItem } from "@/lib/utils/supabaseCRUD";
 import { notFound } from "next/navigation";
-import { GoogleAnalytics } from "@next/third-parties/google";
 const inter = Inter({ subsets: ["latin"] });
 
 export async function generateMetadata({ params }) {
@@ -28,7 +28,19 @@ export default function ProductLayout({ children }) {
         <FacebookPixel />
         <ButtonWA />
       </body>
-      <GoogleAnalytics gaId={process.env.GOOGLE_ANALYTICS_ID} />
+      <Script
+        strategy="lazyOnLoad"
+        src={`https://www.googletagmanager.com/gtag/js?id=G-Z1EP20ZRED`}
+      ></Script>
+      <Script id="ga-script" strategy="lazyOnLoad">
+        {`
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+      
+        gtag('config', G-Z1EP20ZRED);
+        `}
+      </Script>
     </html>
   );
 }

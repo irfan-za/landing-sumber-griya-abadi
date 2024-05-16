@@ -1,7 +1,7 @@
 import ButtonWA from "@/components/ButtonWA";
 import "@/app/globals.css";
 import { Inter } from "next/font/google";
-import { GoogleAnalytics } from "@next/third-parties/google";
+import Script from "next/script";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
@@ -25,7 +25,19 @@ export default function ServicesLayout({ children }) {
           <ButtonWA />
         </div>
       </body>
-      <GoogleAnalytics gaId={process.env.GOOGLE_ANALYTICS_ID} />
+      <Script
+        strategy="lazyOnLoad"
+        src={`https://www.googletagmanager.com/gtag/js?id=G-Z1EP20ZRED`}
+      ></Script>
+      <Script id="ga-script" strategy="lazyOnLoad">
+        {`
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+      
+        gtag('config', G-Z1EP20ZRED);
+        `}
+      </Script>
     </html>
   );
 }
