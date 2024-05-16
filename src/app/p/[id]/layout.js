@@ -7,9 +7,8 @@ import { getItem } from "@/lib/utils/supabaseCRUD";
 import { notFound } from "next/navigation";
 const inter = Inter({ subsets: ["latin"] });
 
-export async function generateMetadata({ params, searchParams }) {
+export async function generateMetadata({ params }) {
   const { data: product, error } = await getItem("products", params.id);
-  console.log(params, searchParams);
   if (error) notFound();
   return {
     title: `Jual ${product.title} | Sumber Griya Abadi`,

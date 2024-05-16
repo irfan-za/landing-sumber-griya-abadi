@@ -1,7 +1,7 @@
 "use client";
 import ProductSkeleton from "@/components/checkout/ProductSkeleton";
 import ShippingMenu from "@/components/checkout/ShippingMenu";
-import { currencyFormat } from "@/lib/utils";
+import { currencyFormat, discount } from "@/lib/utils";
 import {
   createItem,
   getItemsWithFilter,
@@ -12,7 +12,7 @@ import { notFound, useRouter } from "next/navigation";
 import React, { useState } from "react";
 const { z } = require("zod");
 
-function CheckoutForm({ product, provinces }) {
+function CheckoutForm({ product, provinces, variants }) {
   const [cities, setCities] = useState(null);
   const [subdistricts, setSubdistricts] = useState(null);
   const [shippingOption, setShippingOption] = useState(null);
@@ -85,22 +85,13 @@ function CheckoutForm({ product, provinces }) {
         });
     }
   };
-  const setProductVariant = async (val) => {
-    if (val === "Beli 1") {
-      setBody({
-        ...body,
-        product_variant: "Beli 1",
-        product_price: product.discount_price,
-        product_weight: product.weight,
-      });
-    } else if (val === "Beli 2 Gratis 1") {
-      setBody({
-        ...body,
-        product_variant: "Beli 2 Gratis 1",
-        product_price: product.discount_price * 2,
-        product_weight: product.weight * 3,
-      });
-    }
+  const setProductVariant = (variant) => {
+    setBody({
+      ...body,
+      product_variant: variant.title,
+      product_price: variant.price,
+      product_weight: product.weight*variant.quantity,
+    });
   };
 
   const handleChange = (e) => {
@@ -181,6 +172,7 @@ function CheckoutForm({ product, provinces }) {
           ...body,
           user_id: currentUser.id,
         });
+        
         router.push(
           `/p/${product.id}/checkout/thanks/${body.payment_method}?checkout_id=${checkoutData[0].id}`
         );
@@ -195,12 +187,14 @@ function CheckoutForm({ product, provinces }) {
           ...body,
           user_id: currentUser.id,
         });
+        
         router.push(
           `/p/${product.id}/checkout/thanks/${body.payment_method}?checkout_id=${checkoutData[0].id}`
         );
       }
     } catch (error) {
       setErrors(error.formErrors.fieldErrors);
+      
     }
   };
 
@@ -235,45 +229,33 @@ function CheckoutForm({ product, provinces }) {
       <div>
         <form method="post" onSubmit={submitForm}>
           <div className="grid grid-cols-12 gap-4 mx-auto w-[90%] sm:max-w-md lg:max-w-xl">
-            {/* <div className="col-span-12">
+            <div className="col-span-12">
               <label className="block font-semibold text-lg">
                 Pilih Promo :
               </label>
-              <div className="bg-white flex space-x-2 border pl-2">
-                <input
-                  type="radio"
-                  id="beli1"
-                  name="product_variant"
-                  value="Beli 1"
-                  onClick={(e) => {
-                    setProductVariant(e.target.value);
-                    fetchShippingOptions(product.weight);
-                  }}
-                />
-                <label htmlFor="beli1" className="w-full p-2">
-                  Beli 1 ({product && currencyFormat(product.discount_price)})
-                </label>
-              </div>
-              <div className="bg-white flex space-x-2 border pl-2">
-                <input
-                  type="radio"
-                  id="beli2gratis1"
-                  name="product_variant"
-                  value="Beli 2 Gratis 1"
-                  onClick={(e) => {
-                    setProductVariant(e.target.value);
-                    fetchShippingOptions(product?.weight * 3);
-                  }}
-                />
-                <label htmlFor="beli2gratis1" className="w-full p-2">
-                  Beli 2 Gratis 1 (
-                  {product && currencyFormat(product.discount_price * 2)})
-                </label>
-              </div>
+              {
+                variants && variants.map((variant, i) => (
+                  <div key={i} className="bg-white flex space-x-2 border pl-2">
+                    <input
+                      type="radio"
+                      id={variant.id}
+                      name="product_variant"
+                      value={variant.title}
+                      onClick={() => {
+                        setProductVariant(variant);
+                        fetchShippingOptions(product.weight*variant.quantity);
+                      }}
+                    />
+                    <label htmlFor={variant.id} className="w-full p-2">
+                      {variant.title} diskon {discount(product.normal_price*variant.quantity, variant.price)}% ({currencyFormat(variant.price)})
+                    </label>
+                  </div>
+                ))
+              }
               {errors && errors.product_variant && (
                 <p className="text-red-500">{errors.product_variant[0]}</p>
               )}
-            </div> */}
+            </div>
             <div className="col-span-12">
               <label className="block font-semibold text-lg my-3">
                 Data Penerima :
@@ -508,9 +490,9 @@ function CheckoutForm({ product, provinces }) {
             <div className="col-span-12">
               <button
                 type="submit"
-                className="w-full bg-primary text-white p-2 rounded-md flex items-center justify-center"
+                className={`w-full bg-primary text-white p-2 rounded-md flex items-center justify-center`}
               >
-                Beli Sekarang{" "}
+                Beli Sekarang{""}
                 <ArrowRightCircleIcon width={24} height={24} className="ml-2" />
               </button>
             </div>
