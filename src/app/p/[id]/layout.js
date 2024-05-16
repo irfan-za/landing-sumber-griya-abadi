@@ -12,7 +12,7 @@ export async function generateMetadata({ params }) {
   if (error) notFound();
   return {
     title: `Jual ${product.title} | Sumber Griya Abadi`,
-    description: `Beli ${product.title} Terbaru Harga Murah di Sumber Griya Abadi. Bisa COD, Aman, dan Rating Terbaik.`,
+    description: `Beli ${product.title} Terbaru Harga Murah di Sumber Griya Abadi. Bisa COD, Aman, dan Rating Terbaik. Belanja pasti ready hanya di Sumber Griya Abadi`,
     openGraph: {
       images: [product.image],
       url: `${process.env.NEXT_PUBLIC_WEBSITE_URL}/p/${params.id}`,
