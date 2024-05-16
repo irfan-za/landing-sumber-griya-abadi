@@ -235,7 +235,7 @@ function CheckoutForm({ product, provinces }) {
       <div>
         <form method="post" onSubmit={submitForm}>
           <div className="grid grid-cols-12 gap-4 mx-auto w-[90%] sm:max-w-md lg:max-w-xl">
-            <div className="col-span-12">
+            {/* <div className="col-span-12">
               <label className="block font-semibold text-lg">
                 Pilih Promo :
               </label>
@@ -273,7 +273,7 @@ function CheckoutForm({ product, provinces }) {
               {errors && errors.product_variant && (
                 <p className="text-red-500">{errors.product_variant[0]}</p>
               )}
-            </div>
+            </div> */}
             <div className="col-span-12">
               <label className="block font-semibold text-lg my-3">
                 Data Penerima :
