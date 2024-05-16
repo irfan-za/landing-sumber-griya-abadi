@@ -1,11 +1,15 @@
-import CreateProductForm from "@/components/admin/product/CreateProductForm";
-
-function page() {
+import MaxWidthWrapper from "@/components/MaxWidthWrapper";
+import DetailProduct from "@/components/admin/product/DetailProduct";
+import { getItem } from "@/lib/utils/supabaseCRUD";
+import { notFound } from "next/navigation";
+async function Page({ params }) {
+  const { data: product, error } = await getItem("offline_products", params.id);
+  if (error) notFound();
   return (
-    <div className="mt-16 px-3">
-      <CreateProductForm />
-    </div>
+    <MaxWidthWrapper className="mt-24">
+      <DetailProduct data={product} />
+    </MaxWidthWrapper>
   );
 }
 
-export default page;
+export default Page;

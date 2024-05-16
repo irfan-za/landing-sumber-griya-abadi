@@ -34,9 +34,9 @@ export const columns = [
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end">
-          <DropdownMenuItem><EyeIcon width={16} height={16} className="mr-2" /> Detail</DropdownMenuItem>
-          <DropdownMenuItem><PencilSquareIcon width={16} height={16} className="mr-2" /> Edit</DropdownMenuItem>
-          <DropdownMenuItem><TrashIcon width={16} height={16} className="mr-2" /> Hapus</DropdownMenuItem>
+        <Link href={`/admin/${row.original.id}`}><DropdownMenuItem><EyeIcon width={16} height={16} className="mr-2" /> Detail</DropdownMenuItem></Link>
+        <Link href={`/admin/edit/${row.original.id}`}><DropdownMenuItem><PencilSquareIcon width={16} height={16} className="mr-2" /> Edit</DropdownMenuItem></Link>
+        <Link href={`/`}><DropdownMenuItem><TrashIcon width={16} height={16} className="mr-2" /> Hapus</DropdownMenuItem></Link>
         </DropdownMenuContent>
       </DropdownMenu>
     ),
@@ -52,7 +52,7 @@ function AdminTable({data}) {
           placeholder="Cari produk..."
           className="max-w-sm"
         />
-        <Link href="/admin/add">
+        <Link href="/admin/edit/add">
           <Button><PlusIcon width={16} height={16} strokeWidth={2} className="mr-2" /> Tambah Produk</Button>
         </Link>
       </div>

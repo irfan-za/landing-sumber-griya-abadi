@@ -9,7 +9,7 @@ import {
 import { ArrowRightCircleIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import { notFound, useRouter } from "next/navigation";
-import React, { useState } from "react";
+import React, { useState, useTransition } from "react";
 const { z } = require("zod");
 
 function CheckoutForm({ product, provinces, variants }) {
@@ -17,6 +17,7 @@ function CheckoutForm({ product, provinces, variants }) {
   const [subdistricts, setSubdistricts] = useState(null);
   const [shippingOption, setShippingOption] = useState(null);
   const [currentSubdistrictId, setCurrentSubdistrictId] = useState(null);
+  const [isPending, startTransition] = useTransition()
   const [address, setAddress] = useState({
     province: "",
     city: "",
@@ -147,7 +148,7 @@ function CheckoutForm({ product, provinces, variants }) {
     e.preventDefault();
     try {
       bodySchema.parse(body);
-
+      
       const { data, error } = await getItemsWithFilter(
         "users",
         "phone",
@@ -498,6 +499,15 @@ function CheckoutForm({ product, provinces, variants }) {
             </div>
           </div>
         </form>
+        {
+          isPending && (
+            <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center">
+              <div className="bg-white p-4 rounded-lg">
+                <p>Memproses...</p>
+              </div>
+            </div>
+          )
+        }
       </div>
     </div>
   );
