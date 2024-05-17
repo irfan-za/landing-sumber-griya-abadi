@@ -17,16 +17,19 @@ import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import { supabase } from "@/config/supabase";
 import Image from "next/image";
-import { createItem } from "@/lib/utils/supabaseCRUD";
+import { createItem, editItem } from "@/lib/utils/supabaseCRUD";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
+import { ArrowLeftIcon, XMarkIcon } from "@heroicons/react/24/outline";
 
-const MAX_FILE_SIZE = 1024 * 1024 * 2;
-const ACCEPTED_IMAGE_MIME_TYPES = [
-  "image/jpeg",
-  "image/jpg",
-  "image/png",
-  "image/webp",
-];
+
+// const MAX_FILE_SIZE = 1024 * 1024 * 2;
+// const ACCEPTED_IMAGE_MIME_TYPES = [
+//   "image/jpeg",
+//   "image/jpg",
+//   "image/png",
+//   "image/webp",
+// ];
 const formSchema = z.object({
   title: z.string().min(2, {
     message: "Wajib diisi.",
@@ -46,14 +49,14 @@ const formSchema = z.object({
   //   ),
 });
 
-function CreateProductForm() {
-  const [images, setImages] = useState([]); 
+function CreateProductForm({product}) {
+  const [images, setImages] = useState(product?.image_urls || []); 
   const router = useRouter();
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      title: "",
-      descriptions: "",
+      title: product?.title ||"",
+      descriptions: product?.descriptions?.join(";") ||"",
       image_urls: [],
     },
   });
@@ -65,8 +68,13 @@ function CreateProductForm() {
         descriptions: data.descriptions.split(";"),
         image_urls: images,
       }
-      const {error} =await createItem("offline_products", body);
-      if(error) {alert(error.message); return}
+      if(product === "add") {
+        const {error} =await createItem("offline_products", body);
+        if(error) {alert(error.message); return}
+      }else {
+        const {error} =await editItem("offline_products", product.id, body);
+        if(error) {alert(error.message); return}
+      }
       router.replace("/admin")
     } catch (error) {
       alert(error.message);
@@ -87,7 +95,13 @@ function CreateProductForm() {
   };
   return (
     <div className="mt-16">
-      <h1 className="font-semibold text-2xl">Tambah Produk</h1>
+      <div className="flex justify-between mb-6">
+        <Link href='/admin'>
+          <ArrowLeftIcon width={24} height={24} strokeWidth={2} className='text-gray-700 cursor-pointer' />
+        </Link>
+        <h1 className="font-semibold text-2xl">{product==='add' ? 'Tambah Produk' : 'Edit Produk'}</h1>
+        <span></span>
+      </div>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
           <FormField
@@ -132,7 +146,10 @@ function CreateProductForm() {
           <span className="inline-block">
             <p>Link Foto Produk : </p>
             {images.map((img, i) => (
-              <span key={i} className="inline-block mx-2">
+              <span key={i} className="inline-block mx-2 aspect-square relative">
+                <button onClick={() => setImages(images.filter((image) => image !== img))} className="absolute top-0 right-0 bg-red-600 text-white">
+                  <XMarkIcon width={24} height={24} />
+                </button>
                 <Image width={100} height={100} src={img} alt="product" className="aspect-square" />
               </span>
             ))}

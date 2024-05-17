@@ -1,8 +1,8 @@
 'use client'
-import { EllipsisVerticalIcon, EyeIcon, PencilIcon, PencilSquareIcon, PlusIcon, TrashIcon } from "@heroicons/react/24/outline";
+import { EllipsisVerticalIcon, EyeIcon, PencilSquareIcon, PlusIcon } from "@heroicons/react/24/outline";
 import { Button } from "../ui/button";
 import DataTable from "../ui/data-table"
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "../ui/dropdown-menu";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "../ui/dropdown-menu";
 import { Input } from "../ui/input";
 import Link from "next/link";
 import AlertDelete from "./product/AlertDelete";
@@ -37,7 +37,7 @@ export const columns = [
         <DropdownMenuContent align="end">
           <Link href={`/admin/${row.original.id}`}><DropdownMenuItem><EyeIcon width={16} height={16} className="mr-2" /> Detail</DropdownMenuItem></Link>
           <Link href={`/admin/edit/${row.original.id}`}><DropdownMenuItem><PencilSquareIcon width={16} height={16} className="mr-2" /> Edit</DropdownMenuItem></Link>
-          <DropdownMenuItem><AlertDelete id={row.original.id} /></DropdownMenuItem>
+          <AlertDelete id={row.original.id} />
         </DropdownMenuContent>
       </DropdownMenu>
     ),

@@ -2,7 +2,7 @@
 import { navigationMenuTriggerStyle } from "@/components/ui/navigation-menu";
 import { sidebarLinks } from "@/constans";
 import { cn } from "@/lib/utils";
-import { Bars3Icon, Squares2X2Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import {
   NavigationMenu,
   NavigationMenuItem,
@@ -12,6 +12,7 @@ import {
 import Link from "next/link";
 import { useSelectedLayoutSegment } from "next/navigation";
 import { useState } from "react";
+import AlertLogout from "./AlertLogout";
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -69,6 +70,12 @@ const Sidebar = () => {
                     </Link>
                   </NavigationMenuItem>
                 ))}
+
+                <NavigationMenuItem>
+                  <AlertLogout />
+                  <NavigationMenuLink>
+                  </NavigationMenuLink>
+                </NavigationMenuItem>
               </NavigationMenuList>
             </NavigationMenu>
           </div>
