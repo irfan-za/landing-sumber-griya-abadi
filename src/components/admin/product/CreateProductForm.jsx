@@ -14,13 +14,14 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { supabase } from "@/config/supabase";
 import Image from "next/image";
 import { createItem, editItem } from "@/lib/utils/supabaseCRUD";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { ArrowLeftIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import { ArrowLeftIcon, ArrowPathIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import { useToast } from "@/components/ui/use-toast";
 
 
 // const MAX_FILE_SIZE = 1024 * 1024 * 2;
@@ -51,7 +52,9 @@ const formSchema = z.object({
 
 function CreateProductForm({product}) {
   const [images, setImages] = useState(product?.image_urls || []); 
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
+  const { toast } = useToast()
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -63,6 +66,7 @@ function CreateProductForm({product}) {
 
   const onSubmit=async(data)=>{
     try {
+      setLoading(true);
       const body={
         ...data,
         descriptions: data.descriptions.split(";"),
@@ -75,9 +79,15 @@ function CreateProductForm({product}) {
         const {error} =await editItem("offline_products", product.id, body);
         if(error) {alert(error.message); return}
       }
+      toast({
+        variant: "success",
+        description: "Produk berhasil ditambahkan."
+      })
       router.replace("/admin")
     } catch (error) {
       alert(error.message);
+    } finally{
+      setLoading(false);
     }
   }
   const handleFileChange = async(event) => {
@@ -155,7 +165,9 @@ function CreateProductForm({product}) {
             ))}
           </span>
           <div>
-            <Button type="submit">Submit</Button>
+            {
+              loading ? <Button disabled>Loading <ArrowPathIcon width={14} height={14} className="animate-spin ml-2" /></Button> : <Button type="submit">Submit</Button>
+            }
           </div>
         </form>
       </Form>

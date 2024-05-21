@@ -1,4 +1,7 @@
-import { ChartBarIcon, Squares2X2Icon } from "@heroicons/react/24/outline";
+import {
+  Squares2X2Icon,
+  WrenchScrewdriverIcon,
+} from "@heroicons/react/24/outline";
 
 const achievementsList = [
   {
@@ -78,16 +81,16 @@ const bankAccounts = [
 
 const sidebarLinks = [
   {
-    title: "Dashboard",
+    title: "Produk Offline",
     href: "/admin",
     activeNav: null,
     icon: <Squares2X2Icon width={20} height={20} />,
   },
   {
-    title: "Analitik",
-    href: "/admin/analytics",
-    activeNav: "analytics",
-    icon: <ChartBarIcon width={20} height={20} />,
+    title: "Jasa Layanan",
+    href: "/admin/services",
+    activeNav: "services",
+    icon: <WrenchScrewdriverIcon width={20} height={20} />,
   },
 ];
 export { achievementsList, socialMedia, timer, bankAccounts, sidebarLinks };

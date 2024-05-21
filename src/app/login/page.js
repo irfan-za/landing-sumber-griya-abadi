@@ -32,7 +32,7 @@ function RegisterPage() {
     if (err) {
       setErrors(err.formErrors.fieldErrors);
     } else {
-      const { user, error } = await supabase.auth.signInWithPassword({
+      const { error } = await supabase.auth.signInWithPassword({
         email: formData.email,
         password: formData.password,
       });
