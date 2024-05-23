@@ -40,14 +40,9 @@ function AllCard({pageTitle, fetchUrl}) {
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-8 container">
             {
-              filteredData && filteredData.map(data=>{
-                return <Card key={data.id} imgUrl={data.imageUrl} title={data.title} id={data.id} fetchUrl={fetchUrl} />
-              })
-            }
-            {
               products && products.map(product=>{
                 return(
-                <Link key={product.id} href={`/p/${product.id}`}>
+                  <Link key={product.id} href={`/p/${product.id}`}>
                   <div className="aspect-square rounded-t-xl relative group bg-slate-50  dark:bg-slate-800" >
                     <Image src={product.image} alt={product.title} fill={true} objectFit="cover" className="rounded-t-lg" />
                   </div>
@@ -56,6 +51,11 @@ function AllCard({pageTitle, fetchUrl}) {
                   </div>
                 </Link>
                 )
+              })
+            }
+            {
+              filteredData && filteredData.map(data=>{
+                return <Card key={data.id} imgUrl={data.imageUrl} title={data.title} id={data.id} fetchUrl={fetchUrl} />
               })
             }
           </div>

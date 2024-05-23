@@ -10,7 +10,7 @@ function Testimony({title, images}) {
       <div className='border-b-2 border-yellow-400 w-48 mt-4 mx-auto'></div>
       <div className='border-b-2 border-yellow-400 w-48 mt-1 mx-auto'></div>
 
-      <div className="flex space-x-6 overflow-x-scroll rounded-xl snap-x py-4 mx-auto">
+      <div className="flex space-x-6 overflow-x-scroll sm:overflow-x-auto rounded-xl snap-x py-4 mx-auto">
         {
           images && images.map((image, index) => (
            <Carousel key={index} image={image} alt={title} isSquare={false} />
