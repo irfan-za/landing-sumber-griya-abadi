@@ -51,6 +51,7 @@ export default async function page({ params }) {
             discountPrice={product.discount_price}
             discountDate={discountDate}
             discountDuration={product.discount_duration}
+            thumbnail={product.thumbnail_youtube}
           />
           <BuySection
             id={product.id}
