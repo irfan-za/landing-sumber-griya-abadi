@@ -40,7 +40,7 @@ function AllCard({pageTitle, fetchUrl}) {
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-8 container">
             {
-              products && products.map(product=>{
+              products && fetchUrl==='products' && products.map(product=>{
                 return(
                   <Link key={product.id} href={`/p/${product.id}`}>
                   <div className="aspect-square rounded-t-xl relative group bg-slate-50  dark:bg-slate-800" >

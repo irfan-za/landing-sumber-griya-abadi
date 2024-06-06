@@ -4,7 +4,7 @@ import Image from "next/image";
 
 const Card = ({ id, title, imgUrl, fetchUrl }) => {
   return (
-    <Link href={`/${fetchUrl}s/${id}`}>
+    <Link href={`/${fetchUrl}/${id}`}>
       <div className="aspect-square rounded-t-xl relative group bg-slate-50  dark:bg-slate-800" >
         <Image src={imgUrl[0]} alt={title} fill={true} objectFit="cover" className="rounded-t-lg" />
       </div>

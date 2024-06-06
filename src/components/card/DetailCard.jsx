@@ -10,12 +10,12 @@ import Link from 'next/link'
 
 export default function DetailCard({id}) {
   const path=usePathname()
-  let fetchUrl=path.split('/')[1].slice(0, -1);
+  let fetchUrl=path.split('/')[1];
   const [data, setData] = useState(null)
   useEffect(() => {
     const f=async() => {
       const res= await fetch(`/api/${fetchUrl}`)
-      const data= await res.json()
+      const data= await res.json();
       setData(data)
     }
     f()
@@ -31,7 +31,7 @@ export default function DetailCard({id}) {
           filteredData && filteredData.length>0 && (
             <div className='h-full'>
               <div className="text-end relative h-60 sm:h-96">
-                <Link href={`/${fetchUrl}s`}>
+                <Link href={`/${fetchUrl}`}>
                   <XMarkIcon 
                   className='w-10 sm:w-12 h-10 sm:h-12 rounded-lg sm:rounded-xl hover:cursor-pointer hover:bg-primary-hover inline-block relative' />
                 </Link>
