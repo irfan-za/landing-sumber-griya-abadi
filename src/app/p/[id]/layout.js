@@ -13,6 +13,11 @@ export async function generateMetadata({ params }) {
   return {
     title: `Jual ${product.title} | Sumber Griya Abadi`,
     description: `Beli ${product.title} Terbaru Harga Murah di Sumber Griya Abadi. Bisa COD, Aman, dan Rating Terbaik. Belanja pasti ready hanya di Sumber Griya Abadi`,
+    keywords: `${product.title
+      .split(" ")
+      .join(
+        ", "
+      )} berkualitas, murah, toko plafon di solo, toko bangunan di solo`,
     openGraph: {
       images: [product.image],
       url: `${process.env.NEXT_PUBLIC_WEBSITE_URL}/p/${params.id}`,
