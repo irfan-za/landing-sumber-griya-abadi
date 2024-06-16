@@ -17,27 +17,5 @@ export const metadata = {
 };
 
 export default function ServicesLayout({ children }) {
-  return (
-    <html lang="id">
-      <body>
-        <main className={inter.className}>{children}</main>
-        <div>
-          <ButtonWA />
-        </div>
-      </body>
-      <Script
-        strategy="lazyOnLoad"
-        src={`https://www.googletagmanager.com/gtag/js?id=G-Z1EP20ZRED`}
-      ></Script>
-      <Script id="ga-script" strategy="lazyOnLoad">
-        {`
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-      
-        gtag('config', G-Z1EP20ZRED);
-        `}
-      </Script>
-    </html>
-  );
+  return <div className={inter.className}>{children}</div>;
 }

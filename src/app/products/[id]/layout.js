@@ -25,11 +25,5 @@ export async function generateMetadata({ params }) {
 }
 
 export default function ProductDetailLayout({ children }) {
-  return (
-    <html lang="id">
-      <body>
-        <main>{children}</main>
-      </body>
-    </html>
-  );
+  return <div>{children}</div>;
 }

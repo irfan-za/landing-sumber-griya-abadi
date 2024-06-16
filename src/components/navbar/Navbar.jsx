@@ -1,4 +1,3 @@
-'use client'
 import Link from "next/link";
 import NavLink from "./NavLink";
 import DarkModeTogleButton from "./DarkModeTogleButton";

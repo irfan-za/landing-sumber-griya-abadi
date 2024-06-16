@@ -21,9 +21,9 @@ export default function RootLayout({ children }) {
     <html lang="id">
       <body>
         <main className={inter.className}>{children}</main>
-        <div>
+        {/* <div>
           <ButtonWA />
-        </div>
+        </div> */}
       </body>
       <Script
         strategy="lazyOnLoad"
