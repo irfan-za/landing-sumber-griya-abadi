@@ -1,7 +1,7 @@
 import CheckoutForm from "@/components/checkout/CheckoutForm";
 import { getItem, getItemsWithFilter } from "@/lib/utils/supabaseCRUD";
 import { notFound } from "next/navigation";
-export const revalidate = 0;
+
 async function CheckoutPage({ params }) {
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_SHIPPING_API_URL}/province`

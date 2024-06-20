@@ -4,7 +4,7 @@ import FacebookPixel from "@/components/product/FacebookPixel";
 import { getItem } from "@/lib/utils/supabaseCRUD";
 import { notFound } from "next/navigation";
 const inter = Inter({ subsets: ["latin"] });
-export const revalidate = 0;
+
 export async function generateMetadata({ params }) {
   const { data: product, error } = await getItem("products", params.id);
   if (error) notFound();
