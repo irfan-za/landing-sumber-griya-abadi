@@ -2,7 +2,7 @@ import { getAll } from "@/lib/utils/supabaseCRUD";
 
 export default async function sitemap() {
   const resProducts = await fetch(
-    `${process.env.NEXT_PUBLIC_WEBSITE_URL}/api/product`
+    `${process.env.NEXT_PUBLIC_WEBSITE_URL}/api/products`
   );
   const offline_products = await resProducts.json();
   const offline_products_url = offline_products.map((product) => {
@@ -14,7 +14,9 @@ export default async function sitemap() {
     };
   });
 
-  const res = await fetch(`${process.env.NEXT_PUBLIC_WEBSITE_URL}/api/service`);
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_WEBSITE_URL}/api/services`
+  );
   const services = await res.json();
   const services_url = services.map((service) => {
     return {
