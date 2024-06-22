@@ -89,5 +89,53 @@ export async function GET(req, res) {
         "https://res.cloudinary.com/ddjmxrrij/image/upload/v1700883531/sga/products/tiovqf2yhwdlpgobgl4p.jpg",
       ],
     },
+    {
+      id: 6,
+      title: "Lis Plafon Gypsum Berbagai Motif",
+      description: `
+      <ul>
+      <li>Lebar mulai dai 4cm hingga 17cm</li>
+      <li>Panjang 2m/batang</li>
+      <li>Pilihan motif banyak</li>
+      <li>Cocok digunakan sebagai lis plafon gypsum pada berbagai ruangan.</li>
+      <li>Harga Mulai dari 8rb/btg</li>
+      </ul>
+      `,
+      imageUrl: [
+        "https://xwemsfgtjtwokqckvwus.supabase.co/storage/v1/object/public/products/offline/20220511_073518.jpg?t=2024-06-22T10%3A05%3A07.660Z",
+        "https://xwemsfgtjtwokqckvwus.supabase.co/storage/v1/object/public/products/offline/20230815_080051.jpg?t=2024-06-22T10%3A05%3A14.403Z",
+        "https://xwemsfgtjtwokqckvwus.supabase.co/storage/v1/object/public/products/offline/P_20230512_102113.jpg?t=2024-06-22T10%3A05%3A21.302Z",
+      ],
+    },
+    {
+      id: 7,
+      title: "Ornamen Plafon PVC Berbagai motif",
+      description: `
+      <ul>
+      <li>Variasi ukuran 30x30cm dan 60x60cm</li>
+      <li>Bahan PVC</li>
+      <li>Anti air, anti rayap, dan tidak merambat api</li>
+      <li>Pilihan motif dan ukuran beragam</li>
+      <li>Cocok digunakan sebagai ornamen plafon rumah dan kantor</li>
+      </ul>
+      `,
+      imageUrl: [
+        "https://xwemsfgtjtwokqckvwus.supabase.co/storage/v1/object/public/products/offline/20230131_193031.jpg",
+        "https://xwemsfgtjtwokqckvwus.supabase.co/storage/v1/object/public/products/offline/20230131_192847.jpg",
+        "https://xwemsfgtjtwokqckvwus.supabase.co/storage/v1/object/public/products/offline/20230131_192847.jpg",
+      ],
+    },
+    {
+      id: 8,
+      title: "Lampu Downlight 3 warna",
+      description: `
+      <ul>
+      <li>Downlight 3 warna : Kuning, Biru, Ungu</li>
+      <li>Warna iluminasi : 6500K</li>
+      <li>Area pencahayaan: 5-10 meter persegi</li>
+      <li>Cocok digunakan sebagai lampu plafon rumah dan kantor</li>
+      </ul>
+      `,
+    },
   ]);
 }
