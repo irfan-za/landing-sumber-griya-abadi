@@ -136,6 +136,9 @@ export async function GET(req, res) {
       <li>Cocok digunakan sebagai lampu plafon rumah dan kantor</li>
       </ul>
       `,
+      imageUrl: [
+        "https://xwemsfgtjtwokqckvwus.supabase.co/storage/v1/object/public/products/offline/20240204_164304.jpg",
+      ],
     },
   ]);
 }
