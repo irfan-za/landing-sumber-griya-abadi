@@ -1,3 +1,4 @@
+import CtaButton from "@/components/CtaButton";
 import Benefit from "@/components/product/Benefit";
 import BuySection from "@/components/product/BuySection";
 import Feature from "@/components/product/Feature";
@@ -63,6 +64,7 @@ export default async function page({ params }) {
         </>
       )}
       <Footer />
+      <CtaButton />
     </main>
   );
 }

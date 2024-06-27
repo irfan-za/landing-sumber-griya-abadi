@@ -26,21 +26,24 @@ function AllCard({pageTitle, fetchUrl}) {
   const filteredData = data && data.filter((data) =>
     data.title.toLowerCase().includes(search.toLowerCase())
   );
+  const filreredProducts = products && products.filter((product) =>
+    product.title.toLowerCase().includes(search.toLowerCase())
+  );
   
   
   return (
         <>
           <h1 className='dark:text-white text-slate-700 py-4 sm:py-8 sm:mt-24 text-xl sm:text-3xl font-semibold'>{pageTitle}</h1>
-          <div className="border dark:border-slate-500 border-slate-700 flex items-center px-2 py-1 mb-4 sm:mb-8 rounded-md bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300">
+          <div className="border w-[80%] sm:w-fit dark:border-slate-500 border-slate-700 justify-between flex space-x-2 items-center px-2 py-1 mb-4 sm:mb-8 rounded-md bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300">
             <input type="text" 
             onChange={(e)=>setSearch(e.target.value)} 
-            className="bg-transparent outline-none sm:w-96"
+            className="bg-transparent outline-none w-full sm:w-96"
             placeholder="Cari data..." />
             <label htmlFor=""><MagnifyingGlassIcon className="w-4 h-4 relative "/></label>
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-8 container">
             {
-              products && fetchUrl==='products' && products.map(product=>{
+              filreredProducts && fetchUrl==='products' && filreredProducts.map(product=>{
                 return(
                   <Link key={product.id} href={`/p/${product.id}`}>
                   <div className="aspect-square rounded-t-xl relative group bg-slate-50  dark:bg-slate-800" >

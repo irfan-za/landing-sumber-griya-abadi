@@ -1,8 +1,15 @@
+'use client'
 import { currencyFormat } from '@/lib/utils';
 import { ChatBubbleOvalLeftEllipsisIcon } from '@heroicons/react/24/outline'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation';
 
 function Cod({checkoutId, totalPrice, title, shippingCost, productPrice}) {
+  const router = useRouter()
+  setTimeout(() => {
+    router.push(`https://api.whatsapp.com/send?phone=${process.env.NEXT_PUBLIC_PHONE}&text=Kak%20saya%20mau%20mengkonfirmasi%20pesanan%20COD%20produk%20${title}.%20Order%20id:%20${checkoutId}.%20Silahkan%20diproses%20ya`)
+    
+  }, 2000);
   return (
     <div className='text-center'>
       <p>Pesanan Anda akan segera kami kirim.</p>
