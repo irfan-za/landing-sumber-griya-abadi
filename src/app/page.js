@@ -9,6 +9,7 @@ import AchievementsSection from "@/components/AchievementsSection";
 import DarkModeTogleButton from "@/components/navbar/DarkModeTogleButton";
 import Review from "@/components/Review";
 import { achievementsList, socialMedia } from "@/constans";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -22,6 +23,12 @@ export default function Home() {
           <HeroSection />
           <AchievementsSection achievementsList={achievementsList} />
           <AboutSection />
+          <Link
+            href="/calculator-pvc"
+            className="inline-block px-6 py-2 mt-4 text-white bg-blue-500 rounded hover:bg-blue-600"
+          >
+            Kalkulator PVC
+          </Link>
           <ProjectsSection />
           <Review />
         </div>
