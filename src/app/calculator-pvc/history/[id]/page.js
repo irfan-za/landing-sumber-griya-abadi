@@ -59,7 +59,10 @@ export default function CalculationDetail({ params }) {
             <div className="p-6 rounded-lg bg-blue-300/10 border-blue-500 border-2 shadow-sm">
               <div className="space-y-2">
                 <h3 className="font-bold text-blue-900">Hasil Perhitungan:</h3>
-                <p>Jumlah PVC: {calculation.results.jumlahPvc} lembar</p>
+                <p>
+                  Jumlah PVC: {calculation.results.jumlahPvc} lembar (
+                  {calculation.data.panjangPvc}m)
+                </p>
                 <p>Wall Angle: {calculation.results.wallAngle} batang</p>
                 <p>Hollow 4x4: {calculation.results.hollow4x4} batang</p>
                 <p>Hollow 2x4: {calculation.results.hollow2x4} batang</p>

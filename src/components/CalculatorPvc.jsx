@@ -164,7 +164,7 @@ export default function CalculatorPvc() {
       const calculation = {
         id: crypto.randomUUID(),
         title: `Plafon PVC ruangan ${data.panjang} x ${data.lebar}`,
-        createdAt: new Date().toISOString(),
+        createdAt: new Date(new Date().getTime() + 7 * 60 * 60 * 1000).toISOString(),
         data,
         results
       };
@@ -230,8 +230,8 @@ export default function CalculatorPvc() {
         <div>
           <Label>Panjang PVC</Label>
           <RadioGroup
-            {...register("panjangPvc")}
-            defaultValue={formData.panjangPvc}
+            value={watch("panjangPvc")}
+            onValueChange={(value) => setValue("panjangPvc", value)}
             className="flex space-x-4 mt-1"
           >
             <div className="flex items-center space-x-2">
@@ -258,8 +258,8 @@ export default function CalculatorPvc() {
         <div>
           <Label>Pakai Wall Angle?</Label>
           <RadioGroup
-            {...register("pakaiWallAngle")}
-            defaultValue={formData.pakaiWallAngle}
+            value={watch("pakaiWallAngle")}
+            onValueChange={(value) => setValue("pakaiWallAngle", value)}
             className="flex space-x-4 mt-1"
           >
             <div className="flex items-center space-x-2">
