@@ -39,7 +39,7 @@ export default function CalculationDetail({ params }) {
           </div>
         </CardHeader>
         <CardContent>
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid md:grid-cols-2 gap-4">
             <div className="space-y-2">
               <h3 className="font-bold">Input Data:</h3>
               <p>Panjang: {calculation.data.panjang}m</p>
