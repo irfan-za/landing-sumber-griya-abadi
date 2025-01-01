@@ -63,7 +63,12 @@ export default function CalculationDetail({ params }) {
                   Jumlah PVC: {calculation.results.jumlahPvc} lembar (
                   {calculation.data.panjangPvc}m)
                 </p>
-                <p>Wall Angle: {calculation.results.wallAngle} batang</p>
+                {calculation.results.wallAngle > 0 && (
+                  <p>Wall Angle: {calculation.results.wallAngle} batang</p>
+                )}
+                {calculation.results.kawatGantungan > 0 && (
+                  <p>Kawat Gantungan: {calculation.results.kawatGantungan}m</p>
+                )}
                 <p>Hollow 4x4: {calculation.results.hollow4x4} batang</p>
                 <p>Hollow 2x4: {calculation.results.hollow2x4} batang</p>
               </div>
