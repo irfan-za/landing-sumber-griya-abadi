@@ -149,11 +149,23 @@ export default function CalculatorPvc() {
       const panjangPvcMinPanjang=panjangPvc - p
   
       if (panjangPvcMinPanjang < 0 && panjangPvcMinLebar > 0) {
-        return Math.ceil(p / lebarPvc);
+        return {
+          jumlahPvc:Math.ceil(p / lebarPvc),
+          sisaPvc:panjangPvc-l,
+          lisPvc:Math.ceil((p+l)*2/4),
+        }
       } else if ( panjangPvcMinLebar< panjangPvcMinPanjang) {
-        return Math.ceil(p / lebarPvc);
+        return {
+          jumlahPvc:Math.ceil(p / lebarPvc),
+          sisaPvc:panjangPvc-l,
+          lisPvc:Math.ceil((p+l)*2/4),
+        }
       } else {
-        return Math.ceil(l / lebarPvc);
+        return {
+          jumlahPvc:Math.ceil(l / lebarPvc),
+          sisaPvc:panjangPvc-p,
+          lisPvc:Math.ceil((p+l)*2/4),
+        }
       }
     };
   
@@ -210,10 +222,12 @@ export default function CalculatorPvc() {
     };
   
     const onSubmit = (data) => {
-      const jumlahPvc = calculateJumlahPvc(data);
+      const pvc = calculateJumlahPvc(data);
       const rangkaHollow = calculateRangkaHollow(data);
       const results = {
-        jumlahPvc,
+        jumlahPvc:pvc.jumlahPvc,
+        sisaPvc:pvc.sisaPvc,
+        lisPvc:pvc.lisPvc,
         ...rangkaHollow,
       };
       

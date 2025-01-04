@@ -63,6 +63,13 @@ export default function CalculationDetail({ params }) {
                   Jumlah PVC: {calculation.results.jumlahPvc} lembar (
                   {calculation.data.panjangPvc}m)
                 </p>
+                {calculation.results.sisaPvc > 0 && (
+                  <p>
+                    Sisa PVC: {calculation.results.sisaPvc}m (
+                    {calculation.results.jumlahPvc} lembar)
+                  </p>
+                )}
+                <p>Lis PVC: {calculation.results.lisPvc} batang</p>
                 {calculation.results.wallAngle > 0 && (
                   <p>Wall Angle: {calculation.results.wallAngle} batang</p>
                 )}
