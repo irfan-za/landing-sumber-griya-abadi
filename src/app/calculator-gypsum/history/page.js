@@ -10,13 +10,13 @@ export default function History() {
   const [calculations, setCalculations] = useState([]);
 
   useEffect(() => {
-    setCalculations(getCalculations("pvcCalculations"));
+    setCalculations(getCalculations("gypsumCalculations"));
   }, []);
 
   const handleDelete = (id) => {
     if (confirm("Apakah Anda yakin ingin menghapus perhitungan ini?")) {
-      deleteCalculation(id, "pvcCalculations");
-      setCalculations(getCalculations("pvcCalculations"));
+      deleteCalculation(id, "gypsumCalculations");
+      setCalculations(getCalculations("gypsumCalculations"));
     }
   };
 
@@ -24,7 +24,7 @@ export default function History() {
     <div className="container mx-auto py-8">
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-2xl font-bold">Riwayat Perhitungan</h1>
-        <Button onClick={() => router.push("/calculator-pvc")}>
+        <Button onClick={() => router.push("/calculator-gypsum")}>
           Perhitungan Baru
         </Button>
       </div>
@@ -48,7 +48,7 @@ export default function History() {
                   <Button
                     variant="outline"
                     onClick={() =>
-                      router.push(`/calculator-pvc/history/${calc.id}`)
+                      router.push(`/calculator-gypsum/history/${calc.id}`)
                     }
                   >
                     Lihat Detail

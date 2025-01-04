@@ -1,19 +1,19 @@
-export const saveCalculation = (data) => {
-  const calculations = getCalculations();
+export const saveCalculation = (data, name) => {
+  const calculations = getCalculations(name);
   calculations.push(data);
-  localStorage.setItem("pvcCalculations", JSON.stringify(calculations));
+  localStorage.setItem(name, JSON.stringify(calculations));
 };
 
-export const getCalculations = () => {
-  const data = localStorage.getItem("pvcCalculations");
+export const getCalculations = (name) => {
+  const data = localStorage.getItem(name);
   return data ? JSON.parse(data) : [];
 };
 
-export const deleteCalculation = (id) => {
-  const calculations = getCalculations().filter((calc) => calc.id !== id);
-  localStorage.setItem("pvcCalculations", JSON.stringify(calculations));
+export const deleteCalculation = (id, name) => {
+  const calculations = getCalculations(name).filter((calc) => calc.id !== id);
+  localStorage.setItem(name, JSON.stringify(calculations));
 };
 
-export const getCalculationById = (id) => {
-  return getCalculations().find((calc) => calc.id === id);
+export const getCalculationById = (id, name) => {
+  return getCalculations(name).find((calc) => calc.id === id);
 };

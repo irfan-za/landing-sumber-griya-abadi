@@ -11,14 +11,13 @@ import { Button } from "@/components/ui/button";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { useState, useEffect } from "react";
 import { saveCalculation } from "@/lib/utils/storage";
-import StepNavigation from "./stepNavigation";
+import StepNavigation from "../stepNavigation";
 import { useRouter } from "next/navigation";
 
 // Define the form schema using Zod
 const formSchema = z.object({
   panjang: z.string().min(1, "Silahkan masukkan panjang ruangan"),
   lebar: z.string().min(1, "Silahkan masukkan lebar ruangan"),
-  panjangPvc: z.string().min(1, "Silahkan pilih panjang PVC"),
   pakaiWallAngle: z.string().min(1, "Silahkan pilih penggunaan wall angle"),
   pakaiKawatGantungan: z.string().min(1, "Silahkan pilih penggunaan kawat gantungan"),
   jarakRangka2x4: z.string().min(1, "Silahkan masukkan jarak rangka 2x4"),
@@ -32,7 +31,7 @@ const formSchema = z.object({
 });
 
 
-export default function CalculatorPvc() {
+export default function CalculatorGypsum() {
   const [step, setStep] = useState(1);
   const totalSteps = 3;
   const [results, setResults] = useState(null);
@@ -62,7 +61,6 @@ export default function CalculatorPvc() {
     } = useForm({
       resolver: zodResolver(formSchema),
       defaultValues: {
-        panjangPvc: "3",
         pakaiWallAngle: "true",
         pakaiKawatGantungan: "false",
         jarakRangka2x4: "0.6",
@@ -74,7 +72,7 @@ export default function CalculatorPvc() {
   
     // Load saved data from localStorage
     useEffect(() => {
-      const savedData = localStorage.getItem("pvcCalculatorData");
+      const savedData = localStorage.getItem("gypsumCalculatorData");
       if (savedData) {
         const parsedData = JSON.parse(savedData);
         Object.entries(parsedData).forEach(([key, value]) => {
@@ -86,7 +84,7 @@ export default function CalculatorPvc() {
     // Save form data to localStorage
     const formData = watch();
     useEffect(() => {
-      localStorage.setItem("pvcCalculatorData", JSON.stringify(formData));
+      localStorage.setItem("gypsumCalculatorData", JSON.stringify(formData));
     }, [formData]);
   
     const validateStep = async (stepNumber) => {
@@ -102,15 +100,9 @@ export default function CalculatorPvc() {
           }
           setErrorStep1(null);
           break;
-          case 2:
-            fieldsToValidate = ["panjangPvc", "pakaiWallAngle", "pakaiKawatGantungan"];
-            const pnajangPvcError = validatePanjangPvc();
-            if (pnajangPvcError) {
-              setErrorStep2(pnajangPvcError);
-              return false;
-            }
-            setErrorStep2(null);
-            break;
+        case 2:
+          fieldsToValidate = ["pakaiWallAngle", "pakaiKawatGantungan"];
+          break;
         case 3:
           fieldsToValidate = [
             "jarakRangka2x4",
@@ -133,39 +125,22 @@ export default function CalculatorPvc() {
       }
       return null;
     };
-    const validatePanjangPvc = () => {
-      if (parseFloat(formData.lebar) > parseFloat(formData.panjangPvc)) {
-        return "Panjang PVC tidak mencukupi untuk ruangan Anda. Silahkan pilih PVC yang lebih panjang.";
-      }
-      return null;
-    };
   
-    const calculateJumlahPvc = (data) => {
+    const calculateJumlahGypsum = (data) => {
       const p = parseFloat(data.panjang);
       const l = parseFloat(data.lebar);
-      const lebarPvc = 0.2;
-      const panjangPvc = parseFloat(data.panjangPvc);
-      const panjangPvcMinLebar=panjangPvc - l
-      const panjangPvcMinPanjang=panjangPvc - p
+      const jumlahGypsum = Math.ceil((p * l) / 2.88);
+      const lisGypsum = Math.ceil(p + l);
+      const kompon= jumlahGypsum;
+      const kasa = Math.round(jumlahGypsum/4);
+      const cat = Math.ceil(p*l/3)
   
-      if (panjangPvcMinPanjang < 0 && panjangPvcMinLebar > 0) {
-        return {
-          jumlahPvc:Math.ceil(p / lebarPvc),
-          sisaPvc:panjangPvc-l,
-          lisPvc:Math.ceil((p+l)*2/4),
-        }
-      } else if ( panjangPvcMinLebar< panjangPvcMinPanjang) {
-        return {
-          jumlahPvc:Math.ceil(p / lebarPvc),
-          sisaPvc:panjangPvc-l,
-          lisPvc:Math.ceil((p+l)*2/4),
-        }
-      } else {
-        return {
-          jumlahPvc:Math.ceil(l / lebarPvc),
-          sisaPvc:panjangPvc-p,
-          lisPvc:Math.ceil((p+l)*2/4),
-        }
+      return {
+        jumlahGypsum,
+        lisGypsum,
+        kompon,
+        kasa,
+        cat
       }
     };
   
@@ -178,9 +153,6 @@ export default function CalculatorPvc() {
       const jarakRangka4x4 = parseFloat(data.jarakRangka4x4);
       const jarakGantungan = parseFloat(data.jarakRangkaGantungan2x4);
       const tinggiGantungan = parseFloat(data.tinggiGantungan2x4);
-      const panjangPvc = parseFloat(data.panjangPvc);
-      const panjangPvcMinLebar=panjangPvc - l
-      const panjangPvcMinPanjang=panjangPvc - p
   
       let hollowTepi2x4 = 0;
       let wallAngle = 0;
@@ -197,16 +169,9 @@ export default function CalculatorPvc() {
           
   
       
-      if (panjangPvcMinPanjang < 0 && panjangPvcMinLebar > 0) {
-        hollowBawah2x4=(((l / jarakRangka2x4)-1) * p) / 4;
-        hollowAtas4x4=(((p/jarakRangka4x4) - 1) * l) / 4;
-      } else if ( panjangPvcMinLebar< panjangPvcMinPanjang) {
-        hollowBawah2x4=(((l / jarakRangka2x4)-1) * p) / 4;
-        hollowAtas4x4=(((p/jarakRangka4x4) - 1) * l) / 4;
-      } else {
-        hollowBawah2x4=(((p / jarakRangka2x4)-1) * l) / 4;
-        hollowAtas4x4=(((l/jarakRangka4x4) - 1) * p) / 4;
-      }
+      hollowBawah2x4=((Math.ceil(p / jarakRangka2x4)-1) * l) / 4;
+      hollowAtas4x4=((Math.ceil(l/jarakRangka4x4) - 1) * p) / 4;
+     
       if(isPakaiKawatGantungan){
         kawatGantungan=(((p * l) / jarakGantungan) * tinggiGantungan);
       }else{
@@ -222,26 +187,24 @@ export default function CalculatorPvc() {
     };
   
     const onSubmit = (data) => {
-      const pvc = calculateJumlahPvc(data);
+      const gypsum = calculateJumlahGypsum(data);
       const rangkaHollow = calculateRangkaHollow(data);
       const results = {
-        jumlahPvc:pvc.jumlahPvc,
-        sisaPvc:pvc.sisaPvc,
-        lisPvc:pvc.lisPvc,
+        ...gypsum,
         ...rangkaHollow,
       };
       
       const calculation = {
         id: crypto.randomUUID(),
-        title: `Plafon PVC ruangan ${data.panjang} x ${data.lebar}`,
+        title: `Plafon Gypsum ruangan ${data.panjang} x ${data.lebar}`,
         createdAt: new Date().toISOString(),
         data,
         results
       };
       
-      saveCalculation(calculation);
+      saveCalculation(calculation, "gypsumCalculations");
       setResults(results);
-      router.push('/calculator-pvc/history');
+      router.push('/calculator-gypsum/history');
     };
     
   
@@ -301,34 +264,6 @@ export default function CalculatorPvc() {
 
     {step === 2 && (
       <div className="space-y-4">
-        <div>
-          <Label>Panjang PVC</Label>
-          <RadioGroup
-            value={watch("panjangPvc")}
-            onValueChange={(value) => setValue("panjangPvc", value)}
-            className="flex space-x-4 mt-1"
-          >
-            <div className="flex items-center space-x-2">
-              <RadioGroupItem value="3" id="pvc3" />
-              <Label htmlFor="pvc3">3m</Label>
-            </div>
-            <div className="flex items-center space-x-2">
-              <RadioGroupItem value="4" id="pvc4" />
-              <Label htmlFor="pvc4">4m</Label>
-            </div>
-            <div className="flex items-center space-x-2">
-              <RadioGroupItem value="6" id="pvc6" />
-              <Label htmlFor="pvc6">6m</Label>
-            </div>
-          </RadioGroup>
-          {errors.panjangPvc && (
-            <Alert variant="destructive" className="mt-2">
-              <AlertDescription>
-                {errors.panjangPvc.message}
-              </AlertDescription>
-            </Alert>
-          )}
-        </div>
         <div>
           <Label>Pakai Wall Angle?</Label>
           <RadioGroup
@@ -476,8 +411,12 @@ export default function CalculatorPvc() {
     <div className="mt-6 p-4 bg-gray-100 rounded-lg">
       <h3 className="font-bold mb-2">Hasil Perhitungan:</h3>
       <p>
-        Jumlah PVC: {results.jumlahPvc} lembar ({formData.panjangPvc}m)
+        Jumlah Gypsum: {results.jumlahGypsum} lembar
       </p>
+      <p>Lis Gypsum: {results.lisGypsum} batang</p>
+      <p>Kompon: {results.kompon}kg</p>
+      <p>Kasa: {results.kasa} roll</p>
+      <p>Cat: {results.cat}kg</p>
       {results.wallAngle > 0 && (
         <p>Wall Angle: {results.wallAngle} batang</p>
       )}

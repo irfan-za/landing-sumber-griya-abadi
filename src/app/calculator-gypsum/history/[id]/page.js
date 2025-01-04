@@ -12,11 +12,11 @@ export default function CalculationDetail({ params }) {
 
   useEffect(() => {
     if (id && typeof id === "string") {
-      const data = getCalculationById(id, "pvcCalculations");
+      const data = getCalculationById(id, "gypsumCalculations");
       if (data) {
         setCalculation(data);
       } else {
-        router.push("/calculator-pvc/history");
+        router.push("/calculator-gypsum/history");
       }
     }
   }, [id, router]);
@@ -44,7 +44,8 @@ export default function CalculationDetail({ params }) {
               <h3 className="font-bold">Input Data:</h3>
               <p>Panjang: {calculation.data.panjang}m</p>
               <p>Lebar: {calculation.data.lebar}m</p>
-              <p>Panjang PVC: {calculation.data.panjangPvc}m</p>
+              <p>Ukuran Gypsum: 1.2m x 2.4m</p>
+              <p>Kassa 1 roll: 10m</p>
               <p>
                 Wall Angle:{" "}
                 {calculation.data.pakaiWallAngle === "true" ? "Ya" : "Tidak"}
@@ -60,16 +61,12 @@ export default function CalculationDetail({ params }) {
               <div className="space-y-2">
                 <h3 className="font-bold text-blue-900">Hasil Perhitungan:</h3>
                 <p>
-                  Jumlah PVC: {calculation.results.jumlahPvc} lembar (
-                  {calculation.data.panjangPvc}m)
+                  Jumlah papan Gypsum: {calculation.results.jumlahGypsum} lembar
                 </p>
-                {calculation.results.sisaPvc > 0 && (
-                  <p>
-                    Sisa PVC: {calculation.results.sisaPvc}m (
-                    {calculation.results.jumlahPvc} lembar)
-                  </p>
-                )}
-                <p>Lis PVC: {calculation.results.lisPvc} batang</p>
+                <p>Lis Gypsum: {calculation.results.lisGypsum} batang</p>
+                <p>Kompon: {calculation.results.kompon}kg</p>
+                <p>Kasa: {calculation.results.kasa} roll</p>
+                <p>Cat: {calculation.results.cat}kg</p>
                 {calculation.results.wallAngle > 0 && (
                   <p>Wall Angle: {calculation.results.wallAngle} batang</p>
                 )}
