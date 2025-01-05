@@ -25,7 +25,7 @@ export default function Home() {
           <AboutSection />
           <ProjectsSection />
           <Review />
-          <section className="mt-8">
+          <section className="pt-8" id="kalkulator-material">
             <h2 className="text-2xl font-bold text-accent-foreground mb-6 text-center">
               Kalkulator Material
             </h2>

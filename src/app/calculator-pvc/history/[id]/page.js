@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { getCalculationById } from "@/lib/utils/storage";
+import Link from "next/link";
 
 export default function CalculationDetail({ params }) {
   const router = useRouter();
@@ -57,7 +58,7 @@ export default function CalculationDetail({ params }) {
               <p>Tinggi Gantungan: {calculation.data.tinggiGantungan2x4}m</p>
             </div>
             <div className="p-6 rounded-lg bg-blue-300/10 border-blue-500 border-2 shadow-sm">
-              <div className="space-y-2">
+              <div className="space-y-2 mb-6">
                 <h3 className="font-bold text-blue-900">Hasil Perhitungan:</h3>
                 <p>
                   Jumlah PVC: {calculation.results.jumlahPvc} lembar (
@@ -79,6 +80,14 @@ export default function CalculationDetail({ params }) {
                 <p>Hollow 4x4: {calculation.results.hollow4x4} batang</p>
                 <p>Hollow 2x4: {calculation.results.hollow2x4} batang</p>
               </div>
+              <Link
+                href={"https://maps.app.goo.gl/2TqqDqyq8xqAuooT7"}
+                target="_blank"
+              >
+                <button className="py-1 px-4 rounded-lg bg-blue-500 text-white text-sm transform active:scale-95 transition-transform duration-75">
+                  Sumber Griya Abadi
+                </button>
+              </Link>
             </div>
           </div>
         </CardContent>
