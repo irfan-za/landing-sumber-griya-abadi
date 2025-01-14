@@ -46,7 +46,7 @@ export default function CalculationDetail({ params }) {
               <p>Panjang: {calculation.data.panjang}m</p>
               <p>Lebar: {calculation.data.lebar}m</p>
               <p>Ukuran Gypsum: 1.2m x 2.4m</p>
-              <p>Kassa 1 roll: 10m</p>
+              <p>Kasa 1 roll: 17m</p>
               <p>
                 Wall Angle:{" "}
                 {calculation.data.pakaiWallAngle === "true" ? "Ya" : "Tidak"}
