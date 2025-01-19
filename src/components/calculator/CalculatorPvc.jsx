@@ -148,7 +148,7 @@ export default function CalculatorPvc() {
       const panjangPvcMinLebar=panjangPvc - l
       const panjangPvcMinPanjang=panjangPvc - p
   
-      if (panjangPvcMinPanjang < 0 && panjangPvcMinLebar > 0) {
+      if (panjangPvcMinPanjang < 0 && panjangPvcMinLebar >= 0) {
         return {
           jumlahPvc:Math.ceil(p / lebarPvc),
           sisaPvc:panjangPvc-l,
@@ -197,7 +197,7 @@ export default function CalculatorPvc() {
           
   
       
-      if (panjangPvcMinPanjang < 0 && panjangPvcMinLebar > 0) {
+      if (panjangPvcMinPanjang < 0 && panjangPvcMinLebar >= 0) {
         hollowBawah2x4=((Math.ceil(l / jarakRangka2x4)-1) * p) / 4;
         hollowAtas4x4=((Math.ceil(p/jarakRangka4x4) - 1) * l) / 4;
       } else if ( panjangPvcMinLebar< panjangPvcMinPanjang) {
