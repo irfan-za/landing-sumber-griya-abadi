@@ -14,7 +14,7 @@ function NotFoundPage() {
         <p className="mt-4 text-gray-500">Halaman Tidak ditemukan.</p>
 
         <Link
-          href="/products"
+          href="/"
           className="mt-6 inline-block rounded bg-primary px-5 py-3 text-sm font-medium text-white hover:bg-primary-hover focus:outline-none focus:ring"
         >
           Kembali

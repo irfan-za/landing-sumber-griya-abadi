@@ -90,7 +90,7 @@ const CardSection = () => {
         ))}
       </ul>
       <div className="flex justify-center my-6 sm:my-12">
-        <Link href={`${tag.toLowerCase().split(' ').join('-')}`} className="px-2 sm:px-4 py-1 w-fit text-sm sm:text-lg bg-slate-300 hover:bg-slate-400 dark:bg-slate-600 dark:hover:bg-slate-700 dark:text-white  transition duration-1000 delay-1000 ease-in inline-block sm:w-fit rounded-md mr-4 bg-gradient-to-br from-primary via-blue-400 to-secondary hover:to-primary text-white">Lihat lebih banyak</Link>
+        <Link href={`${tag.toLowerCase().split(' ').join('-')==='products'?`${process.env.NEXT_PUBLIC_TOKOPEDIA_LINK}`:`${tag.toLowerCase().split(' ').join('-')}`}`} className="px-2 sm:px-4 py-1 w-fit text-sm sm:text-lg bg-slate-300 hover:bg-slate-400 dark:bg-slate-600 dark:hover:bg-slate-700 dark:text-white  transition duration-1000 delay-1000 ease-in inline-block sm:w-fit rounded-md mr-4 bg-gradient-to-br from-primary via-blue-400 to-secondary hover:to-primary text-white">Lihat lebih banyak</Link>
       </div>
     </section>
   );
