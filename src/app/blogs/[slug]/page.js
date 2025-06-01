@@ -252,7 +252,7 @@ export default async function BlogPage({ params }) {
                   </Card>
                 )}
 
-                <Card className="hidden md:flex bg-gray-50">
+                <Card className="hidden lg:flex bg-gray-50">
                   <CardContent className="p-3">
                     <h3 className="font-bold text-lg text-gray-900 mb-4">
                       Hubungi Kami
