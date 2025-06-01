@@ -163,7 +163,7 @@ export default function BlogsPage() {
                         </div>
                         <div className="flex items-center gap-1">
                           <ClockIcon className="w-4 h-4" />
-                          {blog.readTime}
+                          {blog.readtime}
                         </div>
                       </div>
 

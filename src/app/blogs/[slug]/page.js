@@ -136,7 +136,7 @@ export default async function BlogPage({ params }) {
                   </div>
                   <div className="flex items-center gap-2">
                     <ClockIcon className="w-4 h-4" />
-                    <span>{blog.readTime}</span>
+                    <span>{blog.readtime}</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <UserIcon className="w-4 h-4" />
@@ -236,7 +236,7 @@ export default async function BlogPage({ params }) {
                                     {relatedBlog.title}
                                   </h4>
                                   <p className="text-xs text-gray-500 mt-1">
-                                    {relatedBlog.readTime}
+                                    {relatedBlog.readtime}
                                   </p>
                                 </div>
                               </div>

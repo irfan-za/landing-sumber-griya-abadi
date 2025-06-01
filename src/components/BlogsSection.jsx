@@ -53,7 +53,7 @@ export default async function BlogsSection() {
                   {blog.excerpt}
                 </p>
                 <div className="flex items-center justify-between">
-                  <span className="text-sm text-gray-500">{blog.readTime}</span>
+                  <span className="text-sm text-gray-500">{blog.readtime}</span>
                   <Link href={`/blogs/${blog.slug}`}>
                     <Button
                       variant="ghost"
