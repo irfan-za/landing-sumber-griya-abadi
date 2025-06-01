@@ -10,6 +10,7 @@ import DarkModeTogleButton from "@/components/navbar/DarkModeTogleButton";
 import Review from "@/components/Review";
 import { achievementsList, socialMedia } from "@/constans";
 import Link from "next/link";
+import BlogsSection from "@/components/BlogsSection";
 
 export default function Home() {
   return (
@@ -31,7 +32,6 @@ export default function Home() {
             </h2>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {/* PVC Calculator Card */}
               <Link href="/calculator-pvc" className="group">
                 <div className="p-6 rounded-lg bg-blue-50 border border-blue-200 shadow-sm transition-all hover:shadow-md hover:bg-blue-100">
                   <svg
@@ -56,7 +56,6 @@ export default function Home() {
                 </div>
               </Link>
 
-              {/* Gypsum Calculator Card */}
               <Link href="/calculator-gypsum" className="group">
                 <div className="p-6 rounded-lg bg-blue-50 border border-blue-200 shadow-sm transition-all hover:shadow-md hover:bg-blue-100">
                   <svg
@@ -82,6 +81,8 @@ export default function Home() {
               </Link>
             </div>
           </section>
+
+          <BlogsSection />
         </div>
         <div className="w-full overflow-hidden">
           <Footer socialMedia={socialMedia} />

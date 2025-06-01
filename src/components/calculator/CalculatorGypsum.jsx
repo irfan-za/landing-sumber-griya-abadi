@@ -14,7 +14,7 @@ import { saveCalculation } from "@/lib/utils/storage";
 import StepNavigation from "../stepNavigation";
 import { useRouter } from "next/navigation";
 
-// Define the form schema using Zod
+
 const formSchema = z.object({
   panjang: z.string().min(1, "Silahkan masukkan panjang ruangan"),
   lebar: z.string().min(1, "Silahkan masukkan lebar ruangan"),
@@ -70,7 +70,7 @@ export default function CalculatorGypsum() {
       },
     });
   
-    // Load saved data from localStorage
+    
     useEffect(() => {
       const savedData = localStorage.getItem("gypsumCalculatorData");
       if (savedData) {
@@ -81,7 +81,7 @@ export default function CalculatorGypsum() {
       }
     }, [setValue]);
   
-    // Save form data to localStorage
+    
     const formData = watch();
     useEffect(() => {
       localStorage.setItem("gypsumCalculatorData", JSON.stringify(formData));
@@ -215,7 +215,7 @@ export default function CalculatorGypsum() {
         totalSteps={totalSteps}
         onNext={handleNext}
         onPrev={handlePrev}
-        isNextDisabled={false} // Set this based on form validation
+        isNextDisabled={false} 
       />
       <form onSubmit={handleSubmit(onSubmit)}>
     {step === 1 && (

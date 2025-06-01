@@ -31,7 +31,7 @@
     ".next/types/**/*.ts",
     "**/*.ts",
     "**/*.tsx"
-, "src/app/calculator-pvc/page.js"  ],
+, "src/app/calculator-pvc/page.js", "src/components/BlogsSection.jsx"  ],
   "exclude": [
     "node_modules"
   ]

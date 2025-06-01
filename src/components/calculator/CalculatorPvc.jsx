@@ -14,7 +14,7 @@ import { saveCalculation } from "@/lib/utils/storage";
 import StepNavigation from "../stepNavigation";
 import { useRouter } from "next/navigation";
 
-// Define the form schema using Zod
+
 const formSchema = z.object({
   panjang: z.string().min(1, "Silahkan masukkan panjang ruangan"),
   lebar: z.string().min(1, "Silahkan masukkan lebar ruangan"),
@@ -72,7 +72,7 @@ export default function CalculatorPvc() {
       },
     });
   
-    // Load saved data from localStorage
+    
     useEffect(() => {
       const savedData = localStorage.getItem("pvcCalculatorData");
       if (savedData) {
@@ -83,7 +83,7 @@ export default function CalculatorPvc() {
       }
     }, [setValue]);
   
-    // Save form data to localStorage
+    
     const formData = watch();
     useEffect(() => {
       localStorage.setItem("pvcCalculatorData", JSON.stringify(formData));
@@ -252,7 +252,7 @@ export default function CalculatorPvc() {
         totalSteps={totalSteps}
         onNext={handleNext}
         onPrev={handlePrev}
-        isNextDisabled={false} // Set this based on form validation
+        isNextDisabled={false} 
       />
       <form onSubmit={handleSubmit(onSubmit)}>
     {step === 1 && (

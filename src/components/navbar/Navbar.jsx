@@ -1,7 +1,8 @@
+'use client'
 import Link from "next/link";
 import NavLink from "./NavLink";
 import DarkModeTogleButton from "./DarkModeTogleButton";
-import { HomeIcon, HomeModernIcon, ShoppingBagIcon } from "@heroicons/react/24/outline";
+import { HomeIcon, HomeModernIcon, NewspaperIcon, ShoppingBagIcon } from "@heroicons/react/24/outline";
 import {usePathname} from "next/navigation"
 
 const Navbar = () => {
@@ -30,6 +31,14 @@ const Navbar = () => {
       isActive: `${path==='/services' ? 'text-primary' : 'text-slate-700 dark:text-slate-200'}`,
       icon: (
         <HomeModernIcon className={`${path==='/services' ? 'text-primary' : 'text-slate-700 dark:text-slate-200'} block sm:hidden h-6 w-6`} />
+      )
+    },
+    {
+      title: "Blog",
+      path: "/blogs",
+      isActive: `${path==='/blogs' ? 'text-primary' : 'text-slate-700 dark:text-slate-200'}`,
+      icon: (
+        <NewspaperIcon className={`${path==='/blogs' ? 'text-primary' : 'text-slate-700 dark:text-slate-200'} block sm:hidden h-6 w-6`} />
       )
     },
   ];

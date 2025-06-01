@@ -6,7 +6,7 @@ export default function StepNavigation({ currentStep, totalSteps, onNext, onPrev
 }) {
   return (
     <div className="w-full mb-8">
-    {/* Top navigation buttons */}
+    
     <div className="flex items-center justify-between mb-6">
       <div className="flex gap-2">
         <Button
@@ -33,7 +33,7 @@ export default function StepNavigation({ currentStep, totalSteps, onNext, onPrev
       </span>
     </div>
 
-    {/* Progress bar */}
+    
     <div className="relative">
       <div className="overflow-hidden h-2 mb-4 text-xs flex rounded bg-gray-200">
         <div
