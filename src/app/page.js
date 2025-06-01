@@ -1,5 +1,3 @@
-"use client";
-import { ThemeProvider } from "next-themes";
 import HeroSection from "@/components/HeroSection";
 import Navbar from "@/components/navbar/Navbar";
 import AboutSection from "@/components/AboutSection";
@@ -11,10 +9,11 @@ import Review from "@/components/Review";
 import { achievementsList, socialMedia } from "@/constans";
 import Link from "next/link";
 import BlogsSection from "@/components/BlogsSection";
+import NextThemeProvider from "@/components/NextThemeProvider";
 
 export default function Home() {
   return (
-    <ThemeProvider enableSystem={true} attribute="class">
+    <NextThemeProvider>
       <main className="flex min-h-screen items-center flex-col bg-slate-200 dark:bg-slate-900">
         <Navbar />
         <div className="block sm:hidden pt-2 pb-4 w-full container max-w-[90%] text-end">
@@ -88,6 +87,6 @@ export default function Home() {
           <Footer socialMedia={socialMedia} />
         </div>
       </main>
-    </ThemeProvider>
+    </NextThemeProvider>
   );
 }

@@ -5,10 +5,11 @@ import { Badge } from "./ui/badge";
 import Link from "next/link";
 import { Button } from "./ui/button";
 import { ArrowRightIcon } from "@heroicons/react/24/outline";
-import blogsData from "@/data/blogs.json";
+import { getItemsWithFilter } from "@/lib/utils/supabaseCRUD";
 
-export default function BlogsSection() {
-  const featuredBlogs = blogsData.blogs
+export default async function BlogsSection() {
+  const {data} = await getItemsWithFilter("blogs", "featured", true);
+  const featuredBlogs = data
     .filter((blog) => blog.featured)
     .slice(0, 3);
   return (

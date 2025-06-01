@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Input } from "@/components/ui/input";
@@ -15,7 +15,6 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import blogsData from "@/data/blogs.json";
 import {
   CalendarIcon,
   ClockIcon,
@@ -25,21 +24,23 @@ import Navbar from "@/components/navbar/Navbar";
 import Footer from "@/components/Footer";
 import { socialMedia } from "@/constans";
 import PublishDate from "@/components/PublishDate";
+import { getAll } from "@/lib/utils/supabaseCRUD";
 
 const ITEMS_PER_PAGE = 6;
 
 export default function BlogsPage() {
   const [searchTerm, setSearchTerm] = useState("");
+  const [blogsData, setBlogsData] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [currentPage, setCurrentPage] = useState(1);
 
   const categories = [
     "all",
-    ...Array.from(new Set(blogsData.blogs.map((blog) => blog.category))),
+    ...Array.from(new Set(blogsData.map((blog) => blog.category))),
   ];
 
   const filteredBlogs = useMemo(() => {
-    return blogsData.blogs.filter((blog) => {
+    return blogsData.filter((blog) => {
       const matchesSearch =
         blog.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
         blog.excerpt.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -52,7 +53,7 @@ export default function BlogsPage() {
 
       return matchesSearch && matchesCategory;
     });
-  }, [searchTerm, selectedCategory]);
+  }, [searchTerm, selectedCategory, blogsData]);
 
   const totalPages = Math.ceil(filteredBlogs.length / ITEMS_PER_PAGE);
   const paginatedBlogs = filteredBlogs.slice(
@@ -60,9 +61,14 @@ export default function BlogsPage() {
     currentPage * ITEMS_PER_PAGE
   );
 
-  const featuredBlogs = blogsData.blogs
-    .filter((blog) => blog.featured)
-    .slice(0, 3);
+  const featuredBlogs = blogsData.filter((blog) => blog.featured).slice(0, 3);
+  const fetchBlogsData = async () => {
+    const { data } = await getAll("blogs");
+    setBlogsData(data);
+  };
+  useEffect(() => {
+    fetchBlogsData();
+  }, []);
 
   return (
     <div className="flex flex-col min-h-screen items-center">
@@ -270,7 +276,7 @@ export default function BlogsPage() {
               <div className="bg-white rounded-lg p-6 shadow-sm">
                 <h3 className="font-bold text-lg text-gray-900 mb-4">Latest</h3>
                 <div className="space-y-4">
-                  {blogsData.blogs.slice(0, 3).map((blog) => (
+                  {blogsData.slice(0, 3).map((blog) => (
                     <div key={blog.id} className="flex gap-3">
                       <div className="relative w-16 h-16 flex-shrink-0">
                         <Image
