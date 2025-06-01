@@ -39,7 +39,7 @@ export default async function sitemap() {
   const { data: blogs, error: blogError } = await getAll("blogs");
   const blogs_url = blogs.map((blog) => {
     return {
-      url: `${process.env.NEXT_PUBLIC_WEBSITE_URL}/blogs/${blog.id}`,
+      url: `${process.env.NEXT_PUBLIC_WEBSITE_URL}/blogs/${blog.slug}`,
       lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 0.6,
