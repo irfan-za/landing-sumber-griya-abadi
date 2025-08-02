@@ -1,3 +1,4 @@
+
 import { getAll } from "@/lib/utils/supabaseCRUD";
 
 export default async function sitemap() {
