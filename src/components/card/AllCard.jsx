@@ -43,6 +43,11 @@ function AllCard({pageTitle, fetchUrl}) {
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-8 container">
             {
+              filteredData && filteredData.map(data=>{
+                return <Card key={data.id} imgUrl={data.imageUrl} title={data.title} id={data.id} fetchUrl={fetchUrl} />
+              })
+            }
+            {
               filreredProducts && fetchUrl==='products' && filreredProducts.map(product=>{
                 return(
                   <Link key={product.id} href={`/p/${product.id}`}>
@@ -56,11 +61,7 @@ function AllCard({pageTitle, fetchUrl}) {
                 )
               })
             }
-            {
-              filteredData && filteredData.map(data=>{
-                return <Card key={data.id} imgUrl={data.imageUrl} title={data.title} id={data.id} fetchUrl={fetchUrl} />
-              })
-            }
+            
           </div>
         </>
   )
