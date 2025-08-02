@@ -189,7 +189,7 @@ export default async function BlogPage({ params }) {
                       asChild
                     >
                       <Link
-                        href={`https://wa.me/${process.env.NEXT_PUBLIC_PHONE}&text=Halo%20kak,%20saya%20ingin%20bertanya%20tentang...`}
+                        href={`https://api.whatsapp.com/send/?phone=${process.env.NEXT_PUBLIC_PHONE}&text=Halo%20kak,%20saya%20ingin%20bertanya%20tentang...`}
                         target="_blank"
                       >
                         <PhoneIcon className="w-5 h-5 mr-2" />
@@ -259,7 +259,7 @@ export default async function BlogPage({ params }) {
                     </h3>
                     <div className="space-y-3 text-sm">
                       <Link
-                        href={`https://wa.me/${process.env.NEXT_PUBLIC_PHONE}&text=Halo%20kak,%20saya%20ingin%20bertanya%20tentang...`}
+                        href={`https://api.whatsapp.com/send/?phone=${process.env.NEXT_PUBLIC_PHONE}&text=Halo%20kak,%20saya%20ingin%20bertanya%20tentang...`}
                         target="_blank"
                         className="flex items-center gap-2 hover:underline"
                       >

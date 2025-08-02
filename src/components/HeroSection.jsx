@@ -43,7 +43,7 @@ const HeroSection = () => {
           </p>
           <div>
             <Link
-              href={`https://wa.me/${process.env.NEXT_PUBLIC_PHONE}`}
+              href={`https://api.whatsapp.com/send/?phone=${process.env.NEXT_PUBLIC_PHONE}`}
               target="_blank"
               className=" 
               transition duration-1000 delay-1000 ease-in 
