@@ -66,7 +66,7 @@ const socialMedia = [
     image: "/yt.svg",
   },
   {
-    link: "https://api.whatsapp.com/send?phone=6285602904294&text=halo%20pak%2C%20saya%20mau%20konsultasi%20Plafon.",
+    link: `https://api.whatsapp.com/send?phone=${process.env.NEXT_PUBLIC_PHONE}&text=halo%20pak%2C%20saya%20mau%20konsultasi%20Plafon.`,
     alt: "Whatsapp Sumber Griya Abadi",
     image: "/wa.svg",
   },
