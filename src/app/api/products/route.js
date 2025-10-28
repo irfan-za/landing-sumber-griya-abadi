@@ -22,9 +22,7 @@ export async function GET(req, res) {
       title: "Hollow plafon 2x4 & 4x4 mini",
       description: `
       <ul>
-      <li>Harga (november 2023)</li>
-      <li>ecer 11.500</li>
-      <li>Grosir 10.500</li>
+      <li>Harga terjangkau</li>
       <li>Cocok digunakan untuk plafon PVC</li>
       </ul>
       `,
@@ -63,7 +61,6 @@ export async function GET(req, res) {
       </ul>
       `,
       imageUrl: [
-        "https://res.cloudinary.com/ddjmxrrij/image/upload/v1700885373/sga/products/20220726_222209_gobsga.jpg",
         "https://res.cloudinary.com/ddjmxrrij/image/upload/v1700883521/sga/products/zeiyfthtorvcvfrnirnf.jpg",
         "https://res.cloudinary.com/ddjmxrrij/image/upload/v1700885490/sga/products/kzgioyjkpp1y5cviyufj.jpg",
         "https://res.cloudinary.com/ddjmxrrij/image/upload/v1700883976/sga/products/z9wetbbf8e8enbkw4qk8.jpg",
@@ -79,8 +76,6 @@ export async function GET(req, res) {
       <li>Lebar 1200mm</li>
       <li>Panjang 2400mm</li>
       <li>Tebal 9mm</li>
-      <li>Beli 50lbr harga 49rb</li>
-      <li>Beli 100lbr harga 48rb (november 2023)</li>
       <li>Papan gypsum murah, pemasangan mudah</li>
       </ul>
       `,

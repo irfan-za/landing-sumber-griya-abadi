@@ -6,10 +6,10 @@ const Hero = ({title, descriptions, image}) => {
   return (
     <section className="flex flex-col-reverse lg:flex-row justify-evenly items-center px-3">
       <div>
-        <h1 className="text-2xl sm:text-3xl font-bold">{title}</h1>
+        <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">{title}</h1>
         {
           descriptions && descriptions.map((description, index) => (
-            <p key={index} className="my-2 max-w-lg">{description}</p>
+            <p key={index} className="my-2 max-w-lg text-gray-700">{description}</p>
           ))
         }
         <span className="flex items-center my-2">
@@ -18,7 +18,7 @@ const Hero = ({title, descriptions, image}) => {
           <StarIcon width={24} height={24} color="orange" fill="orange" />
           <StarIcon width={24} height={24} color="orange" fill="orange" />
           <StarIcon width={24} height={24} color="orange" fill="orange" />
-          <span className="ml-3 font-semibold text-sm"> Rating unggulan</span>
+          <span className="ml-3 font-semibold text-sm text-gray-700"> Rating unggulan</span>
         </span>
         <ButtonPromo/>
       </div>
