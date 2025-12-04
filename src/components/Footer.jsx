@@ -18,6 +18,8 @@ const Footer = ({socialMedia}) => {
             📍Jl Mangu-Sambi km.3, Sobokerto, Ngemplak, Boyolali, Jawa Tengah.
             <br />
             <strong>+{process.env.NEXT_PUBLIC_PHONE} (WhatsApp)</strong>
+            <br />
+          <Link href={'https://lancar-abadi.vercel.app'} target="_blank" className="hover:text-primary hover:underline">(Cabang 2) - Lancar Abadi</Link>
           </p>
           <span className="text-xl font-bold text-slate-800 dark:text-white">Media Sosial :</span>
           <div className="flex flex-row gap-2">
@@ -36,7 +38,7 @@ const Footer = ({socialMedia}) => {
       </section>
       <footer className="z-10">
         <div className="container p-4 sm:p-8 text-center">
-          <p className="text-slate-700 dark:text-slate-200 text-sm"> Copyright {new Date().getFullYear()} | Sumber Griya Abadi</p>
+          <p className="text-slate-700 dark:text-slate-200 text-sm"> Copyright 2017 - {new Date().getFullYear()} | Sumber Griya Abadi</p>
         </div>
       </footer>
     </>
