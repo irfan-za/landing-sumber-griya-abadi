@@ -1,51 +1,38 @@
-
-import { getAll } from "@/lib/utils/supabaseCRUD";
+import { supabase } from "@/config/supabase";
 
 export default async function sitemap() {
-  const resProducts = await fetch(
-    `${process.env.NEXT_PUBLIC_WEBSITE_URL}/api/products`
-  );
-  const offline_products = await resProducts.json();
-  const offline_products_url = offline_products.map((product) => {
-    return {
-      url: `${process.env.NEXT_PUBLIC_WEBSITE_URL}/products/${product.id}`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    };
-  });
+  const { data: offlineProducts } = await supabase
+    .from("offline_products")
+    .select("slug");
 
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_WEBSITE_URL}/api/services`
-  );
-  const services = await res.json();
-  const services_url = services.map((service) => {
-    return {
-      url: `${process.env.NEXT_PUBLIC_WEBSITE_URL}/services/${service.id}`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.5,
-    };
-  });
-  const { data: products, error } = await getAll("products");
-  const products_url = products.map((product) => {
-    return {
-      url: `${process.env.NEXT_PUBLIC_WEBSITE_URL}/p/${product.id}`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    };
-  });
+  const offline_products_url = (offlineProducts || []).map((product) => ({
+    url: `${process.env.NEXT_PUBLIC_WEBSITE_URL}/products/${product.slug}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly",
+    priority: 0.8,
+  }));
 
-  const { data: blogs, error: blogError } = await getAll("blogs");
-  const blogs_url = blogs.map((blog) => {
-    return {
-      url: `${process.env.NEXT_PUBLIC_WEBSITE_URL}/blogs/${blog.slug}`,
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.6,
-    };
-  });
+  const { data: services } = await supabase
+    .from("services")
+    .select("slug");
+
+  const services_url = (services || []).map((service) => ({
+    url: `${process.env.NEXT_PUBLIC_WEBSITE_URL}/services/${service.slug}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly",
+    priority: 0.5,
+  }));
+
+  const { data: blogs } = await supabase
+    .from("blogs")
+    .select("slug");
+
+  const blogs_url = (blogs || []).map((blog) => ({
+    url: `${process.env.NEXT_PUBLIC_WEBSITE_URL}/blogs/${blog.slug}`,
+    lastModified: new Date(),
+    changeFrequency: "weekly",
+    priority: 0.6,
+  }));
 
   return [
     {
@@ -68,7 +55,6 @@ export default async function sitemap() {
     },
     ...offline_products_url,
     ...services_url,
-    ...products_url,
     ...blogs_url,
   ];
 }

@@ -59,9 +59,9 @@ const Navbar = () => {
                 <NavLink href={link.path} title={link.title} icon={link.icon} isActive={link.isActive} />
               </li>
             ))}
-            <div className=" hidden sm:block">
+            <li className="hidden sm:block">
               <DarkModeTogleButton/>
-            </div>
+            </li>
           </ul>
         </div>
       </div>

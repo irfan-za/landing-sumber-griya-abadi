@@ -52,7 +52,7 @@ const HeroSection = () => {
               Kontak Admin
             </Link>
             <Link
-              href={process.env.NEXT_PUBLIC_TOKOPEDIA_LINK}
+              href={'/products'}
               target="_blank"
               className="px-1 inline-block py-1 w-full sm:w-fit rounded-full bg-gradient-to-br from-primary via-blue-400 to-secondary hover:to-primary text-slate-900 dark:text-white mt-3"
             >

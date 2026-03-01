@@ -61,29 +61,29 @@ function formatMarkdown(content) {
   return content
     .replace(
       /^### (.*$)/gm,
-      '<h3 class="text-xl font-bold text-gray-900 mt-8 mb-4">$1</h3>'
+      '<h3 class="text-xl font-bold text-foreground mt-8 mb-4">$1</h3>'
     )
     .replace(
       /^#### (.*$)/gm,
-      '<h4 class="text-lg font-semibold text-gray-900 mt-6 mb-3">$1</h4>'
+      '<h4 class="text-lg font-semibold text-foreground mt-6 mb-3">$1</h4>'
     )
     .replace(
       /^## (.*$)/gm,
-      '<h2 class="text-2xl font-bold text-gray-900 mt-10 mb-6">$1</h2>'
+      '<h2 class="text-2xl font-bold text-foreground mt-10 mb-6">$1</h2>'
     )
     .replace(
       /^# (.*$)/gm,
-      '<h1 class="text-3xl font-bold text-gray-900 mt-12 mb-6">$1</h1>'
+      '<h1 class="text-3xl font-bold text-foreground mt-12 mb-6">$1</h1>'
     )
     .replace(
       /\*\*(.*?)\*\*/g,
-      '<strong class="font-semibold text-gray-900">$1</strong>'
+      '<strong class="font-semibold text-foreground">$1</strong>'
     )
 
     .replace(/\*(.*?)\*/g, '<em class="italic">$1</em>')
     .replace(
       /\[([^\]]+)\]\(([^)]+)\)/g,
-      '<a href="$2" class="text-blue-600 hover:underline">$1</a>'
+      '<a href="$2" class="text-primary hover:underline">$1</a>'
     )
     .replace(/^\s*-\s+(.*$)/gm, '<li class="ml-4 mb-1">$1</li>')
     .replace(
@@ -91,11 +91,11 @@ function formatMarkdown(content) {
       '<ul class="list-disc pl-6 mb-4">$&</ul>'
     )
     .replace(
-      /^\> (.*$)/gm,
-      '<blockquote class="border-l-4 border-gray-200 pl-4 italic my-4">$1</blockquote>'
+      /^\\> (.*$)/gm,
+      '<blockquote class="border-l-4 border-border pl-4 italic my-4 text-muted-foreground">$1</blockquote>'
     )
 
-    .replace(/^---$/gm, '<hr class="my-8 border-t border-gray-200">')
+    .replace(/^---$/gm, '<hr class="my-8 border-t border-border">')
 
     .replace(
       /!\[(.*?)\]\((.*?)\)/g,
@@ -103,19 +103,19 @@ function formatMarkdown(content) {
     )
     .replace(
       /```(.*?)```/gs,
-      '<pre class="bg-gray-100 p-4 rounded overflow-x-auto my-4"><code>$1</code></pre>'
+      '<pre class="bg-muted p-4 rounded overflow-x-auto my-4"><code class="text-foreground">$1</code></pre>'
     )
 
     .replace(
       /`(.*?)`/g,
-      '<code class="bg-gray-100 px-1 rounded text-sm">$1</code>'
+      '<code class="bg-muted px-1 rounded text-sm text-foreground">$1</code>'
     )
     .replace(
       /^([^<].*)/gm,
-      '<p class="text-gray-700 leading-relaxed mb-4">$1</p>'
+      '<p class="text-muted-foreground leading-relaxed mb-4">$1</p>'
     )
-    .replace(/<p class="text-gray-700 leading-relaxed mb-4"><\/p>/g, "")
-    .replace(/<p class="text-gray-700 leading-relaxed mb-4"><ul/g, "<ul")
+    .replace(/<p class="text-muted-foreground leading-relaxed mb-4"><\/p>/g, "")
+    .replace(/<p class="text-muted-foreground leading-relaxed mb-4"><ul/g, "<ul")
     .replace(/<\/ul><\/p>/g, "</ul>");
 }
 

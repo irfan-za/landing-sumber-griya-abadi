@@ -3,9 +3,10 @@ import { getItem } from "@/lib/utils/supabaseCRUD";
 import { notFound } from "next/navigation";
 
 async function page({ params }) {
+  const { id } = await params;
   let product = null;
-  if (params.id !== "add") {
-    const { data, error } = await getItem("offline_products", params.id);
+  if (id !== "add") {
+    const { data, error } = await getItem("offline_products", id);
     if (error) return notFound();
     product = data;
   }

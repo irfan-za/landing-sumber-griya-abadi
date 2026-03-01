@@ -9,11 +9,9 @@ import Review from "@/components/Review";
 import { achievementsList, socialMedia } from "@/constans";
 import Link from "next/link";
 import BlogsSection from "@/components/BlogsSection";
-import NextThemeProvider from "@/components/NextThemeProvider";
 
 export default function Home() {
   return (
-    <NextThemeProvider>
       <main className="flex min-h-screen items-center flex-col bg-slate-200 dark:bg-slate-900">
         <Navbar />
         <div className="block sm:hidden pt-2 pb-4 w-full container max-w-[90%] text-end">
@@ -32,7 +30,7 @@ export default function Home() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               <Link href="/calculator-pvc" className="group">
-                <div className="p-6 rounded-lg bg-blue-50 border border-blue-200 shadow-sm transition-all hover:shadow-md hover:bg-blue-100">
+                <div className="p-6 rounded-lg bg-card border border-border shadow-sm transition-all hover:shadow-md">
                   <svg
                     className="w-8 h-8 text-blue-600 mb-4"
                     fill="none"
@@ -56,7 +54,7 @@ export default function Home() {
               </Link>
 
               <Link href="/calculator-gypsum" className="group">
-                <div className="p-6 rounded-lg bg-blue-50 border border-blue-200 shadow-sm transition-all hover:shadow-md hover:bg-blue-100">
+                <div className="p-6 rounded-lg bg-card border border-border shadow-sm transition-all hover:shadow-md">
                   <svg
                     className="w-8 h-8 text-blue-600 mb-4"
                     fill="none"
@@ -87,6 +85,5 @@ export default function Home() {
           <Footer socialMedia={socialMedia} />
         </div>
       </main>
-    </NextThemeProvider>
   );
 }

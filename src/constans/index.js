@@ -5,23 +5,24 @@ import {
 
 const achievementsList = [
   {
-    metric: "Followers",
+    metric: "Produk",
     value: "3000",
     postfix: "+",
   },
   {
     metric: "Pelanggan",
-    value: "1000",
+    value: "4200",
     postfix: "+",
   },
   {
     metric: "Tahun",
-    value: "15",
+    value: "20",
     postfix: "+",
   },
   {
-    metric: "Proyek",
+    metric: "Kepuasan",
     value: "96",
+    postfix: "%",
   },
 ];
 
@@ -48,29 +49,44 @@ const socialMedia = [
   {
     link: "https://www.instagram.com/sumbergriyaabadi",
     alt: "Instagram Sumber Griya Abadi",
-    image: "/ig.svg",
+    image: "/icons/ig.svg",
   },
   {
     link: "https://web.facebook.com/sumbergriyaabadi?_rdc=1&_rdr",
     alt: "Facebook Sumber Griya Abadi",
-    image: "/fb.svg",
+    image: "/icons/fb.svg",
   },
   {
     link: "https://www.tiktok.com/@sumbergriyaabadi",
     alt: "Tiktok Sumber Griya Abadi",
-    image: "/tiktok.svg",
+    image: "/icons/tiktok.svg",
   },
   {
     link: "https://www.youtube.com/@sumbergriyaabadi",
     alt: "Youtube Sumber Griya Abadi",
-    image: "/yt.svg",
+    image: "/icons/yt.svg",
   },
   {
     link: `https://api.whatsapp.com/send?phone=${process.env.NEXT_PUBLIC_PHONE}&text=halo%20pak%2C%20saya%20mau%20konsultasi%20Plafon.`,
     alt: "Whatsapp Sumber Griya Abadi",
-    image: "/wa.svg",
+    image: "/icons/wa.svg",
   },
 ];
+const marketplaces = [
+  {
+    link: "https://www.tokopedia.com/sumbergriyaabadi",
+    alt: "Tokopedia Sumber Griya Abadi",
+    image: "/icons/tokopedia.svg",
+    name: "Tokopedia",
+  },
+  {
+    link: "https://shopee.co.id/sumbergriyaabadi",
+    alt: "Shopee Sumber Griya Abadi",
+    image: "/icons/shopee.svg",
+    name: "Shopee",
+  },
+];
+
 const bankAccounts = [
   {
     bank: "bni",
@@ -93,4 +109,32 @@ const sidebarLinks = [
     icon: <WrenchScrewdriverIcon width={20} height={20} />,
   },
 ];
-export { achievementsList, socialMedia, timer, bankAccounts, sidebarLinks };
+
+const reviews = [
+  {
+    id: 1,
+    name: "Donny",
+    job: "Retailer Plafon PVC",
+    message: "SGA selalu mensupply kebutuhan hollow dan lis figura ditoko saya👍",
+  },
+  {
+    id: 2,
+    name: "Anwar",
+    job: "Mandor Proyek",
+    message: "Beli gypsum Knauf dan hollow untuk proyek perumahan di Salatiga 1 hari langsung sampai",
+  },
+  {
+    id: 3,
+    name: "Luki",
+    job: "Pimpinan Proyek",
+    message: "SGA bisa mensupply kebutuhan gypsum Jayaboard proyek saya di Magetan. Harga oke dan pengirimannya cepat",
+  },
+  {
+    id: 4,
+    name: "Devi",
+    job: "Staff Administrator",
+    message: "Pertama kali belanja gypsum Knauf disini. transfer lansung dikirim barangnya. Penjual Amanah👍",
+  },
+];
+
+export { achievementsList, socialMedia, timer, bankAccounts, sidebarLinks, marketplaces, reviews };

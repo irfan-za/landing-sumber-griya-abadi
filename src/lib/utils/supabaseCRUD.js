@@ -51,9 +51,20 @@ async function getItemsWithFilter(table, column, value) {
   return { data, error };
 }
 
+// Select an item by slug
+async function getItemBySlug(table, slug) {
+  const { data, error } = await supabase
+    .from(table)
+    .select("*")
+    .eq("slug", slug)
+    .single();
+  return { data, error };
+}
+
 export {
   createItem,
   getItem,
+  getItemBySlug,
   getItemsWithFilter,
   getAll,
   editItem,

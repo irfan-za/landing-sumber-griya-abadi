@@ -25,12 +25,12 @@ import Footer from "@/components/Footer";
 import Navbar from "@/components/navbar/Navbar";
 import { socialMedia } from "@/constans";
 import PublishDate from "@/components/PublishDate";
-import { getItemsWithFilter } from "@/lib/utils/supabaseCRUD";
+import { getItemBySlug, getItemsWithFilter } from "@/lib/utils/supabaseCRUD";
 import { formatMarkdown } from "@/lib/utils/index";
 
 export async function generateMetadata({ params }) {
-  const { data } = await getItemsWithFilter("blogs", "slug", params.slug);
-  const blog = data[0];
+  const { slug } = await params;
+  const { data: blog } = await getItemBySlug("blogs", slug);
 
   if (!blog) {
     return {
@@ -68,8 +68,8 @@ export async function generateMetadata({ params }) {
 }
 
 export default async function BlogPage({ params }) {
-  const { data } = await getItemsWithFilter("blogs", "slug", params.slug);
-  const blog = data[0];
+  const { slug } = await params;
+  const { data: blog } = await getItemBySlug("blogs", slug);
 
   if (!blog) {
     notFound();
@@ -85,12 +85,11 @@ export default async function BlogPage({ params }) {
     .slice(0, 3);
 
   const formattedContent = formatMarkdown(blog.content);
-
   return (
     <div className="flex flex-col min-h-screen items-center pt-0 sm:pt-16">
       <Navbar />
 
-      <main className="min-h-screen bg-white">
+      <main className="min-h-screen bg-background text-foreground">
         <div className="container mx-auto px-4 py-8">
           <Breadcrumb className="mb-8">
             <BreadcrumbList>
@@ -110,7 +109,7 @@ export default async function BlogPage({ params }) {
 
           <Link
             href="/blogs"
-            className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 mb-8"
+            className="inline-flex items-center gap-2 text-primary hover:text-primary/90 mb-8"
           >
             <ArrowLeftIcon className="w-4 h-4" />
             Kembali ke Blog
@@ -120,16 +119,16 @@ export default async function BlogPage({ params }) {
             <article className="lg:col-span-3">
               <header className="mb-8">
                 <div className="mb-4">
-                  <Badge variant="secondary" className="mb-4 text-white">
+                  <Badge variant="secondary" className="mb-4">
                     {blog.category}
                   </Badge>
                 </div>
 
-                <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6 leading-tight">
+                <h1 className="text-2xl md:text-3xl font-bold text-foreground mb-6 leading-tight">
                   {blog.title}
                 </h1>
 
-                <div className="flex flex-wrap items-center gap-6 text-gray-600 mb-8 text-sm">
+                <div className="flex flex-wrap items-center gap-6 text-muted-foreground mb-8 text-sm">
                   <div className="flex items-center gap-2">
                     <CalendarIcon className="w-4 h-4" />
                     <PublishDate id={blog.id} />
@@ -156,12 +155,12 @@ export default async function BlogPage({ params }) {
               </header>
 
               <div
-                className="mb-12 prose prose-lg max-w-none"
+                className="mb-12 prose prose-lg max-w-none dark:prose-invert"
                 dangerouslySetInnerHTML={{ __html: formattedContent }}
               />
 
               <div className="mb-8">
-                <h3 className="font-semibold text-gray-900 mb-3">Tags:</h3>
+                <h3 className="font-semibold text-foreground mb-3">Tags:</h3>
                 <div className="flex flex-wrap gap-2">
                   {blog.tags.map((tag) => (
                     <Badge key={tag} variant="outline" className="text-sm">
@@ -171,12 +170,12 @@ export default async function BlogPage({ params }) {
                 </div>
               </div>
 
-              <Card className="bg-gradient-to-r from-blue-600 to-blue-700 text-white mb-12">
+              <Card className="bg-gradient-to-r from-primary to-primary/80 text-primary-foreground mb-12 border-none">
                 <CardContent className="p-8 text-center">
                   <h3 className="text-2xl font-bold mb-4">
                     Butuh Konsultasi Material Bangunan?
                   </h3>
-                  <p className="text-blue-50 mb-6 max-w-2xl mx-auto">
+                  <p className="text-primary-foreground/90 mb-6 max-w-2xl mx-auto">
                     Tim ahli kami siap membantu Anda memilih material terbaik
                     untuk proyek konstruksi. Dapatkan konsultasi GRATIS dan
                     penawaran harga terbaik!
@@ -184,8 +183,7 @@ export default async function BlogPage({ params }) {
                   <div className="flex flex-col sm:flex-row gap-4 justify-center">
                     <Button
                       size="lg"
-                      variant="secondary"
-                      className="bg-white text-blue-600 hover:bg-gray-100"
+                      variant="primary"
                       asChild
                     >
                       <Link
@@ -197,7 +195,7 @@ export default async function BlogPage({ params }) {
                       </Link>
                     </Button>
                   </div>
-                  <div className="flex items-center justify-center gap-2 mt-4 text-blue-100">
+                  <div className="flex items-center justify-center gap-2 mt-4 text-primary-foreground/80">
                     <MapPinIcon className="w-4 h-4" />
                     <span className="text-sm">
                       Melayani seluruh wilayah di pulau Jawa.
@@ -212,7 +210,7 @@ export default async function BlogPage({ params }) {
                 {relatedBlogs.length > 0 && (
                   <Card>
                     <CardContent className="p-6">
-                      <h3 className="font-bold text-lg text-gray-900 mb-4">
+                      <h3 className="font-bold text-lg text-foreground mb-4">
                         Artikel Terkait
                       </h3>
                       <div className="space-y-4">
@@ -232,10 +230,10 @@ export default async function BlogPage({ params }) {
                                   />
                                 </div>
                                 <div className="flex-1 min-w-0">
-                                  <h4 className="font-medium text-sm text-gray-900 line-clamp-2 group-hover:text-blue-600 transition-colors">
+                                  <h4 className="font-medium text-sm text-foreground line-clamp-2 group-hover:text-primary transition-colors">
                                     {relatedBlog.title}
                                   </h4>
-                                  <p className="text-xs text-gray-500 mt-1">
+                                  <p className="text-xs text-muted-foreground mt-1">
                                     {relatedBlog.readtime}
                                   </p>
                                 </div>
@@ -252,9 +250,9 @@ export default async function BlogPage({ params }) {
                   </Card>
                 )}
 
-                <Card className="hidden lg:flex bg-gray-50">
+                <Card className="hidden lg:flex bg-muted">
                   <CardContent className="p-3">
-                    <h3 className="font-bold text-lg text-gray-900 mb-4">
+                    <h3 className="font-bold text-lg text-foreground mb-4">
                       Hubungi Kami
                     </h3>
                     <div className="space-y-3 text-sm">
@@ -263,7 +261,7 @@ export default async function BlogPage({ params }) {
                         target="_blank"
                         className="flex items-center gap-2 hover:underline"
                       >
-                        <PhoneIcon className="w-4 h-4 text-blue-600" />
+                        <PhoneIcon className="w-4 h-4 text-primary" />
                         <span>{process.env.NEXT_PUBLIC_PHONE}</span>
                       </Link>
                       <Link
@@ -271,7 +269,7 @@ export default async function BlogPage({ params }) {
                         target="_blank"
                         className="flex items-start gap-2 hover:underline"
                       >
-                        <MapPinIcon className="w-4 h-4 text-blue-600 mt-0.5 flex-shrink-0" />
+                        <MapPinIcon className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
                         <span>
                           Jl Mangu-Sambi km.3, Sobokerto, Ngemplak, Boyolali,
                           Jawa Tengah.
@@ -279,7 +277,7 @@ export default async function BlogPage({ params }) {
                       </Link>
                     </div>
                     <Separator className="my-4" />
-                    <p className="text-xs text-gray-600">
+                    <p className="text-xs text-muted-foreground">
                       Buka: Senin - Sabtu, 08:00 - 16:00 WIB
                     </p>
                   </CardContent>

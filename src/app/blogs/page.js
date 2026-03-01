@@ -74,28 +74,28 @@ export default function BlogsPage() {
     <div className="flex flex-col min-h-screen items-center">
       <Navbar />
       <main className="min-h-screen flex-1 sm:pt-12">
-        <section className="bg-gradient-to-br from-blue-50 to-gray-100 py-16">
+        <section className="bg-background py-16">
           <div className="container mx-auto px-4 text-center">
             <div className="max-w-3xl mx-auto">
-              <h1 className="text-2xl md:text-4xl font-bold text-gray-900 mb-6">
+              <h1 className="text-2xl md:text-4xl font-bold text-foreground mb-6">
                 Temukan berita terbaru kami
               </h1>
-              <p className="text-base md:text-lg text-gray-600 mb-8">
+              <p className="text-base md:text-lg text-muted-foreground mb-8">
                 Temukan berbagai tips, tutorial, serta berbagai informasi
                 pilihan terkait bahan bangunan. Dapatkan informasi terpercaya
                 dan terbaru dari para ahli kami.
               </p>
 
               <div className="relative max-w-md mx-auto mb-8">
-                <MagnifyingGlassIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+                <MagnifyingGlassIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-5 h-5" />
                 <Input
                   type="text"
                   placeholder="Cari artikel, tips, atau tutorial..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="pl-10 pr-4 py-3 w-full rounded-lg border-gray-200 focus:border-blue-500 focus:ring-blue-500"
+                  className="pl-10 pr-4 py-3 w-full rounded-lg border-border focus:border-primary focus:ring-primary"
                 />
-                <Button className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-1.5 text-sm">
+                <Button className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-primary hover:bg-primary/80 text-primary-foreground px-4 py-1.5 text-sm">
                   Cari
                 </Button>
               </div>
@@ -107,7 +107,7 @@ export default function BlogsPage() {
           <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
             <div className="lg:col-span-3">
               <div className="mb-8 flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
-                <h2 className="text-2xl font-bold text-gray-900">
+                <h2 className="text-2xl font-bold text-foreground">
                   Artikel Terbaru Material Bangunan
                 </h2>
                 <Select
@@ -128,7 +128,7 @@ export default function BlogsPage() {
                 </Select>
               </div>
 
-              <div className="mb-6 text-gray-600">
+              <div className="mb-6 text-muted-foreground">
                 Menampilkan {paginatedBlogs.length} dari {filteredBlogs.length}{" "}
                 artikel
               </div>
@@ -149,14 +149,14 @@ export default function BlogsPage() {
                       <div className="absolute top-4 left-4">
                         <Badge
                           variant="secondary"
-                          className="bg-white/90 text-gray-700"
+                          className="bg-background/90 text-foreground"
                         >
                           {blog.category}
                         </Badge>
                       </div>
                     </div>
                     <CardContent className="p-6">
-                      <div className="flex items-center gap-4 text-sm text-gray-500 mb-3">
+                      <div className="flex items-center gap-4 text-sm text-muted-foreground mb-3">
                         <div className="flex items-center gap-1">
                           <CalendarIcon className="w-4 h-4" />
                           <PublishDate id={blog.id} />
@@ -167,11 +167,11 @@ export default function BlogsPage() {
                         </div>
                       </div>
 
-                      <h3 className="font-bold text-xl text-gray-900 mb-3 line-clamp-2 hover:text-blue-600 transition-colors">
+                      <h3 className="font-bold text-xl text-foreground mb-3 line-clamp-2 hover:text-primary transition-colors">
                         <Link href={`/blogs/${blog.slug}`}>{blog.title}</Link>
                       </h3>
 
-                      <p className="text-gray-600 mb-4 line-clamp-3">
+                      <p className="text-muted-foreground mb-4 line-clamp-3">
                         {blog.excerpt}
                       </p>
 
@@ -186,10 +186,10 @@ export default function BlogsPage() {
                             </AvatarFallback>
                           </Avatar>
                           <div>
-                            <p className="text-sm font-medium text-gray-900">
+                            <p className="text-sm font-medium text-foreground">
                               {blog.author}
                             </p>
-                            <p className="text-xs text-gray-500">
+                            <p className="text-xs text-muted-foreground">
                               {blog.authorRole}
                             </p>
                           </div>
@@ -245,8 +245,8 @@ export default function BlogsPage() {
             </div>
 
             <div className="lg:col-span-1">
-              <div className="bg-white rounded-lg p-6 shadow-sm mb-8">
-                <h3 className="font-bold text-lg text-gray-900 mb-4">
+              <div className="bg-card rounded-lg p-6 shadow-sm border mb-8">
+                <h3 className="font-bold text-lg text-foreground mb-4">
                   Featured
                 </h3>
                 <div className="space-y-4">
@@ -261,10 +261,10 @@ export default function BlogsPage() {
                         />
                       </div>
                       <div className="flex-1 min-w-0">
-                        <p className="text-xs text-blue-600 mb-1">
+                        <p className="text-xs text-primary mb-1">
                           <PublishDate id={blog.id} />
                         </p>
-                        <h4 className="font-medium text-sm text-gray-900 line-clamp-2 hover:text-blue-600">
+                        <h4 className="font-medium text-sm text-foreground line-clamp-2 hover:text-primary">
                           <Link href={`/blogs/${blog.slug}`}>{blog.title}</Link>
                         </h4>
                       </div>
@@ -273,8 +273,8 @@ export default function BlogsPage() {
                 </div>
               </div>
 
-              <div className="bg-white rounded-lg p-6 shadow-sm">
-                <h3 className="font-bold text-lg text-gray-900 mb-4">Latest</h3>
+              <div className="bg-card rounded-lg p-6 shadow-sm border">
+                <h3 className="font-bold text-lg text-foreground mb-4">Latest</h3>
                 <div className="space-y-4">
                   {blogsData.slice(0, 3).map((blog) => (
                     <div key={blog.id} className="flex gap-3">
@@ -287,10 +287,10 @@ export default function BlogsPage() {
                         />
                       </div>
                       <div className="flex-1 min-w-0">
-                        <p className="text-xs text-gray-500 mb-1">
+                        <p className="text-xs text-muted-foreground mb-1">
                           <PublishDate id={blog.id} />
                         </p>
-                        <h4 className="font-medium text-sm text-gray-900 line-clamp-2 hover:text-blue-600">
+                        <h4 className="font-medium text-sm text-foreground line-clamp-2 hover:text-primary">
                           <Link href={`/blogs/${blog.slug}`}>{blog.title}</Link>
                         </h4>
                       </div>

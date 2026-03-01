@@ -19,7 +19,7 @@ export default async function BlogsSection() {
             <h2 className="text-2xl font-bold text-accent-foreground mb-6 text-center">
             Panduan & Tips Terbaru
           </h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">
+          <p className="text-muted-foreground max-w-2xl mx-auto">
             Dapatkan tips dan panduan terbaru seputar material bangunan dari
             para ahli
           </p>
@@ -46,21 +46,21 @@ export default async function BlogsSection() {
                 </div>
               </div>
               <CardContent className="p-6">
-                <h3 className="font-bold text-lg text-gray-900 mb-3 line-clamp-2">
+                <h3 className="font-bold text-lg text-foreground mb-3 line-clamp-2">
                   {blog.title}
                 </h3>
-                <p className="text-gray-600 mb-4 line-clamp-3">
+                <p className="text-muted-foreground mb-4 line-clamp-3">
                   {blog.excerpt}
                 </p>
                 <div className="flex items-center justify-between">
-                  <span className="text-sm text-gray-500">{blog.readtime}</span>
+                  <span className="text-sm text-muted-foreground">{blog.readtime}</span>
                   <Link href={`/blogs/${blog.slug}`}>
                     <Button
                       variant="ghost"
                       size="sm"
-                      className="text-blue-600 hover:text-blue-700"
+                      className="text-muted-foreground hover:text-blue-700"
                     >
-                      Baca Selengkapnya
+                      Selengkapnya
                       <ArrowRightIcon className="w-4 h-4 ml-1" />
                     </Button>
                   </Link>

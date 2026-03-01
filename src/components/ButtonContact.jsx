@@ -11,7 +11,7 @@ function ButtonContact({title}) {
         className=" 
         transition duration-1000 delay-1000 ease-in font-medium mt-4 px-6 flex py-3 w-full sm:w-fit rounded-full bg-gradient-to-br from-green-600 via-green-500 to-secondary hover:to-green-600 text-white"
       >
-        <Image src={'/wa.svg'} alt='Kontak Admin Sumber Griya Abadi' className="invert mr-3" width={24} height={24} />
+        <Image src={'/icons/wa.svg'} alt='Kontak Admin Sumber Griya Abadi' className="invert mr-3" width={24} height={24} />
         Kontak Admin
       </Link>
 

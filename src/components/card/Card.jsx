@@ -2,9 +2,9 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 
-const Card = ({ id, title, imgUrl, fetchUrl }) => {
+const Card = ({ slug, title, imgUrl, fetchUrl }) => {
   return (
-    <Link href={`/${fetchUrl}/${id}`}>
+    <Link href={`/${fetchUrl}/${slug}`}>
       <div className="aspect-square rounded-t-xl relative group bg-slate-50  dark:bg-slate-800" >
         <Image src={imgUrl[0]} alt={title} fill={true} objectFit="cover" className="rounded-t-lg" />
       </div>
