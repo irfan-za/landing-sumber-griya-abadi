@@ -112,12 +112,6 @@ const sidebarLinks = [
     icon: <Squares2X2Icon width={20} height={20} />,
   },
   {
-    title: "Kategori",
-    href: "/admin/categories",
-    activeNav: "categories",
-    icon: <TagIcon width={20} height={20} />,
-  },
-  {
     title: "Jasa Layanan",
     href: "/admin/services",
     activeNav: "services",
