@@ -6,8 +6,7 @@ const AboutSection = () => {
       <div className="md:grid md:grid-cols-2 gap-8 items-start py-8 px-4 xl:gap-16 sm:py-16 xl:px-16">
       <div className="relative w-48 h-48 sm:w-80 sm:h-80 lg:w-[25rem] lg:h-[25rem] mx-auto">
         <Image 
-          className="rounded-lg drop-shadow-xl"
-          objectFit="cover"
+          className="rounded-lg drop-shadow-xl object-cover"
           fill={true}
           src="https://res.cloudinary.com/ddjmxrrij/image/upload/v1700560370/sga/sga_uttegw.png" 
           alt=" Logo Sumber Griya Abadi" />

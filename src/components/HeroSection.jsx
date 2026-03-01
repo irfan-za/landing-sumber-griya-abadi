@@ -70,8 +70,7 @@ const HeroSection = () => {
         >
           <div className="relative w-72 h-48 sm:h-64 lg:w-[30rem] lg:h-[18rem]">
           <Image
-            className="rounded-lg drop-shadow-xl"
-            objectFit="cover"
+            className="rounded-lg drop-shadow-xl object-cover"
             fill={true}
            src={"https://res.cloudinary.com/ddjmxrrij/image/upload/v1700565205/sga/20231119_120639_pzlvoh.jpg"} alt="Toko Sumber Griya Abadi"/>
           </div>
