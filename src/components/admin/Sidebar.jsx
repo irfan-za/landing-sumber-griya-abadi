@@ -1,14 +1,8 @@
 "use client";
-import { navigationMenuTriggerStyle } from "@/components/ui/navigation-menu";
+
 import { sidebarLinks } from "@/constans";
 import { cn } from "@/lib/utils";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-import {
-  NavigationMenu,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-} from "@radix-ui/react-navigation-menu";
 import Link from "next/link";
 import { useSelectedLayoutSegment } from "next/navigation";
 import { useState } from "react";
@@ -20,70 +14,73 @@ const Sidebar = () => {
   const close = () => setIsOpen(false);
 
   return (
-    <div className="fixed top-0 z-10 flex w-full flex-col border-b border-gray-200 bg-gray-100 lg:bottom-0 lg:z-auto lg:w-72 lg:border-b-0 lg:border-r lg:border-gray-800">
-      <div className="flex h-14 items-center px-4 py-4 lg:h-auto">
+    <div className="fixed top-0 z-10 flex w-full flex-col border-b bg-card lg:bottom-0 lg:z-auto lg:w-64 lg:border-b-0 lg:border-r">
+      {/* Header */}
+      <div className="flex h-14 items-center justify-between px-4 lg:h-16 lg:px-6">
         <Link
           href="/"
-          className="hidden sm:inline text-xl sm:text-3xl text-primary font-bold"
+          className="text-xl font-bold text-primary"
           onClick={close}
           aria-label="Brand"
         >
-          SGA
+          SGA Admin
         </Link>
+        <button
+          type="button"
+          className="lg:hidden p-1.5 rounded-md hover:bg-muted"
+          onClick={() => setIsOpen(!isOpen)}
+        >
+          {isOpen ? (
+            <XMarkIcon className="w-5 h-5 text-muted-foreground" />
+          ) : (
+            <Bars3Icon className="w-5 h-5 text-muted-foreground" />
+          )}
+        </button>
       </div>
-      <button
-        type="button"
-        className="group absolute right-0 top-0 flex h-14 items-center gap-x-2 px-4 lg:hidden"
-        onClick={() => setIsOpen(!isOpen)}
-      >
-        {isOpen ? (
-          <XMarkIcon className="block w-6 text-gray-400" />
-        ) : (
-          <Bars3Icon className="block w-6 text-gray-400" />
-        )}
-      </button>
 
+      {/* Navigation */}
       <div
-        className={cn("flex overflow-y-auto bg-gray-100 lg:static lg:block", {
-          "fixed bottom-0 top-14 mt-px w-screen lg:w-full": isOpen,
-          hidden: !isOpen,
-        })}
+        className={cn(
+          "flex-1 overflow-y-auto bg-card lg:block",
+          isOpen ? "fixed inset-0 top-14 z-50" : "hidden lg:flex lg:flex-col"
+        )}
       >
-        <nav className="w-3/4 space-y-6 px-2 pb-24 pt-5 sm:w-1/2 lg:w-full">
-          <div className="space-y-1 p-4">
-            <NavigationMenu>
-              <NavigationMenuList>
-                {sidebarLinks.map((link, i) => (
-                  <NavigationMenuItem key={i}>
-                    <Link href={link.href} legacyBehavior passHref>
-                      <NavigationMenuLink
-                        onClick={close}
-                        className={`${navigationMenuTriggerStyle()} ${
-                          activeNav === link.activeNav
-                            ? "bg-primary text-primary-foreground"
-                            : ""
-                        }`}
-                      >
-                        {link.icon}
-                        <span>{link.title}</span>
-                      </NavigationMenuLink>
-                    </Link>
-                  </NavigationMenuItem>
-                ))}
+        <div className="flex h-full flex-col bg-card lg:bg-transparent">
+          <nav className="flex-1 px-3 py-4 space-y-1">
+            {sidebarLinks.map((link, i) => {
+              const isActive = activeNav === link.activeNav;
+              return (
+                <Link
+                  key={i}
+                  href={link.href}
+                  onClick={close}
+                  className={cn(
+                    "flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors",
+                    isActive
+                      ? "bg-primary text-primary-foreground"
+                      : "text-muted-foreground hover:bg-muted hover:text-foreground"
+                  )}
+                >
+                  {link.icon}
+                  <span>{link.title}</span>
+                </Link>
+              );
+            })}
+          </nav>
 
-                <NavigationMenuItem>
-                  <AlertLogout />
-                  <NavigationMenuLink>
-                  </NavigationMenuLink>
-                </NavigationMenuItem>
-              </NavigationMenuList>
-            </NavigationMenu>
+          {/* Logout at bottom */}
+          <div className="p-3 border-t">
+            <AlertLogout />
           </div>
-        </nav>
-        <span
-          onClick={() => setIsOpen(false)}
-          className="h-full w-1/4 bg-black bg-opacity-20 sm:w-1/2"
-        ></span>
+        </div>
+
+        {/* Backdrop for mobile */}
+        {isOpen && (
+          <div
+            className="fixed inset-0 bg-black/20 -z-10 lg:hidden"
+            onClick={close}
+          />
+        )}
       </div>
     </div>
   );

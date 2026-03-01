@@ -17,8 +17,8 @@
       --primary-foreground: 214 100% 97%;
       --primary-hover: 200 98% 39%;
 
-      --secondary: 199 89% 90%;
-      --secondary-foreground: 217 91% 30%;
+      --secondary: 200 80% 60%;
+      --secondary-foreground: 100 100% 100%;
 
       --muted: 210 40% 90.1%;
       --muted-foreground: 215.4 16.3% 46.9%;
@@ -53,8 +53,8 @@
       --primary-foreground: 214 100% 97%;
       --primary-hover: 200 98% 39%;
 
-      --secondary: 215 95% 90%;
-      --secondary-foreground: 217 91% 30%;
+      --secondary: 200 80% 60%;
+      --secondary-foreground: 214 100% 100%;
 
       --muted: 217.2 32.6% 17.5%;
       --muted-foreground: 215 20.2% 60.1%;

@@ -1,15 +1,16 @@
-import AdminTable from "@/components/admin/AdminTable";
-import { getAll } from "@/lib/utils/supabaseCRUD";
+import DashboardContent from "@/components/admin/dashboard/DashboardContent";
+import AdminPageHeader from "@/components/admin/shared/AdminPageHeader";
 
 export const revalidate = 0;
 
-async function page() {
-  const { data } = await getAll("offline_products");
+export default function AdminDashboardPage() {
   return (
-    <div className="px-3">
-      <AdminTable data={data ?? []} />
-    </div>
+    <>
+      <AdminPageHeader
+        title="Dashboard"
+        description="Ringkasan data dan aktivitas terbaru"
+      />
+      <DashboardContent />
+    </>
   );
 }
-
-export default page;
